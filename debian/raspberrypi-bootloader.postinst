@@ -1,0 +1,32 @@
+#!/bin/sh
+rm -f /boot/start.elf
+dpkg-divert --package rpikernelhack --remove --rename /boot/start.elf
+sync
+rm -f /boot/start_cd.elf
+dpkg-divert --package rpikernelhack --remove --rename /boot/start_cd.elf
+sync
+rm -f /boot/start_db.elf
+dpkg-divert --package rpikernelhack --remove --rename /boot/start_db.elf
+sync
+rm -f /boot/start_x.elf
+dpkg-divert --package rpikernelhack --remove --rename /boot/start_x.elf
+sync
+rm -f /boot/fixup.dat
+dpkg-divert --package rpikernelhack --remove --rename /boot/fixup.dat
+sync
+rm -f /boot/fixup_cd.dat
+dpkg-divert --package rpikernelhack --remove --rename /boot/fixup_cd.dat
+sync
+rm -f /boot/fixup_db.dat
+dpkg-divert --package rpikernelhack --remove --rename /boot/fixup_db.dat
+sync
+rm -f /boot/fixup_x.dat
+dpkg-divert --package rpikernelhack --remove --rename /boot/fixup_x.dat
+sync
+rm -f /boot/bootcode.bin
+dpkg-divert --package rpikernelhack --remove --rename /boot/bootcode.bin
+sync
+rm -f /boot/LICENCE.broadcom
+dpkg-divert --package rpikernelhack --remove --rename /boot/LICENCE.broadcom
+sync
+#DEBHELPER#

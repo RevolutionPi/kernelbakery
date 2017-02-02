@@ -1,0 +1,16 @@
+From: Will Thompson <will.thompson@collabora.co.uk>
+Date: Wed, 23 May 2012 14:56:06 +0100
+Subject: Add udev rule for /dev/vchiq permissions
+
+---
+ lib/udev/rules.d/10-local-rpi.rules |    1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 lib/udev/rules.d/10-local-rpi.rules
+
+diff --git a/lib/udev/rules.d/10-local-rpi.rules b/lib/udev/rules.d/10-local-rpi.rules
+new file mode 100644
+index 0000000..1237f5f
+--- /dev/null
++++ b/lib/udev/rules.d/10-local-rpi.rules
+@@ -0,0 +1 @@
++SUBSYSTEM=="vchiq", GROUP="video", MODE="0660"

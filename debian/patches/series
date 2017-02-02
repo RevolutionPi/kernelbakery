@@ -1,0 +1,3 @@
+0001-Add-vmcs.conf-file-to-be-installed.patch
+0002-Add-udev-rule-for-dev-vchiq-permissions.patch
+0003-Fix-udev-rule-for-dev-vcio-and-vc-sm-permissions.patch

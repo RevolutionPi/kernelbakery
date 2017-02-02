@@ -1,0 +1,445 @@
+raspberrypi-firmware (1.20161215-1) jessie; urgency=medium
+
+  * firmware as of 2190ebaaab17d690fb4a6aa767ff7755eaf51b12
+
+ -- Serge Schneider <serge@raspberrypi.org>  Mon, 19 Dec 2016 20:03:40 +0000
+
+raspberrypi-firmware (1.20161125-1) jessie; urgency=medium
+
+  * firmware as of 5d80cd839dd4fe283d573df2ec3f3829b09b33f0
+
+ -- Serge Schneider <serge@raspberrypi.org>  Fri, 25 Nov 2016 16:37:08 +0000
+
+raspberrypi-firmware (1.20161020-1) jessie; urgency=medium
+
+  * firmware as of ec5a517ed6051974a5a09f7b7811d21c443a7c74
+  * raspberrypi-bootloader: Move raspberrypi-kernel to Recommends
+
+ -- Serge Schneider <serge@raspberrypi.org>  Mon, 24 Oct 2016 12:43:51 +0100
+
+raspberrypi-firmware (1.20160921-1) jessie; urgency=medium
+
+  * firmware as of ad8608c08b122b2c228dba0ff5070d6e9519faf5
+
+ -- Serge Schneider <serge@raspberrypi.org>  Thu, 22 Sep 2016 09:09:53 +0100
+
+raspberrypi-firmware (1.20160620-1) jessie; urgency=medium
+
+  * firmware as of 390f53ed0fd79df274bdcc81d99e09fa262f03ab
+
+ -- Serge Schneider <serge@raspberrypi.org>  Wed, 22 Jun 2016 08:10:35 +0100
+
+raspberrypi-firmware (1.20160523-1) jessie; urgency=medium
+
+  * firmware as of 3b98f7433649e13cf08f54f509d11491c99c4c0b
+
+ -- Serge Schneider <serge@raspberrypi.org>  Fri, 27 May 2016 10:22:10 +0100
+
+raspberrypi-firmware (1.20160512-1) jessie; urgency=medium
+
+  * firmware as of 3816e1ce1e6ebc6d2bf0596dbd52849e16aa7e94
+
+ -- Serge Schneider <serge@raspberrypi.org>  Thu, 12 May 2016 13:05:45 +0100
+
+raspberrypi-firmware (1.20160506-1) jessie; urgency=medium
+
+  * firmware as of cc6d7bf8b4c03a2a660ff9fdf4083fc165620866
+
+ -- Serge Schneider <serge@raspberrypi.org>  Fri, 06 May 2016 17:59:32 +0100
+
+raspberrypi-firmware (1.20160503-1) jessie; urgency=medium
+
+  * firmware as of 6832d9a431a98b640accb2b76eac38a420d7c680
+  * update symlinks
+  * add device-tree-compiler dependency
+
+ -- Serge Schneider <serge@raspberrypi.org>  Wed, 04 May 2016 15:33:17 +0100
+
+raspberrypi-firmware (1.20160424-1) jessie; urgency=medium
+
+  * firmware as of c1485f5cad98689d1c655c768a12565415f5ef13
+  * add dtoverlay, dtparam and dtmerge symlinks
+
+ -- Serge Schneider <serge@raspberrypi.org>  Tue, 26 Apr 2016 11:19:23 +0100
+
+raspberrypi-firmware (1.20160405-1) jessie; urgency=medium
+
+  * firmware as of c06550099b9593192d6e2cc7e6446a6b4380d3f4
+
+ -- Serge Schneider <serge@raspberrypi.org>  Wed, 06 Apr 2016 15:24:22 +0100
+
+raspberrypi-firmware (1.20160315-1) jessie; urgency=medium
+
+  * firmware as of 951799bbcd795ddf27769d14acf4813fdcbe53dc
+
+ -- Serge Schneider <serge@raspberrypi.org>  Wed, 16 Mar 2016 09:52:39 +0000
+
+raspberrypi-firmware (1.20160309-1) jessie; urgency=medium
+
+  * firmware as of 8b4e5482b52e6fb438dddc0d88ba0ba8d44af54b
+
+ -- Serge Schneider <serge@raspberrypi.org>  Mon, 14 Mar 2016 15:41:10 +0000
+
+raspberrypi-firmware (1.20160209-1) jessie; urgency=medium
+
+  * firmware as of 3442862c10fab68c2e88d660d2e69c143bb1f00c
+
+ -- Serge Schneider <serge@raspberrypi.org>  Tue, 09 Feb 2016 13:33:33 +0000
+
+raspberrypi-firmware (1.20160202-1) jessie; urgency=medium
+
+  * firmware as of cb2ffaa5503ac53039d40715965480dd66f0aa20
+
+ -- Serge Schneider <serge@raspberrypi.org>  Tue, 02 Feb 2016 09:52:07 +0000
+
+raspberrypi-firmware (1.20150923-1) jessie; urgency=medium
+
+  * firmware as of 960832a6c2590635216c296b6ee0bebf67b21d50
+
+ -- Serge Schneider <serge@raspberrypi.org>  Wed, 23 Sep 2015 16:10:43 +0100
+
+raspberrypi-firmware (1.20150820-1) wheezy; urgency=medium
+
+  * firmware as of bbf5495c0424fe38d795111007e93f8763b88bcc
+
+ -- Serge Schneider <serge@raspberrypi.org>  Fri, 21 Aug 2015 17:16:06 +0100
+
+raspberrypi-firmware (1.20150421-1) unstable; urgency=low
+
+  * firmware as of 6cc27e02dde4f1e02cfddb3d0f23d54be87680cb
+  * Make vc-sm and vcio subsystems writable by video group
+
+ -- Serge Schneider <serge@raspberrypi.org>  Mon, 27 Apr 2015 09:56:44 +0100
+
+raspberrypi-firmware (1.20150214-2) unstable; urgency=medium
+
+  * Fix for incorrect NOOBS images
+
+ -- Serge Schneider <serge@raspberrypi.org>  Fri, 27 Mar 2015 19:11:24 +0000
+
+raspberrypi-firmware (1.20150214-1) unstable; urgency=low
+
+  * firmware as of 8aca5762
+
+ --  <asb@asbradbury.org>  Sun, 15 Feb 2015 11:19:20 +0000
+
+raspberrypi-firmware (1.20150212-1) unstable; urgency=low
+
+  * firmware as of 47bd0f0f46b
+
+ --  <asb@asbradbury.org>  Thu, 12 Feb 2015 21:00:49 +0000
+
+raspberrypi-firmware (1.20150208-1) unstable; urgency=low
+
+  * firmware as of a43480416153e8
+
+ --  <asb@asbradbury.org>  Thu, 12 Feb 2015 16:30:12 +0000
+
+raspberrypi-firmware (1.20150130-1) unstable; urgency=low
+
+  * firmware as of 1f56136651963e
+
+ --  <asb@asbradbury.org>  Sat, 31 Jan 2015 19:50:59 +0000
+
+raspberrypi-firmware (1.20150128-1) unstable; urgency=low
+
+  * firmware as of 9b068fe44503f5
+
+ --  <asb@asbradbury.org>  Thu, 29 Jan 2015 16:59:02 +0000
+
+raspberrypi-firmware (1.20141219-1) unstable; urgency=low
+
+  * firmware as of 2f9828c4577a85
+
+ --  <asb@asbradbury.org>  Sun, 21 Dec 2014 10:53:44 +0000
+
+raspberrypi-firmware (1.20141207-1) unstable; urgency=low
+
+  * firmware as of 9d58d7bcc9d144
+
+ --  <asb@asbradbury.org>  Sun, 07 Dec 2014 17:49:01 +0000
+
+raspberrypi-firmware (1.20140908-1) unstable; urgency=low
+
+  * firmware as of 53d1ae311226b5c
+
+ --  <asb@asbradbury.org>  Mon, 08 Sep 2014 19:23:42 +0000
+
+raspberrypi-firmware (1.20140830-1) unstable; urgency=low
+
+  * firmware as of 1bb122bcd82bcd3
+
+ --  <asb@asbradbury.org>  Tue, 02 Sep 2014 07:08:05 +0000
+
+raspberrypi-firmware (1.20140618-1) unstable; urgency=low
+
+  * firmware as of 462f3e3f476f7b6
+
+ --  <asb@asbradbury.org>  Thu, 19 Jun 2014 18:57:45 +0000
+
+raspberrypi-firmware (1.20140530-1) unstable; urgency=low
+
+  * firmware as of 02eed2f817b42590180
+
+ --  <asb@asbradbury.org>  Sun, 01 Jun 2014 10:50:48 +0000
+
+raspberrypi-firmware (1.20140107-1) unstable; urgency=low
+
+  * firmware as of 030082b403b
+
+ --  <asb@asbradbury.org>  Tue, 07 Jan 2014 19:39:01 +0000
+
+raspberrypi-firmware (1.20131219-1) unstable; urgency=low
+
+  * firmware as of c32bc633039cd9
+
+ --  <asb@asbradbury.org>  Fri, 20 Dec 2013 11:03:43 +0000
+
+raspberrypi-firmware (1.20131209-1) unstable; urgency=low
+
+  * firmware as of 9d34d0475f9
+
+ --  <asb@asbradbury.org>  Wed, 10 Dec 2013 13:47:42 +0000
+
+raspberrypi-firmware (1.20130902-1) unstable; urgency=low
+
+  * firmware as of d4f5315cfac4e
+
+ --  <asb@asbradbury.org>  Wed, 04 Sep 2013 20:09:43 +0000
+
+raspberrypi-firmware (1.20130815-1) unstable; urgency=low
+
+  * firmware as of e0590d6dda8413
+
+ --  <asb@asbradbury.org>  Sat, 17 Aug 2013 15:43:58 +0000
+
+raspberrypi-firmware (1.20130617-1) unstable; urgency=low
+
+  * firmware as of a0c98fa6bc0f
+
+ --  <asb@asbradbury.org>  Wed, 19 Jun 2013 10:06:03 +0000
+
+raspberrypi-firmware (1.20130524-1) unstable; urgency=low
+
+  * firmware as of 6f4a90c8cb8817f
+
+ --  <asb@asbradbury.org>  Sat, 25 May 2013 15:56:50 +0000
+
+raspberrypi-firmware (1.20130520-1) unstable; urgency=low
+
+  * firmware as of a0f8a0331419a4
+
+ --  <asb@asbradbury.org>  Wed, 22 May 2013 20:13:43 +0000
+
+raspberrypi-firmware (1.20130517-1) unstable; urgency=low
+
+  * firmware as of 4f2a7b9b2a3d6c1
+
+ --  <asb@asbradbury.org>  Sat, 18 May 2013 12:34:55 +0000
+
+raspberrypi-firmware (1.20130514-1) unstable; urgency=low
+
+  * firmware as of 1c339b164613b
+
+ --  <asb@asbradbury.org>  Thu, 16 May 2013 17:29:01 +0000
+
+raspberrypi-firmware (1.20130512-1) unstable; urgency=low
+
+  * firmware as of f53948f6fbcb
+
+ --  <asb@asbradbury.org>  Mon, 13 May 2013 19:44:37 +0000
+
+raspberrypi-firmware (1.20130505-3) unstable; urgency=low
+
+  * disable /etc/asound.conf if it uses mmap_emul as it is no longer necessary
+
+ --  <asb@asbradbury.org>  Fri, 10 May 2013 11:23:53 +0000
+
+raspberrypi-firmware (1.20130505-1) unstable; urgency=low
+
+  * firmware as of de687862fa8365ad7
+
+ --  <asb@asbradbury.org>  Wed, 08 May 2013 08:15:11 +0000
+
+raspberrypi-firmware (1.20130207-1) unstable; urgency=low
+
+  * firmware as of 5dd9b4962e
+
+ --  <asb@asbradbury.org>  Sat, 09 Feb 2013 00:20:15 +0000
+
+raspberrypi-firmware (1.20130203-1) unstable; urgency=low
+
+   *firmware as of efc9c98fa 
+
+ --  <asb@asbradbury.org>  Mon, 04 Feb 2013 01:57:04 +0000
+
+raspberrypi-firmware (1.20130130-1) unstable; urgency=low
+
+  * firmware as of 73d99edf0
+
+ --  <asb@asbradbury.org>  Sun, 03 Feb 2013 02:10:45 +0000
+
+raspberrypi-firmware (1.20121025-1) unstable; urgency=low
+
+  * firmware as of 17c8799375
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 28 Oct 2012 17:39:32 +0000
+
+raspberrypi-firmware (1.20121006-1) unstable; urgency=low
+
+  * firmware as of db62088e82
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 07 Oct 2012 21:35:05 +0100
+
+raspberrypi-firmware (1.20120918-1) unstable; urgency=low
+
+  * firmware as of f569ff5254
+
+ -- Alex Bradbury <asb@asbradbury.org>  Tue, 18 Sep 2012 10:11:53 +0100
+
+raspberrypi-firmware (1.20120916-1) unstable; urgency=low
+
+  * firmware as of f20e9d70a2
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 16 Sep 2012 20:47:11 +0100
+
+raspberrypi-firmware (1.20120915-1) unstable; urgency=low
+
+  * firmware as of 9c8c1bd57e
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sat, 15 Sep 2012 20:51:34 +0100
+
+raspberrypi-firmware (1.20120910-1) unstable; urgency=low
+
+  * firmware as of 05bb1ecbf5
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 12 Sep 2012 17:18:25 +0100
+
+raspberrypi-firmware (1.20120903-1) unstable; urgency=low
+
+  * firmware as of 7847986e3d
+
+ -- Alex Bradbury <asb@asbradbury.org>  Mon, 03 Sep 2012 17:53:29 +0100
+
+raspberrypi-firmware (1.20120831-1) unstable; urgency=low
+
+  * firmware as of fe629bcc9a
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 02 Sep 2012 19:15:15 +0100
+
+raspberrypi-firmware (1.20120830-1) unstable; urgency=low
+
+  * firmware as of d5e9e96a66
+  * NOTE: yesterday's firmware and today's are both misversioned, as I should 
+    have versioned according to the date of the firmware update.
+
+ -- Alex Bradbury <asb@asbradbury.org>  Thu, 30 Aug 2012 20:36:26 +0100
+
+raspberrypi-firmware (1.20120829-1) unstable; urgency=low
+
+  * firmware as of 59059dea7a
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 29 Aug 2012 22:44:59 +0100
+
+raspberrypi-firmware (1.20120822-1) unstable; urgency=low
+
+  * firmware as of c42f21261f
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 22 Aug 2012 16:18:59 +0100
+
+raspberrypi-firmware (1.20120810-1) unstable; urgency=low
+
+  * firmware as of cb9513f48b
+
+ -- Alex Bradbury <asb@asbradbury.org>  Mon, 13 Aug 2012 21:35:59 +0100
+
+raspberrypi-firmware (1.20120808-1) unstable; urgency=low
+
+  * firmware as of 7680bb38ee
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 08 Aug 2012 17:04:11 +0100
+
+raspberrypi-firmware (1.20120801-2) unstable; urgency=low
+
+  * fix silly packaging mistake
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 01 Aug 2012 22:37:24 +0100
+
+raspberrypi-firmware (1.20120801-1) unstable; urgency=low
+
+  * firmware as of 0a2e8d4095
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 01 Aug 2012 22:04:23 +0100
+
+raspberrypi-firmware (1.20120725-1) unstable; urgency=low
+
+  * firmware as of e73e84c7
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 25 Jul 2012 23:35:33 +0100
+
+raspberrypi-firmware (1.20120722-1) unstable; urgency=low
+
+  * firmware as of be61355f9e
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 22 Jul 2012 21:11:56 +0100
+
+raspberrypi-firmware (1.20120714-1) unstable; urgency=low
+
+  * firmware as of 1309b3d512
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 15 Jul 2012 18:09:10 +0100
+
+raspberrypi-firmware (1.20120712-1) unstable; urgency=low
+
+  * firmware as of 01c78fe345
+
+ -- Alex Bradbury <asb@asbradbury.org>  Fri, 13 Jul 2012 10:48:31 +0100
+
+raspberrypi-firmware (1.20120706-2) unstable; urgency=low
+
+  * fix /opt/vc/src/hello_pi dest dir on armhf
+  * rename /etc/ld.so.conf.d/vmcs.conf to /etc/ld.so.conf.d/00-vmcs.conf so vc 
+    libs takes precedence over others
+  * fix to raspberrypi-bootloader.postinst so it works in fresh install
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sat, 07 Jul 2012 20:22:20 +0100
+
+raspberrypi-firmware (1.20120706-1) unstable; urgency=low
+
+  * firmware as of 467b0b45e1
+  * Fix broken setting of ld-linux-armhf.so.3 symlink
+  * Add fallback mechanism for detecting current memory split
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sat, 07 Jul 2012 13:51:37 +0100
+
+raspberrypi-firmware (1.20120701-1) unstable; urgency=low
+
+  * firmware as of 0671d601
+  * add /lib/ld-linux-armhf.so.3 symlink for armhf
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 04 Jul 2012 14:57:27 +0100
+
+raspberrypi-firmware (1.20120628-1) unstable; urgency=low
+
+  * firmware as of c59283a672
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 01 Jul 2012 20:58:14 +0100
+
+raspberrypi-firmware (1.20120617-1) unstable; urgency=low
+
+  * firmware as of 2c095047f
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 17 Jun 2012 19:31:13 +0100
+
+raspberrypi-firmware (1.20120614-1) unstable; urgency=low
+
+  * firmware as of 1178c4db5
+
+ -- Alex Bradbury <asb@asbradbury.org>  Thu, 14 Jun 2012 14:37:56 +0100
+
+raspberrypi-firmware (1.0-1) unstable; urgency=low
+
+  * Initial release of Debian packaging for the Raspberry Pi "firmware".
+  * Based on upstream commit caf963d.
+
+ -- Will Thompson <will.thompson@collabora.co.uk>  Thu, 24 May 2012 12:20:30 +0100

@@ -1,0 +1,39 @@
+#!/bin/sh
+mkdir -p /usr/share/rpikernelhack
+if [ -f "/boot/recovery.elf" ]; then
+  echo "/boot appears to be NOOBS recovery partition. Applying fix."
+  rootnum=`cat /proc/cmdline | sed -n 's|.*root=/dev/mmcblk0p\([0-9]*\).*|\1|p'`
+  if [ ! "$rootnum" ];then
+    echo "Could not determine root partition"
+    exit 1
+  fi
+
+  if ! grep -qE "/dev/mmcblk0p1\s+/boot" /etc/fstab; then
+    echo "Unexpected fstab entry"
+    exit 1
+  fi
+
+  boot="/dev/mmcblk0p$((rootnum-1))"
+  root="/dev/mmcblk0p${rootnum}"
+  sed /etc/fstab -i -e "s|^.* / |${root}  / |"
+  sed /etc/fstab -i -e "s|^.* /boot |${boot}  /boot |"
+  umount /boot
+  if [ $? -ne 0 ]; then
+    echo "Failed to umount /boot. Remount manually and run sudo apt-get install -f."
+    exit 1
+  else
+    mount /boot
+  fi
+fi
+
+dpkg-divert --package rpikernelhack --divert /usr/share/rpikernelhack/start.elf /boot/start.elf
+dpkg-divert --package rpikernelhack --divert /usr/share/rpikernelhack/start_cd.elf /boot/start_cd.elf
+dpkg-divert --package rpikernelhack --divert /usr/share/rpikernelhack/start_db.elf /boot/start_db.elf
+dpkg-divert --package rpikernelhack --divert /usr/share/rpikernelhack/start_x.elf /boot/start_x.elf
+dpkg-divert --package rpikernelhack --divert /usr/share/rpikernelhack/fixup.dat /boot/fixup.dat
+dpkg-divert --package rpikernelhack --divert /usr/share/rpikernelhack/fixup_cd.dat /boot/fixup_cd.dat
+dpkg-divert --package rpikernelhack --divert /usr/share/rpikernelhack/fixup_db.dat /boot/fixup_db.dat
+dpkg-divert --package rpikernelhack --divert /usr/share/rpikernelhack/fixup_x.dat /boot/fixup_x.dat
+dpkg-divert --package rpikernelhack --divert /usr/share/rpikernelhack/bootcode.bin /boot/bootcode.bin
+dpkg-divert --package rpikernelhack --divert /usr/share/rpikernelhack/LICENCE.broadcom /boot/LICENCE.broadcom
+#DEBHELPER#

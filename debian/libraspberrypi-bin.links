@@ -1,0 +1,14 @@
+/opt/vc/bin/edidparser /usr/bin/edidparser
+/opt/vc/bin/raspistill /usr/bin/raspistill
+/opt/vc/bin/raspivid /usr/bin/raspivid
+/opt/vc/bin/raspividyuv /usr/bin/raspividyuv
+/opt/vc/bin/raspiyuv /usr/bin/raspiyuv
+/opt/vc/bin/tvservice /usr/bin/tvservice
+/opt/vc/bin/vcdbg /usr/bin/vcdbg
+/opt/vc/bin/vcgencmd /usr/bin/vcgencmd
+/opt/vc/bin/vchiq_test /usr/bin/vchiq_test
+/opt/vc/bin/dtoverlay /usr/bin/dtoverlay
+/opt/vc/bin/dtoverlay-pre /usr/bin/dtoverlay-pre
+/opt/vc/bin/dtoverlay-post /usr/bin/dtoverlay-post
+/opt/vc/bin/dtoverlay /usr/bin/dtparam
+/opt/vc/bin/dtmerge /usr/bin/dtmerge

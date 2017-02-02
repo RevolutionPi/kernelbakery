@@ -1,0 +1,4 @@
+etc/ld.so.conf.d/00-vmcs.conf
+hardfp/opt/vc/lib/lib*.so /opt/vc/lib/
+hardfp/opt/vc/lib/plugins /opt/vc/lib/plugins
+lib/udev/rules.d/10-local-rpi.rules
