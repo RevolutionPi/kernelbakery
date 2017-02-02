@@ -5,7 +5,7 @@ if ! [ -d ../boot ]; then
   exit 1
 fi
 
-version=`cat ../extra/uname_string | cut -f 3 -d ' ' | tr -d +`; do
+version=`cat ../extra/uname_string | cut -f 3 -d ' ' | tr -d +`
 
 printf "#!/bin/sh\n" > raspberrypi-kernel.postinst
 printf "#!/bin/sh\n" > raspberrypi-kernel.preinst
