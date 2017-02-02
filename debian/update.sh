@@ -5,7 +5,7 @@ destdir=headers/usr/src/linux-headers-$version
 mkdir -p "$destdir"
 mkdir -p headers/lib/modules/$version
 rsync -aHAX \
-	--files-from=<(cd linux; find -name Makefile\* -o -name Kconfig\* -o -name \*.pl) linux/ $destdir/
+	--files-from=<(cd linux; find -name Makefile\* -o -name Kconfig\* -o -name \*.pl | egrep -v '^\./debian') linux/ $destdir/
 rsync -aHAX \
 	--files-from=<(cd linux; find arch/arm/include include scripts -type f) linux/ $destdir/
 rsync -aHAX \
@@ -13,60 +13,118 @@ rsync -aHAX \
 rsync -aHAX \
 	--files-from=<(cd linux; find `find arch/arm -name include -o -name scripts -type d` -type f) linux/ $destdir/
 rsync -aHAX \
-	--files-from=<(cd linux; find arch/arm/include Module.symvers .config include scripts -type f) linux/ $destdir/
+	--files-from=<(cd $BUILDDIR; find arch/arm/include Module.symvers .config include scripts -type f) $BUILDDIR $destdir/
+find $destdir/scripts -type f | xargs file | egrep 'ELF .* x86-64' | cut -d: -f1 | xargs rm
+find $destdir/scripts -type f -name '*.cmd' | xargs rm
 ln -sf "/usr/src/linux-headers-$version" "headers/lib/modules/$version/build"
 
 }
 
-git fetch --all
-if [ -n "$1" ]; then
-	FIRMWARE_COMMIT="$1"
-else
-	FIRMWARE_COMMIT="`git rev-parse upstream/master`"
+if [ -z "$LINUXDIR" -o -z "$PIKERNELMODDIR" ] ; then
+    echo 1>&2 "Usage: LINUXDIR=<path> PIKERNELMODDIR=<path> `basename $0`"
+    exit 1
 fi
 
-git checkout master
-git merge $FIRMWARE_COMMIT --no-edit
+INSTDIR=`dirname $0`
+if [ ${INSTDIR#/} == $INSTDIR ] ; then INSTDIR="$PWD/$INSTDIR" ; fi
+INSTDIR=${INSTDIR%%/debian}
+BUILDDIR=/tmp/kbuild.$$
+KUNBUSOVERLAY=$INSTDIR/debian/kunbus.dts
+export KBUILD_BUILD_TIMESTAMP=`date --rfc-2822`
+export KBUILD_BUILD_USER="admin"
+export KBUILD_BUILD_HOST="kunbus.de"
+make="make CFLAGS_KERNEL=-fdebug-prefix-map=$LINUXDIR=. CFLAGS_MODULE=-fdebug-prefix-map=$LINUXDIR=. ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- CC=arm-linux-gnueabihf-gcc-6 O=$BUILDDIR"
 
-DATE="`git show -s --format=%ct $FIRMWARE_COMMIT`"
-DEBVER="`date -d @$DATE -u +1.%Y%m%d-1`"
-RELEASE="`date -d @$DATE -u +1.%Y%m%d`"
+rm -rf $BUILDDIR
+mkdir $BUILDDIR
+if [ \! -L $INSTDIR/linux ] ; then
+    ln -sf $LINUXDIR $INSTDIR/linux
+fi
+rm -rf $INSTDIR/headers
 
-KERNEL_COMMIT="`cat extra/git_hash`"
-
-echo "Downloading linux (${KERNEL_COMMIT})..."
-rm linux -rf
-mkdir linux -p
-wget -qO- https://github.com/raspberrypi/linux/archive/${KERNEL_COMMIT}.tar.gz | tar xz -C linux --strip-components=1
-
-echo Updating files...
-echo "+" > linux/.scmversion
-rm -rf headers
-
-version="`cat extra/uname_string7 | cut -d ' ' -f 3`"
-(cd linux; make distclean bcm2709_defconfig modules_prepare)
-cp extra/Module7.symvers linux/Module.symvers
+# build CM1 kernel
+(cd linux; eval $make bcmrpi_defconfig modules_prepare)
+cat <<-EOF >> $BUILDDIR/.config
+	CONFIG_PREEMPT_RT_FULL=y
+	CONFIG_DEBUG_PREEMPT=n
+	CONFIG_SECURITY=y
+	CONFIG_SECURITY_YAMA=y # for ptrace_scope
+	CONFIG_INTEGRITY=n
+	CONFIG_BCM_VC_SM=n # hangs in initcall
+	CONFIG_SUSPEND=y
+	CONFIG_PM_WAKELOCKS=y
+EOF
+(cd linux; eval $make olddefconfig)
+(cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out)
+version=`cat $BUILDDIR/include/config/kernel.release`
+echo "_ _ $version" > extra/uname_string
 copy_files
 
-version="`cat extra/uname_string | cut -d ' ' -f 3`"
-(cd linux; make distclean bcmrpi_defconfig modules_prepare)
-cp extra/Module.symvers linux/Module.symvers
+# build CM1 piKernelMod
+cd $PIKERNELMODDIR
+make compiletime.h
+cd -
+(cd linux; eval $make M=$PIKERNELMODDIR modules)
+
+# install CM1 kernel
+linux/scripts/mkknlimg $BUILDDIR/arch/arm/boot/zImage $INSTDIR/boot/kernel.img
+
+# install CM1 modules
+rm -rf modules/*
+(cd linux; eval $make -j8 modules_install INSTALL_MOD_PATH=$INSTDIR/modules M=$PIKERNELMODDIR)
+(cd linux; eval $make -j8 modules_install INSTALL_MOD_PATH=$INSTDIR/modules)
+mv $INSTDIR/modules/lib/modules/* $INSTDIR/modules
+rm -r $INSTDIR/modules/lib
+rm $INSTDIR/modules/*/{build,source}
+
+# install CM1 dtbs
+rm -f $INSTDIR/boot/*.dtb $INSTDIR/boot/overlays/*.dtbo
+(cd linux; eval $make -j8 dtbs_install INSTALL_DTBS_PATH=/tmp/dtb.$$)
+mv /tmp/dtb.$$/*.dtb $INSTDIR/boot
+mv /tmp/dtb.$$/overlays/* $INSTDIR/boot/overlays
+rmdir /tmp/dtb.$$/overlays /tmp/dtb.$$
+cp $LINUXDIR/arch/arm/boot/dts/overlays/README $INSTDIR/boot/overlays
+cp $KUNBUSOVERLAY $INSTDIR/boot/overlays
+dtc -I dts -O dtb $KUNBUSOVERLAY > $INSTDIR/boot/overlays/`basename $KUNBUSOVERLAY .dts`.dtbo
+
+# build CM3 kernel
+(cd linux; eval $make bcm2709_defconfig modules_prepare)
+cat <<-EOF >> $BUILDDIR/.config
+	CONFIG_PREEMPT_RT_FULL=y
+	CONFIG_DEBUG_PREEMPT=n
+	CONFIG_SECURITY=y
+	CONFIG_SECURITY_YAMA=y # for ptrace_scope
+	CONFIG_INTEGRITY=n
+	CONFIG_BCM_VC_SM=n # hangs in initcall
+	CONFIG_SUSPEND=y
+	CONFIG_PM_WAKELOCKS=y
+EOF
+(cd linux; eval $make olddefconfig)
+(cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out7)
+version="`cat $BUILDDIR/include/config/kernel.release`"
 copy_files
-(cd linux; make distclean)
+
+# build CM3 piKernelMod
+cd $PIKERNELMODDIR
+make compiletime.h
+cd -
+(cd linux; eval $make M=$PIKERNELMODDIR modules)
+
+# install CM3 kernel
+linux/scripts/mkknlimg $BUILDDIR/arch/arm/boot/zImage $INSTDIR/boot/kernel7.img
+
+# install CM3 modules
+(cd linux; eval $make -j8 modules_install INSTALL_MOD_PATH=$INSTDIR/modules M=$PIKERNELMODDIR)
+(cd linux; eval $make -j8 modules_install INSTALL_MOD_PATH=$INSTDIR/modules)
+mv $INSTDIR/modules/lib/modules/* $INSTDIR/modules
+rm -r $INSTDIR/modules/lib
+rm $INSTDIR/modules/*/{build,source}
+
+# install CM3 dtbs
+(cd linux; eval $make -j8 dtbs_install INSTALL_DTBS_PATH=/tmp/dtb.$$)
+mv /tmp/dtb.$$/*.dtb $INSTDIR/boot
+mv /tmp/dtb.$$/overlays/* $INSTDIR/boot/overlays
+rmdir /tmp/dtb.$$/overlays /tmp/dtb.$$
 
 find headers -name .gitignore -delete
-git add headers --all
-git commit -m "Update headers" || echo "Headers not updated"
-git tag ${RELEASE}-headers
-
-git checkout debian
-git merge master --no-edit
-
 (cd debian; ./gen_bootloader_postinst_preinst.sh)
-dch -v $DEBVER -D jessie --force-distribution "firmware as of ${FIRMWARE_COMMIT}"
-git commit -a -m "$RELEASE release"
-git tag $RELEASE $FIRMWARE_COMMIT
-rm -rf linux
-
-gbp buildpackage -us -uc -sa -S
-git clean -xdf

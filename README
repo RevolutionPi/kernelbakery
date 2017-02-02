@@ -1,14 +1,25 @@
-This repository contains pre-compiled binaries of the current Raspberry Pi 
-kernel and modules, userspace libraries, and bootloader/GPU firmware.
+This is a fork of the repository used by the Foundation to build kernel and
+firmware packages for the Raspberry Pi: https://github.com/RPi-Distro/firmware
 
-A rough guide to this repository and the licences covering its contents is 
-below (check the appropriate directories for full licence details):
+We use it to build kernels for the Revolution Pi and are providing it here
+as a service to our users to allow building custom kernels.  The resulting
+deb packages serve as drop-in replacements for the Foundation's packages.
+Installation with deb packages is cleaner than just copying the kernel and
+modules to the bare filesystem.
 
-* ./boot: start*.elf, fixup*.dat, bootcode.bin are the GPU firmware and bootloaders.
-  Their licence is described in 'LICENCE.broadcom'. The kernel*.img and *.dtb
-  files are builds of the Linux kernel, released under the GPL (see COPYING.linux)
-* ./extra: System.map files for the provided kernel builds
-* ./hardfp: userspace VideoCoreIV libraries built for the armv6 hardfp ABI
-* ./modules: pre-built modules for kernel.img
-* ./opt/vc: includes userspace libraries for the VideoCoreIV (EGL/GLES/OpenVG 
-   etc). See ./opt/vc/LICENCE for licencing terms
+Unfortunately the Foundation's repo is huge (currently 5 GByte) as it includes
+all their kernels and modules in binary form dating back to 2012.  That's why
+this repo was stripped of the git history as well as files which can be rebuilt
+from the kernel source tree.
+
+Intended usage:
+    git clone -b revpi-4.4 https://github.com/RevolutionPi/linux
+    git clone https://github.com/RevolutionPi/piControl
+    git clone https://github.com/RevolutionPi/kernelpkg
+    cd kernelpkg
+    LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl debian/update.sh
+    dpkg-buildpackage -a armhf -b -us -uc
+
+This procedure was tested successfully on Debian stretch x86-64, but YMMV.
+Building the kernel with update.sh is idempotent.  If it fails, e.g. due to
+compiler errors in piControl, just start it afresh.
