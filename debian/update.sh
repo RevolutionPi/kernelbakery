@@ -78,6 +78,7 @@ rm -r $INSTDIR/modules/lib
 rm $INSTDIR/modules/*/{build,source}
 
 # install CM1 dtbs
+[ -d $INSTDIR/boot/overlays ] || mkdir $INSTDIR/boot/overlays
 rm -f $INSTDIR/boot/*.dtb $INSTDIR/boot/overlays/*.dtbo
 (cd linux; eval $make -j8 dtbs_install INSTALL_DTBS_PATH=/tmp/dtb.$$)
 mv /tmp/dtb.$$/*.dtb $INSTDIR/boot
