@@ -13,6 +13,7 @@ this repo was stripped of the git history as well as files which can be rebuilt
 from the kernel source tree.
 
 Intended usage:
+    apt-get install device-tree-compiler
     git clone -b revpi-4.4 https://github.com/RevolutionPi/linux
     git clone https://github.com/RevolutionPi/piControl
     git clone https://github.com/RevolutionPi/kernelpkg
