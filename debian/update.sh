@@ -28,7 +28,8 @@ fi
 INSTDIR=`dirname $0`
 if [ ${INSTDIR#/} == $INSTDIR ] ; then INSTDIR="$PWD/$INSTDIR" ; fi
 INSTDIR=${INSTDIR%%/debian}
-BUILDDIR=/tmp/kbuild.$$
+BUILDDIR=$INSTDIR/kbuild
+BUILDDIR7=$INSTDIR/kbuild7
 KUNBUSOVERLAY=$INSTDIR/debian/kunbus.dts
 export KBUILD_BUILD_TIMESTAMP=`date --rfc-2822`
 export KBUILD_BUILD_USER="admin"
@@ -89,6 +90,7 @@ cp $KUNBUSOVERLAY $INSTDIR/boot/overlays
 dtc -I dts -O dtb $KUNBUSOVERLAY > $INSTDIR/boot/overlays/`basename $KUNBUSOVERLAY .dts`.dtbo
 
 # build CM3 kernel
+make+=7
 (cd linux; eval $make bcm2709_defconfig modules_prepare)
 cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_PREEMPT_RT_FULL=y
