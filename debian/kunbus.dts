@@ -8,6 +8,7 @@
 
 		__overlay__ {
 			status = "okay";
+			bcm2835,rt_prio = <60>;
 
 			spidev@0 {
 				status = "disabled";
