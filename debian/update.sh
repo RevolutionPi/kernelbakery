@@ -53,6 +53,9 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_BCM_VC_SM=n # hangs in initcall
 	CONFIG_SUSPEND=y
 	CONFIG_PM_WAKELOCKS=y
+	CONFIG_RTC_HCTOSYS=y # sync from rtc on boot
+	CONFIG_RTC_DRV_PCF2127=y
+	CONFIG_I2C_BCM2708=y
 EOF
 (cd linux; eval $make olddefconfig)
 (cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out)
@@ -103,6 +106,9 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_BCM_VC_SM=n # hangs in initcall
 	CONFIG_SUSPEND=y
 	CONFIG_PM_WAKELOCKS=y
+	CONFIG_RTC_HCTOSYS=y # sync from rtc on boot
+	CONFIG_RTC_DRV_PCF2127=y
+	CONFIG_I2C_BCM2708=y
 EOF
 (cd linux; eval $make olddefconfig)
 (cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out7)
