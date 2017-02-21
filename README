@@ -14,6 +14,8 @@ from the kernel source tree.
 
 Intended usage:
     apt-get install device-tree-compiler
+    apt-get install gcc-6-arm-linux-gnueabihf
+    apt-get install build-essential:native debhelper quilt
     git clone -b revpi-4.4 https://github.com/RevolutionPi/linux
     git clone https://github.com/RevolutionPi/piControl
     git clone https://github.com/RevolutionPi/kernelbakery
@@ -21,6 +23,9 @@ Intended usage:
     LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl debian/update.sh
     dpkg-buildpackage -a armhf -b -us -uc
 
-This procedure was tested successfully on Debian stretch x86-64, but YMMV.
+This procedure was tested successfully on Debian stretch amd64, but YMMV.
+E.g. Ubuntu 16.04 is missing gcc-6, so instead of gcc-6-arm-linux-gnueabihf
+you'll have to install gcc-5-arm-linux-gnueabihf and edit debian/update.sh
+to replace arm-linux-gnueabihf-gcc-6 with arm-linux-gnueabihf-gcc-5.
 Building the kernel with update.sh is idempotent.  If it fails, e.g. due to
 compiler errors in piControl, just start it afresh.
