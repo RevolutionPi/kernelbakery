@@ -1,3 +1,22 @@
+raspberrypi-firmware (9.20170622-1+revpi1) stable; urgency=medium
+
+  * New piControl release 9.20170622-1+revpi1
+
+ -- Kunbus <admin@kunbus.de>  Thu, 22 Jun 2017 11:45:00 +0100
+
+raspberrypi-firmware (9.20170515-1+revpi1) stable; urgency=medium
+
+  * New upstream release 4.4.53-rt66
+
+ -- Kunbus <admin@kunbus.de>  Mon, 15 May 2017 11:00:00 +0100
+
+raspberrypi-firmware (9.20170309-1+revpi1) stable; urgency=medium
+
+  * New upstream release 4.4.50-rt62
+  * Include Oussama Ghorbel's patch to support threaded IRQs with dwc_otg
+
+ -- Kunbus <admin@kunbus.de>  Thu,  9 Mar 2017 09:00:00 +0100
+
 raspberrypi-firmware (9.20170124-1+revpi1) stable; urgency=medium
 
   * New upstream release 4.4.44-rt19
