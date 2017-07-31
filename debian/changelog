@@ -1,3 +1,9 @@
+raspberrypi-firmware (9.20170731-1+revpi1) stable; urgency=medium
+
+  * New piControl release raspberrypi-kernel_9.20170731-1+revpi
+
+ -- Kunbus <admin@kunbus.de>  Mon, 31 Jul 2017 08:10:00 +0100
+
 raspberrypi-firmware (9.20170622-1+revpi1) stable; urgency=medium
 
   * New piControl release 9.20170622-1+revpi1
