@@ -1,3 +1,10 @@
+raspberrypi-firmware (9.20170920-1+revpi1) stable; urgency=medium
+
+  * New piControl release
+  * Some bug fixes for RevPi AIO
+
+ -- Kunbus <admin@kunbus.de>  Wed, 20 Sep 2017 09:30:00 +0100
+
 raspberrypi-firmware (9.20170731-1+revpi1) stable; urgency=medium
 
   * New piControl release raspberrypi-kernel_9.20170731-1+revpi
