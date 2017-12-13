@@ -29,7 +29,6 @@ INSTDIR=`dirname $0`
 if [ ${INSTDIR#/} == $INSTDIR ] ; then INSTDIR="$PWD/$INSTDIR" ; fi
 INSTDIR=${INSTDIR%%/debian}
 BUILDDIR=$INSTDIR/kbuild
-KUNBUSOVERLAY=$INSTDIR/debian/kunbus.dts
 export KBUILD_BUILD_TIMESTAMP=`date --rfc-2822`
 export KBUILD_BUILD_USER="admin"
 export KBUILD_BUILD_HOST="kunbus.de"
@@ -47,15 +46,29 @@ rm -rf $INSTDIR/headers
 cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_PREEMPT_RT_FULL=y
 	CONFIG_DEBUG_PREEMPT=n
-	CONFIG_SECURITY=y
-	CONFIG_SECURITY_YAMA=y # for ptrace_scope
-	CONFIG_INTEGRITY=n
-	CONFIG_BCM_VC_SM=n # hangs in initcall
-	CONFIG_SUSPEND=y
-	CONFIG_PM_WAKELOCKS=y
-	CONFIG_RTC_HCTOSYS=y # sync from rtc on boot
-	CONFIG_RTC_DRV_PCF2127=y
-	CONFIG_I2C_BCM2708=y
+	CONFIG_SECURITY=y	# for ptrace_scope
+	CONFIG_SECURITY_YAMA=y	# for ptrace_scope
+	CONFIG_INTEGRITY=n	# for ptrace_scope
+	CONFIG_SUSPEND=y	# suspend testing
+	CONFIG_PM_WAKELOCKS=y	# suspend testing
+	CONFIG_RTC_HCTOSYS=y	# sync from rtc on boot
+	CONFIG_RTC_DRV_PCF2127=y# sync from rtc on boot
+	CONFIG_I2C_BCM2708=y	# sync from rtc on boot
+	CONFIG_I2C_BCM2835=y	# sync from rtc on boot
+	CONFIG_CGROUP_PIDS=y	# amazon greengrass
+	CONFIG_KS8851=m		# revpi compact eth1
+	CONFIG_GPIO_74X164=m	# revpi compact dout
+	CONFIG_GPIO_MAX3191X=m	# revpi compact din
+	CONFIG_TI_DAC082S085=m	# revpi compact aout
+	CONFIG_MULTIPLEXER=m	# revpi compact ain mux
+	CONFIG_MUX_GPIO=m	# revpi compact ain mux
+	CONFIG_IIO_MUX=m	# revpi compact ain mux
+	CONFIG_USB_DWC2=y	# alternative to dwc_otg
+	CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
+	CONFIG_PREEMPT_TRACER=y		# rt latency debugging
+	CONFIG_HWLAT_TRACER=y		# rt latency debugging
+	#CONFIG_DEBUG_KERNEL=y		# lockdep debugging
+	#CONFIG_PROVE_LOCKING=y		# lockdep debugging
 EOF
 (cd linux; eval $make olddefconfig)
 (cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out)
@@ -87,9 +100,6 @@ rm -f $INSTDIR/boot/*.dtb $INSTDIR/boot/overlays/*.dtbo
 mv /tmp/dtb.$$/*.dtb $INSTDIR/boot
 mv /tmp/dtb.$$/overlays/* $INSTDIR/boot/overlays
 rmdir /tmp/dtb.$$/overlays /tmp/dtb.$$
-cp $LINUXDIR/arch/arm/boot/dts/overlays/README $INSTDIR/boot/overlays
-cp $KUNBUSOVERLAY $INSTDIR/boot/overlays
-dtc -I dts -O dtb $KUNBUSOVERLAY > $INSTDIR/boot/overlays/`basename $KUNBUSOVERLAY .dts`.dtbo
 
 # build CM3 kernel
 make+=7
@@ -100,15 +110,29 @@ mkdir $BUILDDIR
 cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_PREEMPT_RT_FULL=y
 	CONFIG_DEBUG_PREEMPT=n
-	CONFIG_SECURITY=y
-	CONFIG_SECURITY_YAMA=y # for ptrace_scope
-	CONFIG_INTEGRITY=n
-	CONFIG_BCM_VC_SM=n # hangs in initcall
-	CONFIG_SUSPEND=y
-	CONFIG_PM_WAKELOCKS=y
-	CONFIG_RTC_HCTOSYS=y # sync from rtc on boot
-	CONFIG_RTC_DRV_PCF2127=y
-	CONFIG_I2C_BCM2708=y
+	CONFIG_SECURITY=y	# for ptrace_scope
+	CONFIG_SECURITY_YAMA=y	# for ptrace_scope
+	CONFIG_INTEGRITY=n	# for ptrace_scope
+	CONFIG_SUSPEND=y	# suspend testing
+	CONFIG_PM_WAKELOCKS=y	# suspend testing
+	CONFIG_RTC_HCTOSYS=y	# sync from rtc on boot
+	CONFIG_RTC_DRV_PCF2127=y# sync from rtc on boot
+	CONFIG_I2C_BCM2708=y	# sync from rtc on boot
+	CONFIG_I2C_BCM2835=y	# sync from rtc on boot
+	CONFIG_CGROUP_PIDS=y	# amazon greengrass
+	CONFIG_KS8851=m		# revpi compact eth1
+	CONFIG_GPIO_74X164=m	# revpi compact dout
+	CONFIG_GPIO_MAX3191X=m	# revpi compact din
+	CONFIG_TI_DAC082S085=m	# revpi compact aout
+	CONFIG_MULTIPLEXER=m	# revpi compact ain mux
+	CONFIG_MUX_GPIO=m	# revpi compact ain mux
+	CONFIG_IIO_MUX=m	# revpi compact ain mux
+	CONFIG_USB_DWC2=y	# alternative to dwc_otg
+	CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
+	CONFIG_PREEMPT_TRACER=y		# rt latency debugging
+	CONFIG_HWLAT_TRACER=y		# rt latency debugging
+	#CONFIG_DEBUG_KERNEL=y		# lockdep debugging
+	#CONFIG_PROVE_LOCKING=y		# lockdep debugging
 EOF
 (cd linux; eval $make olddefconfig)
 (cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out7)

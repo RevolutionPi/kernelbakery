@@ -50,6 +50,9 @@ fi
 if [ -d "/etc/kernel/postinst.d/${version}-v7+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}-v7+ --arg=/boot/kernel7.img /etc/kernel/postinst.d/${version}-v7+
 fi
+
+# wheezy and jessie images shipped with a "kunbus" overlay
+/bin/sed -i -e 's/^dtoverlay=kunbus/dtoverlay=revpi-core/' /boot/config.txt
 EOF
 
 printf "#DEBHELPER#\n" >> raspberrypi-kernel.postinst
