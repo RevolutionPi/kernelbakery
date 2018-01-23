@@ -53,6 +53,10 @@ fi
 
 # wheezy and jessie images shipped with a "kunbus" overlay
 /bin/sed -i -e 's/^dtoverlay=kunbus/dtoverlay=revpi-core/' /boot/config.txt
+
+# wheezy and jessie images enabled this RTC which is now
+# duplicated by "revpi-core" overlay
+/bin/sed -i -e '/^dtoverlay=i2c-rtc,pcf2127$/d' /boot/config.txt
 EOF
 
 printf "#DEBHELPER#\n" >> raspberrypi-kernel.postinst
