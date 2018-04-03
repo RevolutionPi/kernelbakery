@@ -57,6 +57,12 @@ fi
 # wheezy and jessie images enabled this RTC which is now
 # duplicated by "revpi-core" overlay
 /bin/sed -i -e '/^dtoverlay=i2c-rtc,pcf2127$/d' /boot/config.txt
+
+# 8192cu is unreliable on 4.9, blacklist it and unblacklist rtl8192cu
+if ! /bin/grep -Eq "^blacklist 8192cu" /etc/modprobe.d/blacklist-rtl8192cu.conf ; then
+  echo "blacklist 8192cu" >> /etc/modprobe.d/blacklist-rtl8192cu.conf
+fi
+/bin/sed -i -e '/^blacklist rtl8192cu/s/^/#/' /etc/modprobe.d/blacklist-rtl8192cu.conf
 EOF
 
 printf "#DEBHELPER#\n" >> raspberrypi-kernel.postinst

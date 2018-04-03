@@ -64,6 +64,7 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_MUX_GPIO=m	# revpi compact ain mux
 	CONFIG_IIO_MUX=m	# revpi compact ain mux
 	CONFIG_USB_DWC2=y	# alternative to dwc_otg
+	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
 	CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
 	CONFIG_PREEMPT_TRACER=y		# rt latency debugging
 	CONFIG_HWLAT_TRACER=y		# rt latency debugging
@@ -128,6 +129,7 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_MUX_GPIO=m	# revpi compact ain mux
 	CONFIG_IIO_MUX=m	# revpi compact ain mux
 	CONFIG_USB_DWC2=y	# alternative to dwc_otg
+	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
 	CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
 	CONFIG_PREEMPT_TRACER=y		# rt latency debugging
 	CONFIG_HWLAT_TRACER=y		# rt latency debugging
