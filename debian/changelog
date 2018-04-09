@@ -1,3 +1,28 @@
+raspberrypi-firmware (9.20180409-4.9.76+revpi1) stable; urgency=medium
+
+  * usb: dwc_otg: fix memory corruption in dwc_otg driver
+    https://github.com/raspberrypi/linux/pull/2477
+
+ -- Kunbus <admin@kunbus.de>  Mon, 09 Apr 2018 12:30:00 +0200
+
+raspberrypi-firmware (9.20180323-4.9.76+revpi1) stable; urgency=medium
+
+  * Improved firmware update of DIO and AIO modules
+
+ -- Kunbus <admin@kunbus.de>  Fri, 23 Mar 2018 15:30:00 +0100
+
+raspberrypi-firmware (9.20180222-4.9.76+revpi1) stable; urgency=medium
+
+  * Add support for RevPi Connect Watchdog
+
+ -- Kunbus <admin@kunbus.de>  Thu, 22 Feb 2018 15:30:00 +0100
+
+raspberrypi-firmware (9.20180110-1+revpi1) stable; urgency=medium
+
+  * New piControl release
+
+ -- Kunbus <admin@kunbus.de>  Wed, 10 Jan 2018 08:15:00 +0100
+
 raspberrypi-firmware (9.20171206-1+revpi1) stable; urgency=medium
 
   * New upstream release 1.20171029-1 based on v4.9
@@ -316,7 +341,7 @@ raspberrypi-firmware (1.20130207-1) unstable; urgency=low
 
 raspberrypi-firmware (1.20130203-1) unstable; urgency=low
 
-   *firmware as of efc9c98fa 
+   *firmware as of efc9c98fa
 
  --  <asb@asbradbury.org>  Mon, 04 Feb 2013 01:57:04 +0000
 
@@ -377,7 +402,7 @@ raspberrypi-firmware (1.20120831-1) unstable; urgency=low
 raspberrypi-firmware (1.20120830-1) unstable; urgency=low
 
   * firmware as of d5e9e96a66
-  * NOTE: yesterday's firmware and today's are both misversioned, as I should 
+  * NOTE: yesterday's firmware and today's are both misversioned, as I should
     have versioned according to the date of the firmware update.
 
  -- Alex Bradbury <asb@asbradbury.org>  Thu, 30 Aug 2012 20:36:26 +0100
@@ -445,7 +470,7 @@ raspberrypi-firmware (1.20120712-1) unstable; urgency=low
 raspberrypi-firmware (1.20120706-2) unstable; urgency=low
 
   * fix /opt/vc/src/hello_pi dest dir on armhf
-  * rename /etc/ld.so.conf.d/vmcs.conf to /etc/ld.so.conf.d/00-vmcs.conf so vc 
+  * rename /etc/ld.so.conf.d/vmcs.conf to /etc/ld.so.conf.d/00-vmcs.conf so vc
     libs takes precedence over others
   * fix to raspberrypi-bootloader.postinst so it works in fresh install
 
