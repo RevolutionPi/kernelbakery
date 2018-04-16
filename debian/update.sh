@@ -63,6 +63,7 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_MULTIPLEXER=m	# revpi compact ain mux
 	CONFIG_MUX_GPIO=m	# revpi compact ain mux
 	CONFIG_IIO_MUX=m	# revpi compact ain mux
+	CONFIG_CAN_HI311X=m	# revpi con can
 	CONFIG_USB_DWC2=y	# alternative to dwc_otg
 	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
 	CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
@@ -128,6 +129,7 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_MULTIPLEXER=m	# revpi compact ain mux
 	CONFIG_MUX_GPIO=m	# revpi compact ain mux
 	CONFIG_IIO_MUX=m	# revpi compact ain mux
+	CONFIG_CAN_HI311X=m	# revpi con can
 	CONFIG_USB_DWC2=y	# alternative to dwc_otg
 	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
 	CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
