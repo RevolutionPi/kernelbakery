@@ -14,7 +14,7 @@ from the kernel source tree.
 
 Intended usage:
     apt-get install device-tree-compiler
-    apt-get install gcc-6-arm-linux-gnueabihf
+    apt-get install gcc-arm-linux-gnueabihf
     apt-get install build-essential:native debhelper quilt
     git clone -b revpi-4.9 https://github.com/RevolutionPi/linux
     git clone https://github.com/RevolutionPi/piControl
