@@ -1,3 +1,39 @@
+raspberrypi-firmware (9.20180717-4.9.76+revpi1) stable; urgency=medium
+
+  * piControl: changed error handling of gateway communication again
+
+ -- Kunbus <admin@kunbus.de>  Tue, 17 Jul 2018 14:15:00 +0200
+
+raspberrypi-firmware (9.20180716-4.9.76+revpi1) stable; urgency=medium
+
+  * piControl: changed error handling of gateway communication of piBridge
+
+ -- Kunbus <admin@kunbus.de>  Mon, 16 Jul 2018 15:00:00 +0200
+
+raspberrypi-firmware (9.20180529-4.9.76+revpi1) stable; urgency=medium
+
+  * piControl: add support for new Connect modules
+
+ -- Kunbus <admin@kunbus.de>  Tue, 29 May 2018 10:00:00 +0200
+
+raspberrypi-firmware (9.20180528-4.9.76+revpi1) stable; urgency=medium
+
+  * can: hi311x: bug fixes
+
+ -- Kunbus <admin@kunbus.de>  Mon, 28 May 2018 10:00:00 +0200
+
+raspberrypi-firmware (9.20180503-4.9.76+revpi1) stable; urgency=medium
+
+  * can: hi311x: bug fixes
+
+ -- Kunbus <admin@kunbus.de>  Thu, 03 May 2018 10:30:00 +0200
+
+raspberrypi-firmware (9.20180427-4.9.76+revpi1) stable; urgency=medium
+
+  * can: hi311x: add driver for Holt HI-3110
+
+ -- Kunbus <admin@kunbus.de>  Fri, 27 Apr 2018 14:30:00 +0200
+
 raspberrypi-firmware (9.20180409-4.9.76+revpi1) stable; urgency=medium
 
   * usb: dwc_otg: fix memory corruption in dwc_otg driver
