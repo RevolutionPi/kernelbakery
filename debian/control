@@ -8,49 +8,6 @@ Homepage: https://github.com/raspberrypi/firmware
 Vcs-Git: git@github.com:RPi-Distro/firmware.git
 Vcs-Browser: https://github.com/RPi-Distro/firmware
 
-Package: libraspberrypi0
-Section: libs
-Architecture: armel armhf
-Depends: raspberrypi-bootloader (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
-Description: EGL/GLES/OpenVG/etc. libraries for the Raspberry Pi's VideoCore IV
- This package contains implementations of EGL, OpenGL ES, OpenVG, OpenWF
- Composition, and others for the Raspberry Pi's VideoCore IV multimedia
- processor.
-
-Package: libraspberrypi-dev
-Section: libdevel
-Architecture: armel armhf
-Depends: libraspberrypi0 (= ${binary:Version}), ${misc:Depends}
-Description: EGL/GLES/OpenVG/etc. libraries for the Raspberry Pi's VideoCore IV (headers)
- This package contains headers and other development files for implementations
- of EGL, OpenGL ES, OpenVG, OpenWF Composition, and others for the Raspberry
- Pi's VideoCore IV multimedia processor.
-
-Package: libraspberrypi-doc
-Section: libdevel
-Architecture: armel armhf
-Depends: libraspberrypi0 (= ${binary:Version}), ${misc:Depends}
-Description: EGL/GLES/OpenVG/etc. libraries for the Raspberry Pi's VideoCore IV (headers)
- This package contains headers, example code, and other development files for
- implementations of EGL, OpenGL ES, OpenVG, OpenWF Composition, and others for
- the Raspberry Pi's VideoCore IV multimedia processor.
-
-Package: libraspberrypi-bin
-Section: misc
-Architecture: armel armhf
-Depends: libraspberrypi0 (= ${binary:Version}), ${misc:Depends}, device-tree-compiler
-Description: Miscellaneous Raspberry Pi utilities
- This package contains various utilities for interacting with the Raspberry
- Pi's VideoCore IV.
-
-Package: raspberrypi-bootloader
-Section: admin
-Architecture: armel armhf
-Depends: ${misc:Depends}
-Recommends: raspberrypi-kernel
-Description: Raspberry Pi bootloader
- This package contains the Raspberry Pi firmware and bootloader.
-
 Package: raspberrypi-kernel
 Section: kernel
 Architecture: armel armhf
@@ -58,7 +15,7 @@ Depends: ${misc:Depends}
 Breaks: raspberrypi-bootloader (<<1.20160324-1)
 Replaces: raspberrypi-bootloader (<<1.20160324-1)
 Provides: linux-image
-Description: Raspberry Pi bootloader
+Description: Raspberry Pi Linux kernel
  This package contains the Raspberry Pi Linux kernel.
 
 Package: raspberrypi-kernel-headers
