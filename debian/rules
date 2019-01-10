@@ -12,11 +12,6 @@
 %:
 	dh $@ --with quilt
 
-override_dh_fixperms:
-	dh_fixperms
-	chown -R :users debian/libraspberrypi-doc/opt/vc/src/hello_pi
-	chmod -R g+w debian/libraspberrypi-doc/opt/vc/src/hello_pi
-
 override_dh_strip:
 	# don't strip anything
 
