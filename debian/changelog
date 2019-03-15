@@ -1,3 +1,10 @@
+raspberrypi-firmware (9.20190312-4.9.76+revpi1) stable; urgency=medium
+
+  * piControl: Use native network stack for RevPi Gate communication
+  * spi / dmaengine / ks8851: numerous reliability fixes
+
+ -- Kunbus <admin@kunbus.de>  Tue, 12 Mar 2019 14:45:00 +0100
+
 raspberrypi-firmware (9.20180717-4.9.76+revpi1) stable; urgency=medium
 
   * piControl: changed error handling of gateway communication again
