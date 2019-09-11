@@ -1,3 +1,11 @@
+raspberrypi-firmware (9.20190904-4.9.76+revpi1) stable; urgency=medium
+
+  * netfilter: Introduce egress hook
+  * piControl: Filter non-gateway packets on egress to work around
+    gateway firmware which fails to handle those packets properly
+
+ -- Kunbus <admin@kunbus.de>  Wed,  4 Sep 2019 16:00:00 +0200
+
 raspberrypi-firmware (9.20190312-4.9.76+revpi1) stable; urgency=medium
 
   * piControl: Use native network stack for RevPi Gate communication
