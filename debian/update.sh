@@ -64,6 +64,11 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_MUX_GPIO=m	# revpi compact ain mux
 	CONFIG_IIO_MUX=m	# revpi compact ain mux
 	CONFIG_CAN_HI311X=m	# revpi con can
+	CONFIG_GPIO_PCA953X=m	# revpi connect flat expander
+	CONFIG_TCG_TPM=m	# revpi connect flat tpm
+	CONFIG_TCG_TIS_SPI=m	# revpi connect flat tpm
+	CONFIG_AD5446=m		# revpi connect flat aout
+	CONFIG_SERIAL_8250_RUNTIME_UARTS=1 # revpi connect flat uart1
 	CONFIG_USB_DWC2=y	# alternative to dwc_otg
 	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
 	CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
@@ -130,6 +135,11 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_MUX_GPIO=m	# revpi compact ain mux
 	CONFIG_IIO_MUX=m	# revpi compact ain mux
 	CONFIG_CAN_HI311X=m	# revpi con can
+	CONFIG_GPIO_PCA953X=m	# revpi connect flat expander
+	CONFIG_TCG_TPM=m	# revpi connect flat tpm
+	CONFIG_TCG_TIS_SPI=m	# revpi connect flat tpm
+	CONFIG_AD5446=m		# revpi connect flat aout
+	CONFIG_SERIAL_8250_RUNTIME_UARTS=1 # revpi connect flat uart1
 	CONFIG_USB_DWC2=y	# alternative to dwc_otg
 	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
 	CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging

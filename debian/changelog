@@ -1,3 +1,10 @@
+raspberrypi-firmware (9.20190927-4.19.29+revpi1) stable; urgency=medium
+
+  * New upstream release based on v4.19
+  * Add support for RevPi Connect Flat
+
+ -- Kunbus <admin@kunbus.de>  Fri, 27 Sep 2019 15:30:00 +0200
+
 raspberrypi-firmware (9.20200228-4.9.76+revpi1) stable; urgency=medium
 
   * Quiesce IRQs left enabled by bootloader to fix lockups
