@@ -1,3 +1,15 @@
+raspberrypi-firmware (9.20200228-4.9.76+revpi1) stable; urgency=medium
+
+  * Quiesce IRQs left enabled by bootloader to fix lockups
+  * Drive mux GPIO low on RevPi Connect via dt-blob.bin
+    to work around missing pulldown on hardware rev 06
+  * Update dt-blob.bin on package installation
+  * piControl: Support RevPi Connect Flat
+  * piControl: Support I/O module status
+  * piControl: Support seek ioctl
+
+ -- Kunbus <admin@kunbus.de>  Fri, 28 Feb 2020 15:15:00 +0100
+
 raspberrypi-firmware (9.20190904-4.9.76+revpi1) stable; urgency=medium
 
   * netfilter: Introduce egress hook
