@@ -73,9 +73,11 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_USB_DWC2=y	# alternative to dwc_otg
 	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
 	CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y
-	CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
-	CONFIG_PREEMPT_TRACER=y		# rt latency debugging
-	CONFIG_HWLAT_TRACER=y		# rt latency debugging
+	#CONFIG_DYNAMIC_DEBUG=y
+	#CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
+	#CONFIG_PREEMPT_TRACER=y	# rt latency debugging
+	#CONFIG_HWLAT_TRACER=y		# rt latency debugging
+	#CONFIG_DEBUG_INFO=y		# lauterbach debugging
 	#CONFIG_DEBUG_KERNEL=y		# lockdep debugging
 	#CONFIG_PROVE_LOCKING=y		# lockdep debugging
 EOF
@@ -145,9 +147,11 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_USB_DWC2=y	# alternative to dwc_otg
 	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
 	CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y
-	CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
-	CONFIG_PREEMPT_TRACER=y		# rt latency debugging
-	CONFIG_HWLAT_TRACER=y		# rt latency debugging
+	#CONFIG_DYNAMIC_DEBUG=y
+	#CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
+	#CONFIG_PREEMPT_TRACER=y	# rt latency debugging
+	#CONFIG_HWLAT_TRACER=y		# rt latency debugging
+	#CONFIG_DEBUG_INFO=y		# lauterbach debugging
 	#CONFIG_DEBUG_KERNEL=y		# lockdep debugging
 	#CONFIG_PROVE_LOCKING=y		# lockdep debugging
 EOF
