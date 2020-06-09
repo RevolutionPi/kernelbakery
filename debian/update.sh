@@ -18,6 +18,7 @@ copy_files (){
 	find $destdir/scripts -type f -name '*.cmd' | xargs rm
 	ln -sf "/usr/src/linux-headers-$version" "headers/lib/modules/$version/build"
 
+	(cd linux; eval $make -j8 INSTALL_KBUILD_PATH="../$destdir" kbuild_install)
 }
 
 if [ -z "$LINUXDIR" -o -z "$PIKERNELMODDIR" ] ; then
