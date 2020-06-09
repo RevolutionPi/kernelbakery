@@ -33,7 +33,7 @@ BUILDDIR=$INSTDIR/kbuild
 export KBUILD_BUILD_TIMESTAMP=`date --rfc-2822`
 export KBUILD_BUILD_USER="admin"
 export KBUILD_BUILD_HOST="kunbus.de"
-make="make CFLAGS_KERNEL=-fdebug-prefix-map=$LINUXDIR=. CFLAGS_MODULE=-fdebug-prefix-map=$LINUXDIR=. ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- CC=arm-linux-gnueabihf-gcc-6 O=$BUILDDIR"
+make="make CFLAGS_KERNEL='-fdebug-prefix-map=$LINUXDIR=.' CFLAGS_MODULE='-fdebug-prefix-map=$LINUXDIR=.' ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- O=$BUILDDIR"
 
 rm -rf $BUILDDIR
 mkdir $BUILDDIR
