@@ -1,22 +1,22 @@
 #!/bin/bash -e
 
 copy_files (){
-destdir=headers/usr/src/linux-headers-$version
-mkdir -p "$destdir"
-mkdir -p headers/lib/modules/$version
-rsync -aHAX \
-	--files-from=<(cd linux; find -name Makefile\* -o -name Kconfig\* -o -name \*.pl | egrep -v '^\./debian') linux/ $destdir/
-rsync -aHAX \
-	--files-from=<(cd linux; find arch/arm/include include scripts -type f) linux/ $destdir/
-rsync -aHAX \
-	--files-from=<(cd linux; find arch/arm -name module.lds -o -name Kbuild.platforms -o -name Platform) linux/ $destdir/
-rsync -aHAX \
-	--files-from=<(cd linux; find `find arch/arm -name include -o -name scripts -type d` -type f) linux/ $destdir/
-rsync -aHAX \
-	--files-from=<(cd $BUILDDIR; find arch/arm/include Module.symvers .config include scripts -type f) $BUILDDIR $destdir/
-find $destdir/scripts -type f | xargs file | egrep 'ELF .* x86-64' | cut -d: -f1 | xargs rm
-find $destdir/scripts -type f -name '*.cmd' | xargs rm
-ln -sf "/usr/src/linux-headers-$version" "headers/lib/modules/$version/build"
+	destdir="headers/usr/src/linux-headers-$version"
+	mkdir -p "$destdir"
+	mkdir -p "headers/lib/modules/$version"
+	rsync -aHAX \
+		--files-from=<(cd linux; find -name Makefile\* -o -name Kconfig\* -o -name \*.pl | egrep -v '^\./debian') linux/ "$destdir/"
+	rsync -aHAX \
+		--files-from=<(cd linux; find arch/arm/include include scripts -type f) linux/ "$destdir/"
+	rsync -aHAX \
+		--files-from=<(cd linux; find arch/arm -name module.lds -o -name Kbuild.platforms -o -name Platform) linux/ "$destdir/"
+	rsync -aHAX \
+		--files-from=<(cd linux; find $(find arch/arm -name include -o -name scripts -type d) -type f) linux/ "$destdir/"
+	rsync -aHAX \
+		--files-from=<(cd $BUILDDIR; find arch/arm/include Module.symvers .config include scripts -type f) $BUILDDIR "$destdir/"
+	find $destdir/scripts -type f | xargs file | egrep 'ELF .* x86-64' | cut -d: -f1 | xargs rm
+	find $destdir/scripts -type f -name '*.cmd' | xargs rm
+	ln -sf "/usr/src/linux-headers-$version" "headers/lib/modules/$version/build"
 
 }
 
