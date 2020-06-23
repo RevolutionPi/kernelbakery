@@ -75,6 +75,7 @@ EOF
 (cd linux; eval $make olddefconfig)
 (cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out)
 version=`cat $BUILDDIR/include/config/kernel.release`
+[ ! -d "extra" ] && mkdir "extra"
 echo "_ _ $version" > extra/uname_string
 copy_files
 
