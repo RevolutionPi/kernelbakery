@@ -15,7 +15,7 @@ from the kernel source tree.
 Intended usage:
     apt-get install device-tree-compiler
     apt-get install gcc-arm-linux-gnueabihf
-    apt-get install build-essential:native debhelper quilt
+    apt-get install build-essential:native debhelper quilt bc
     git clone -b revpi-4.19 https://github.com/RevolutionPi/linux
     git clone https://github.com/RevolutionPi/piControl
     git clone https://github.com/RevolutionPi/kernelbakery
