@@ -1,23 +1,24 @@
 #!/bin/bash -e
 
 copy_files (){
-destdir=headers/usr/src/linux-headers-$version
-mkdir -p "$destdir"
-mkdir -p headers/lib/modules/$version
-rsync -aHAX \
-	--files-from=<(cd linux; find -name Makefile\* -o -name Kconfig\* -o -name \*.pl | egrep -v '^\./debian') linux/ $destdir/
-rsync -aHAX \
-	--files-from=<(cd linux; find arch/arm/include include scripts -type f) linux/ $destdir/
-rsync -aHAX \
-	--files-from=<(cd linux; find arch/arm -name module.lds -o -name Kbuild.platforms -o -name Platform) linux/ $destdir/
-rsync -aHAX \
-	--files-from=<(cd linux; find `find arch/arm -name include -o -name scripts -type d` -type f) linux/ $destdir/
-rsync -aHAX \
-	--files-from=<(cd $BUILDDIR; find arch/arm/include Module.symvers .config include scripts -type f) $BUILDDIR $destdir/
-find $destdir/scripts -type f | xargs file | egrep 'ELF .* x86-64' | cut -d: -f1 | xargs rm
-find $destdir/scripts -type f -name '*.cmd' | xargs rm
-ln -sf "/usr/src/linux-headers-$version" "headers/lib/modules/$version/build"
+	destdir="headers/usr/src/linux-headers-$version"
+	mkdir -p "$destdir"
+	mkdir -p "headers/lib/modules/$version"
+	rsync -aHAX \
+		--files-from=<(cd linux; find -name Makefile\* -o -name Kconfig\* -o -name \*.pl | egrep -v '^\./debian') linux/ "$destdir/"
+	rsync -aHAX \
+		--files-from=<(cd linux; find arch/arm/include include scripts -type f) linux/ "$destdir/"
+	rsync -aHAX \
+		--files-from=<(cd linux; find arch/arm -name module.lds -o -name Kbuild.platforms -o -name Platform) linux/ "$destdir/"
+	rsync -aHAX \
+		--files-from=<(cd linux; find $(find arch/arm -name include -o -name scripts -type d) -type f) linux/ "$destdir/"
+	rsync -aHAX \
+		--files-from=<(cd $BUILDDIR; find arch/arm/include Module.symvers .config include scripts -type f) $BUILDDIR "$destdir/"
+	find $destdir/scripts -type f | xargs file | egrep 'ELF .* x86-64' | cut -d: -f1 | xargs rm
+	find $destdir/scripts -type f -name '*.cmd' | xargs rm
+	ln -sf "/usr/src/linux-headers-$version" "headers/lib/modules/$version/build"
 
+	(cd linux; eval $make -j8 INSTALL_KBUILD_PATH="../$destdir" kbuild_install)
 }
 
 if [ -z "$LINUXDIR" -o -z "$PIKERNELMODDIR" ] ; then
@@ -32,7 +33,7 @@ BUILDDIR=$INSTDIR/kbuild
 export KBUILD_BUILD_TIMESTAMP=`date --rfc-2822`
 export KBUILD_BUILD_USER="admin"
 export KBUILD_BUILD_HOST="kunbus.de"
-make="make CFLAGS_KERNEL=-fdebug-prefix-map=$LINUXDIR=. CFLAGS_MODULE=-fdebug-prefix-map=$LINUXDIR=. ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- CC=arm-linux-gnueabihf-gcc-6 O=$BUILDDIR"
+make="make CFLAGS_KERNEL='-fdebug-prefix-map=$LINUXDIR=.' CFLAGS_MODULE='-fdebug-prefix-map=$LINUXDIR=.' ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- O=$BUILDDIR"
 
 rm -rf $BUILDDIR
 mkdir $BUILDDIR
@@ -64,17 +65,26 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_MUX_GPIO=m	# revpi compact ain mux
 	CONFIG_IIO_MUX=m	# revpi compact ain mux
 	CONFIG_CAN_HI311X=m	# revpi con can
+	CONFIG_GPIO_PCA953X=y	# revpi connect flat expander
+	CONFIG_TCG_TPM=m	# revpi connect flat tpm
+	CONFIG_TCG_TIS_SPI=m	# revpi connect flat tpm
+	CONFIG_AD5446=m		# revpi connect flat aout
+	CONFIG_SERIAL_8250_RUNTIME_UARTS=1
 	CONFIG_USB_DWC2=y	# alternative to dwc_otg
 	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
-	CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
-	CONFIG_PREEMPT_TRACER=y		# rt latency debugging
-	CONFIG_HWLAT_TRACER=y		# rt latency debugging
+	CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y
+	#CONFIG_DYNAMIC_DEBUG=y
+	#CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
+	#CONFIG_PREEMPT_TRACER=y	# rt latency debugging
+	#CONFIG_HWLAT_TRACER=y		# rt latency debugging
+	#CONFIG_DEBUG_INFO=y		# lauterbach debugging
 	#CONFIG_DEBUG_KERNEL=y		# lockdep debugging
 	#CONFIG_PROVE_LOCKING=y		# lockdep debugging
 EOF
 (cd linux; eval $make olddefconfig)
 (cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out)
 version=`cat $BUILDDIR/include/config/kernel.release`
+[ ! -d "extra" ] && mkdir "extra"
 echo "_ _ $version" > extra/uname_string
 copy_files
 
@@ -130,11 +140,19 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_MUX_GPIO=m	# revpi compact ain mux
 	CONFIG_IIO_MUX=m	# revpi compact ain mux
 	CONFIG_CAN_HI311X=m	# revpi con can
+	CONFIG_GPIO_PCA953X=y	# revpi connect flat expander
+	CONFIG_TCG_TPM=m	# revpi connect flat tpm
+	CONFIG_TCG_TIS_SPI=m	# revpi connect flat tpm
+	CONFIG_AD5446=m		# revpi connect flat aout
+	CONFIG_SERIAL_8250_RUNTIME_UARTS=1
 	CONFIG_USB_DWC2=y	# alternative to dwc_otg
 	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
-	CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
-	CONFIG_PREEMPT_TRACER=y		# rt latency debugging
-	CONFIG_HWLAT_TRACER=y		# rt latency debugging
+	CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y
+	#CONFIG_DYNAMIC_DEBUG=y
+	#CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
+	#CONFIG_PREEMPT_TRACER=y	# rt latency debugging
+	#CONFIG_HWLAT_TRACER=y		# rt latency debugging
+	#CONFIG_DEBUG_INFO=y		# lauterbach debugging
 	#CONFIG_DEBUG_KERNEL=y		# lockdep debugging
 	#CONFIG_PROVE_LOCKING=y		# lockdep debugging
 EOF

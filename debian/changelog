@@ -1,3 +1,53 @@
+raspberrypi-firmware (9.20200616-4.19.95+revpi1) stable; urgency=medium
+
+  * Public 4.19 release for the upcoming 6/2020 image.
+
+ -- Kunbus <admin@kunbus.de>  Tue, 16 Jun 2020 13:15:00 +0200
+
+raspberrypi-firmware (9.20200120-4.19.95+revpi1) stable; urgency=medium
+
+  * Fixups for RevPi Connect Flat:
+    
+    Compile pca953x driver into kernel proper and not as a module
+    to speed up probing of UART drivers which require access to
+    rs485 termination GPIOs.
+    
+    Avoid failure of assigning 1 as number of runtime 8250 UARTs
+    caused by comment.
+    
+    UART1 is controlled by the core clock.   Downclocking changes
+    the baudrate and garbles I/O.  Avoid by defaulting to "performance"
+    cpufreq governor.  This ensures that UART1 is usable as console.
+
+ -- Kunbus <admin@kunbus.de>  Mon, 20 Jan 2020 15:00:00 +0100
+
+raspberrypi-firmware (9.20190927-4.19.29+revpi1) stable; urgency=medium
+
+  * New upstream release based on v4.19
+  * Add support for RevPi Connect Flat
+
+ -- Kunbus <admin@kunbus.de>  Fri, 27 Sep 2019 15:30:00 +0200
+
+raspberrypi-firmware (9.20200228-4.9.76+revpi1) stable; urgency=medium
+
+  * Quiesce IRQs left enabled by bootloader to fix lockups
+  * Drive mux GPIO low on RevPi Connect via dt-blob.bin
+    to work around missing pulldown on hardware rev 06
+  * Update dt-blob.bin on package installation
+  * piControl: Support RevPi Connect Flat
+  * piControl: Support I/O module status
+  * piControl: Support seek ioctl
+
+ -- Kunbus <admin@kunbus.de>  Fri, 28 Feb 2020 15:15:00 +0100
+
+raspberrypi-firmware (9.20190904-4.9.76+revpi1) stable; urgency=medium
+
+  * netfilter: Introduce egress hook
+  * piControl: Filter non-gateway packets on egress to work around
+    gateway firmware which fails to handle those packets properly
+
+ -- Kunbus <admin@kunbus.de>  Wed,  4 Sep 2019 16:00:00 +0200
+
 raspberrypi-firmware (9.20190312-4.9.76+revpi1) stable; urgency=medium
 
   * piControl: Use native network stack for RevPi Gate communication
