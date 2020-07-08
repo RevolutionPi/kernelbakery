@@ -11,7 +11,7 @@ Vcs-Browser: https://github.com/RPi-Distro/firmware
 Package: raspberrypi-kernel
 Section: kernel
 Architecture: armel armhf
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, raspberrypi-bootloader (>= 1.20160506-1)
 Breaks: raspberrypi-bootloader (<<1.20160324-1)
 Replaces: raspberrypi-bootloader (<<1.20160324-1)
 Provides: linux-image

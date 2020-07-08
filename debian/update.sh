@@ -95,7 +95,7 @@ cd -
 (cd linux; eval $make M=$PIKERNELMODDIR modules)
 
 # install CM1 kernel
-linux/scripts/mkknlimg $BUILDDIR/arch/arm/boot/zImage $INSTDIR/boot/kernel.img
+cp $BUILDDIR/arch/arm/boot/zImage $INSTDIR/boot/kernel.img
 
 # install CM1 modules
 rm -rf modules/*
@@ -168,7 +168,7 @@ cd -
 (cd linux; eval $make M=$PIKERNELMODDIR modules)
 
 # install CM3 kernel
-linux/scripts/mkknlimg $BUILDDIR/arch/arm/boot/zImage $INSTDIR/boot/kernel7.img
+cp $BUILDDIR/arch/arm/boot/zImage $INSTDIR/boot/kernel7.img
 
 # install CM3 modules
 (cd linux; eval $make -j8 modules_install INSTALL_MOD_PATH=$INSTDIR/modules M=$PIKERNELMODDIR)
