@@ -69,6 +69,8 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_TCG_TPM=m	# revpi flat tpm
 	CONFIG_TCG_TIS_SPI=m	# revpi flat tpm
 	CONFIG_AD5446=m		# revpi flat aout
+	CONFIG_MDIO_GPIO=m	# revpi flat eth_switch
+	CONFIG_MICREL_PHY=m	# revpi flat eth_switch
 	CONFIG_SERIAL_8250_RUNTIME_UARTS=1
 	CONFIG_USB_DWC2=y	# alternative to dwc_otg
 	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
@@ -144,6 +146,8 @@ cat <<-EOF >> $BUILDDIR/.config
 	CONFIG_TCG_TPM=m	# revpi flat tpm
 	CONFIG_TCG_TIS_SPI=m	# revpi flat tpm
 	CONFIG_AD5446=m		# revpi flat aout
+	CONFIG_MDIO_GPIO=m	# revpi flat eth_switch
+	CONFIG_MICREL_PHY=m	# revpi flat eth_switch
 	CONFIG_SERIAL_8250_RUNTIME_UARTS=1
 	CONFIG_USB_DWC2=y	# alternative to dwc_otg
 	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
