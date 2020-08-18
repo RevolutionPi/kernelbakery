@@ -43,47 +43,7 @@ fi
 rm -rf $INSTDIR/headers
 
 # build CM1 kernel
-(cd linux; eval $make bcmrpi_defconfig modules_prepare)
-cat <<-EOF >> $BUILDDIR/.config
-	CONFIG_PREEMPT_RT_FULL=y
-	CONFIG_DEBUG_PREEMPT=n
-	CONFIG_SECURITY=y	# for ptrace_scope
-	CONFIG_SECURITY_YAMA=y	# for ptrace_scope
-	CONFIG_INTEGRITY=n	# for ptrace_scope
-	CONFIG_SUSPEND=y	# suspend testing
-	CONFIG_PM_WAKELOCKS=y	# suspend testing
-	CONFIG_RTC_HCTOSYS=y	# sync from rtc on boot
-	CONFIG_RTC_DRV_PCF2127=y# sync from rtc on boot
-	CONFIG_I2C_BCM2708=y	# sync from rtc on boot
-	CONFIG_I2C_BCM2835=y	# sync from rtc on boot
-	CONFIG_CGROUP_PIDS=y	# amazon greengrass
-	CONFIG_KS8851=m		# revpi compact eth1
-	CONFIG_GPIO_74X164=m	# revpi compact dout
-	CONFIG_GPIO_MAX3191X=m	# revpi compact din
-	CONFIG_TI_DAC082S085=m	# revpi compact aout
-	CONFIG_MULTIPLEXER=m	# revpi compact ain mux
-	CONFIG_MUX_GPIO=m	# revpi compact ain mux
-	CONFIG_IIO_MUX=m	# revpi compact ain mux
-	CONFIG_CAN_HI311X=m	# revpi con can
-	CONFIG_GPIO_PCA953X=y	# revpi flat expander
-	CONFIG_TCG_TPM=m	# revpi flat tpm
-	CONFIG_TCG_TIS_SPI=m	# revpi flat tpm
-	CONFIG_AD5446=m		# revpi flat aout
-	CONFIG_MDIO_GPIO=m	# revpi flat eth_switch
-	CONFIG_MICREL_PHY=m	# revpi flat eth_switch
-	CONFIG_SERIAL_8250_RUNTIME_UARTS=1
-	CONFIG_USB_DWC2=y	# alternative to dwc_otg
-	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
-	CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y
-	#CONFIG_DYNAMIC_DEBUG=y
-	#CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
-	#CONFIG_PREEMPT_TRACER=y	# rt latency debugging
-	#CONFIG_HWLAT_TRACER=y		# rt latency debugging
-	#CONFIG_DEBUG_INFO=y		# lauterbach debugging
-	#CONFIG_DEBUG_KERNEL=y		# lockdep debugging
-	#CONFIG_PROVE_LOCKING=y		# lockdep debugging
-EOF
-(cd linux; eval $make olddefconfig)
+(cd linux; eval $make revpi-v6_defconfig)
 (cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out)
 version=`cat $BUILDDIR/include/config/kernel.release`
 [ ! -d "extra" ] && mkdir "extra"
@@ -120,47 +80,7 @@ make+=7
 BUILDDIR+=7
 rm -rf $BUILDDIR
 mkdir $BUILDDIR
-(cd linux; eval $make bcm2709_defconfig modules_prepare)
-cat <<-EOF >> $BUILDDIR/.config
-	CONFIG_PREEMPT_RT_FULL=y
-	CONFIG_DEBUG_PREEMPT=n
-	CONFIG_SECURITY=y	# for ptrace_scope
-	CONFIG_SECURITY_YAMA=y	# for ptrace_scope
-	CONFIG_INTEGRITY=n	# for ptrace_scope
-	CONFIG_SUSPEND=y	# suspend testing
-	CONFIG_PM_WAKELOCKS=y	# suspend testing
-	CONFIG_RTC_HCTOSYS=y	# sync from rtc on boot
-	CONFIG_RTC_DRV_PCF2127=y# sync from rtc on boot
-	CONFIG_I2C_BCM2708=y	# sync from rtc on boot
-	CONFIG_I2C_BCM2835=y	# sync from rtc on boot
-	CONFIG_CGROUP_PIDS=y	# amazon greengrass
-	CONFIG_KS8851=m		# revpi compact eth1
-	CONFIG_GPIO_74X164=m	# revpi compact dout
-	CONFIG_GPIO_MAX3191X=m	# revpi compact din
-	CONFIG_TI_DAC082S085=m	# revpi compact aout
-	CONFIG_MULTIPLEXER=m	# revpi compact ain mux
-	CONFIG_MUX_GPIO=m	# revpi compact ain mux
-	CONFIG_IIO_MUX=m	# revpi compact ain mux
-	CONFIG_CAN_HI311X=m	# revpi con can
-	CONFIG_GPIO_PCA953X=y	# revpi flat expander
-	CONFIG_TCG_TPM=m	# revpi flat tpm
-	CONFIG_TCG_TIS_SPI=m	# revpi flat tpm
-	CONFIG_AD5446=m		# revpi flat aout
-	CONFIG_MDIO_GPIO=m	# revpi flat eth_switch
-	CONFIG_MICREL_PHY=m	# revpi flat eth_switch
-	CONFIG_SERIAL_8250_RUNTIME_UARTS=1
-	CONFIG_USB_DWC2=y	# alternative to dwc_otg
-	CONFIG_RTL8XXXU_UNTESTED=y	# edimax ew-7811un
-	CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y
-	#CONFIG_DYNAMIC_DEBUG=y
-	#CONFIG_PREEMPTIRQ_EVENTS=y	# rt latency debugging
-	#CONFIG_PREEMPT_TRACER=y	# rt latency debugging
-	#CONFIG_HWLAT_TRACER=y		# rt latency debugging
-	#CONFIG_DEBUG_INFO=y		# lauterbach debugging
-	#CONFIG_DEBUG_KERNEL=y		# lockdep debugging
-	#CONFIG_PROVE_LOCKING=y		# lockdep debugging
-EOF
-(cd linux; eval $make olddefconfig)
+(cd linux; eval $make revpi-v7_defconfig)
 (cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out7)
 version="`cat $BUILDDIR/include/config/kernel.release`"
 copy_files
