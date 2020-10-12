@@ -14,7 +14,7 @@ copy_files (){
 		--files-from=<(cd linux; find $(find arch/arm -name include -o -name scripts -type d) -type f) linux/ "$destdir/"
 	rsync -aHAX \
 		--files-from=<(cd $BUILDDIR; find arch/arm/include Module.symvers .config include scripts -type f) $BUILDDIR "$destdir/"
-	find $destdir/scripts -type f | xargs file | egrep 'ELF .* x86-64' | cut -d: -f1 | xargs rm
+	find $destdir/scripts -type f | xargs file | egrep 'ELF .*' | cut -d: -f1 | xargs rm
 	find $destdir/scripts -type f -name '*.cmd' | xargs rm
 	ln -sf "/usr/src/linux-headers-$version" "headers/lib/modules/$version/build"
 
