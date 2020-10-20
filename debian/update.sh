@@ -11,7 +11,13 @@ copy_files (){
 	rsync -aHAX \
 		--files-from=<(cd linux; find arch/arm -name module.lds -o -name Kbuild.platforms -o -name Platform) linux/ "$destdir/"
 	rsync -aHAX \
-		--files-from=<(cd linux; find $(find arch/arm -name include -o -name scripts -type d) -type f) linux/ "$destdir/"
+		--files-from=<( \
+				cd linux; \
+				find arch/arm -name include -type d -print0 -o -name scripts -type d -print0 | \
+				xargs -0 -I '{}' find '{}' -type f \
+			) \
+			linux/ \
+			"$destdir/"
 	rsync -aHAX \
 		--files-from=<(cd "$BUILDDIR"; find arch/arm/include Module.symvers .config include scripts -type f) "$BUILDDIR" "$destdir/"
 	find "$destdir/scripts" -type f -exec file {} + | egrep 'ELF .* x86-64' | cut -d: -f1 | xargs rm
