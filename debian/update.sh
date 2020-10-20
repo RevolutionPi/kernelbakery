@@ -43,7 +43,7 @@ make="make CFLAGS_KERNEL='-fdebug-prefix-map=$LINUXDIR=.' CFLAGS_MODULE='-fdebug
 
 rm -rf "$BUILDDIR"
 mkdir "$BUILDDIR"
-if [ \! -L "$INSTDIR/linux" ] ; then
+if [ ! -L "$INSTDIR/linux" ] ; then
     ln -sf "$LINUXDIR" "$INSTDIR/linux"
 fi
 rm -rf "$INSTDIR/headers"
