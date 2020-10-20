@@ -5,7 +5,7 @@ copy_files (){
 	mkdir -p "$destdir"
 	mkdir -p "headers/lib/modules/$version"
 	rsync -aHAX \
-		--files-from=<(cd linux; find -name Makefile\* -o -name Kconfig\* -o -name \*.pl | egrep -v '^\./debian') linux/ "$destdir/"
+		--files-from=<(cd linux; find -name Makefile\* -o -name Kconfig\* -o -name \*.pl | grep -E -v '^\./debian') linux/ "$destdir/"
 	rsync -aHAX \
 		--files-from=<(cd linux; find arch/arm/include include scripts -type f) linux/ "$destdir/"
 	rsync -aHAX \
@@ -20,7 +20,7 @@ copy_files (){
 			"$destdir/"
 	rsync -aHAX \
 		--files-from=<(cd "$BUILDDIR"; find arch/arm/include Module.symvers .config include scripts -type f) "$BUILDDIR" "$destdir/"
-	find "$destdir/scripts" -type f -exec file {} + | egrep 'ELF .* x86-64' | cut -d: -f1 | xargs rm
+	find "$destdir/scripts" -type f -exec file {} + | grep -E 'ELF .* x86-64' | cut -d: -f1 | xargs rm
 	find "$destdir/scripts" -type f -name '*.cmd' -exec rm {} +
 	ln -sf "/usr/src/linux-headers-$version" "headers/lib/modules/$version/build"
 
