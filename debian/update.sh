@@ -22,15 +22,15 @@ copy_files (){
 }
 
 if [ -z "$LINUXDIR" -o -z "$PIKERNELMODDIR" ] ; then
-    echo 1>&2 "Usage: LINUXDIR=<path> PIKERNELMODDIR=<path> `basename $0`"
+    echo 1>&2 "Usage: LINUXDIR=<path> PIKERNELMODDIR=<path> $(basename $0)"
     exit 1
 fi
 
-INSTDIR=`dirname $0`
+INSTDIR=$(dirname $0)
 if [ ${INSTDIR#/} == $INSTDIR ] ; then INSTDIR="$PWD/$INSTDIR" ; fi
 INSTDIR=${INSTDIR%%/debian}
 BUILDDIR=$INSTDIR/kbuild
-export KBUILD_BUILD_TIMESTAMP=`date --rfc-2822`
+export KBUILD_BUILD_TIMESTAMP=$(date --rfc-2822)
 export KBUILD_BUILD_USER="admin"
 export KBUILD_BUILD_HOST="kunbus.de"
 make="make CFLAGS_KERNEL='-fdebug-prefix-map=$LINUXDIR=.' CFLAGS_MODULE='-fdebug-prefix-map=$LINUXDIR=.' ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- O=$BUILDDIR"
@@ -45,7 +45,7 @@ rm -rf $INSTDIR/headers
 # build CM1 kernel
 (cd linux; eval $make revpi-v6_defconfig)
 (cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out)
-version=`cat $BUILDDIR/include/config/kernel.release`
+version=$(cat $BUILDDIR/include/config/kernel.release)
 [ ! -d "extra" ] && mkdir "extra"
 echo "_ _ $version" > extra/uname_string
 copy_files
@@ -82,7 +82,7 @@ rm -rf $BUILDDIR
 mkdir $BUILDDIR
 (cd linux; eval $make revpi-v7_defconfig)
 (cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out7)
-version="`cat $BUILDDIR/include/config/kernel.release`"
+version="$(cat $BUILDDIR/include/config/kernel.release)"
 copy_files
 
 # build CM3 piKernelMod
