@@ -24,8 +24,10 @@ copy_files (){
 	find "$destdir/scripts" -type f -name '*.cmd' -exec rm {} +
 	ln -sf "/usr/src/linux-headers-$version" "headers/lib/modules/$version/build"
 
-	(cd linux; eval $make -j8 INSTALL_KBUILD_PATH="../$destdir" kbuild_install)
+	(cd linux; eval $make -j$NPROC INSTALL_KBUILD_PATH="../$destdir" kbuild_install)
 }
+
+NPROC=$(nproc) || NPROC=8
 
 if [ -z "$LINUXDIR" -o -z "$PIKERNELMODDIR" ] ; then
     echo 1>&2 "Usage: LINUXDIR=<path> PIKERNELMODDIR=<path> $(basename "$0")"
@@ -50,7 +52,7 @@ rm -rf "$INSTDIR/headers"
 
 # build CM1 kernel
 (cd linux; eval $make revpi-v6_defconfig)
-(cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out)
+(cd linux; eval $make -j$NPROC zImage modules dtbs 2>&1 | tee /tmp/out)
 version=$(cat "$BUILDDIR/include/config/kernel.release")
 [ ! -d "extra" ] && mkdir "extra"
 echo "_ _ $version" > extra/uname_string
@@ -67,8 +69,8 @@ cp "$BUILDDIR/arch/arm/boot/zImage" "$INSTDIR/boot/kernel.img"
 
 # install CM1 modules
 rm -rf modules/*
-(cd linux; eval $make -j8 modules_install INSTALL_MOD_PATH="$INSTDIR/modules" M="$PIKERNELMODDIR")
-(cd linux; eval $make -j8 modules_install INSTALL_MOD_PATH="$INSTDIR/modules")
+(cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules" M="$PIKERNELMODDIR")
+(cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules")
 mv "$INSTDIR/modules/lib/modules"/* "$INSTDIR/modules"
 rm -r "$INSTDIR/modules/lib"
 rm "$INSTDIR/modules"/*/{build,source}
@@ -76,7 +78,7 @@ rm "$INSTDIR/modules"/*/{build,source}
 # install CM1 dtbs
 [ -d "$INSTDIR/boot/overlays" ] || mkdir "$INSTDIR/boot/overlays"
 rm -f "$INSTDIR/boot"/*.dtb "$INSTDIR/boot/overlays"/*.dtbo
-(cd linux; eval $make -j8 dtbs_install INSTALL_DTBS_PATH=/tmp/dtb.$$)
+(cd linux; eval $make -j$NPROC dtbs_install INSTALL_DTBS_PATH=/tmp/dtb.$$)
 mv /tmp/dtb.$$/*.dtb "$INSTDIR/boot"
 mv /tmp/dtb.$$/overlays/* "$INSTDIR/boot/overlays"
 rmdir /tmp/dtb.$$/overlays /tmp/dtb.$$
@@ -87,7 +89,7 @@ BUILDDIR+=7
 rm -rf "$BUILDDIR"
 mkdir "$BUILDDIR"
 (cd linux; eval $make revpi-v7_defconfig)
-(cd linux; eval $make -j8 zImage modules dtbs 2>&1 | tee /tmp/out7)
+(cd linux; eval $make -j$NPROC zImage modules dtbs 2>&1 | tee /tmp/out7)
 version="$(cat "$BUILDDIR/include/config/kernel.release")"
 copy_files
 
@@ -101,14 +103,14 @@ cd -
 cp "$BUILDDIR/arch/arm/boot/zImage" "$INSTDIR/boot/kernel7.img"
 
 # install CM3 modules
-(cd linux; eval $make -j8 modules_install INSTALL_MOD_PATH="$INSTDIR/modules" M="$PIKERNELMODDIR")
-(cd linux; eval $make -j8 modules_install INSTALL_MOD_PATH="$INSTDIR/modules")
+(cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules" M="$PIKERNELMODDIR")
+(cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules")
 mv "$INSTDIR/modules/lib/modules"/* "$INSTDIR/modules"
 rm -r "$INSTDIR/modules/lib"
 rm "$INSTDIR/modules"/*/{build,source}
 
 # install CM3 dtbs
-(cd linux; eval $make -j8 dtbs_install INSTALL_DTBS_PATH=/tmp/dtb.$$)
+(cd linux; eval $make -j$NPROC dtbs_install INSTALL_DTBS_PATH=/tmp/dtb.$$)
 mv /tmp/dtb.$$/*.dtb "$INSTDIR/boot"
 mv /tmp/dtb.$$/overlays/* "$INSTDIR/boot/overlays"
 rmdir /tmp/dtb.$$/overlays /tmp/dtb.$$
