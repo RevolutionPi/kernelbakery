@@ -1,3 +1,10 @@
+raspberrypi-firmware (9.20210415-4.19.95+revpi1) stable; urgency=medium
+
+  * flat,compact: set default values of virtual devices
+  * pcf2127: various fixes
+
+ -- Lino Sanfilippo <l.sanfilippo@kunbus.com>  Thu, 15 Apr 2021 11:07:51 +0200
+
 raspberrypi-firmware (9.20210326-4.19.95+revpi1) stable; urgency=medium
 
   * Enable can drivers in kernel
