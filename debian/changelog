@@ -1,3 +1,9 @@
+raspberrypi-firmware (1:9.20210622-4.19.95+revpi1) stable; urgency=medium
+
+  * Fix: KSZ8851 reset takes to long (PiBridge)
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Tue, 22 Jun 2021 15:20:40 +0200
+
 raspberrypi-firmware (1:9.20210415-4.19.95+revpi2) stable; urgency=medium
 
   * Increase epoch to superseed raspios kernel-package again
