@@ -29,8 +29,8 @@ copy_files (){
 
 NPROC=$(nproc) || NPROC=8
 
-if [ -z "$LINUXDIR" -o -z "$PIKERNELMODDIR" ] ; then
-    echo 1>&2 "Usage: LINUXDIR=<path> PIKERNELMODDIR=<path> $(basename "$0")"
+if [ -z "$LINUXDIR" ] ; then
+    echo 1>&2 "Usage: LINUXDIR=<path> [PIKERNELMODDIR=<path>] $(basename "$0")"
     exit 1
 fi
 
@@ -59,17 +59,20 @@ echo "_ _ $version" > extra/uname_string
 copy_files
 
 # build CM1 piKernelMod
-cd "$PIKERNELMODDIR"
-make compiletime.h
-cd -
-(cd linux; eval $make M="$PIKERNELMODDIR" modules)
-
+if [ -d "$PIKERNELMODDIR" ] ; then
+	cd "$PIKERNELMODDIR"
+	make compiletime.h
+	cd -
+	(cd linux; eval $make M="$PIKERNELMODDIR" modules)
+fi
 # install CM1 kernel
 cp "$BUILDDIR/arch/arm/boot/zImage" "$INSTDIR/boot/kernel.img"
 
 # install CM1 modules
 rm -rf modules/*
-(cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules" M="$PIKERNELMODDIR")
+if [ -d "$PIKERNELMODDIR" ] ; then
+	(cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules" M="$PIKERNELMODDIR")
+fi
 (cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules")
 mv "$INSTDIR/modules/lib/modules"/* "$INSTDIR/modules"
 rm -r "$INSTDIR/modules/lib"
@@ -94,16 +97,20 @@ version="$(cat "$BUILDDIR/include/config/kernel.release")"
 copy_files
 
 # build CM3 piKernelMod
-cd "$PIKERNELMODDIR"
-make compiletime.h
-cd -
-(cd linux; eval $make M="$PIKERNELMODDIR" modules)
+if [ -d "$PIKERNELMODDIR" ] ; then
+	cd "$PIKERNELMODDIR"
+	make compiletime.h
+	cd -
+	(cd linux; eval $make M="$PIKERNELMODDIR" modules)
+fi
 
 # install CM3 kernel
 cp "$BUILDDIR/arch/arm/boot/zImage" "$INSTDIR/boot/kernel7.img"
 
 # install CM3 modules
-(cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules" M="$PIKERNELMODDIR")
+if [ -d "$PIKERNELMODDIR" ] ; then
+	(cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules" M="$PIKERNELMODDIR")
+fi
 (cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules")
 mv "$INSTDIR/modules/lib/modules"/* "$INSTDIR/modules"
 rm -r "$INSTDIR/modules/lib"
