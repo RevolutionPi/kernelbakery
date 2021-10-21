@@ -1,3 +1,9 @@
+raspberrypi-firmware (1:9.20211021-5.10.73+revpi1) stable; urgency=medium
+
+  * Kernel 5.10.73 without piControl for now 
+
+ -- Frank Pavlic <f.pavlic@kunbus.com>  Thu, 21 Oct 2021 16:57:40 +0200
+
 raspberrypi-firmware (1:9.20210622-4.19.95+revpi1) stable; urgency=medium
 
   * Fix: KSZ8851 reset takes to long (PiBridge)
