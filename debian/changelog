@@ -1,6 +1,12 @@
+raspberrypi-firmware (1:9.20211026-5.10.74+revpi1) stable; urgency=medium
+
+  * Kernel 5.10.74 with piControl
+
+ -- Frank Pavlic <f.pavlic@kunbus.com>  Thu, 26 Oct 2021 16:30:00 +0200
+
 raspberrypi-firmware (1:9.20211021-5.10.73+revpi1) stable; urgency=medium
 
-  * Kernel 5.10.73 without piControl for now 
+  * Kernel 5.10.73 without piControl for now
 
  -- Frank Pavlic <f.pavlic@kunbus.com>  Thu, 21 Oct 2021 16:57:40 +0200
 
