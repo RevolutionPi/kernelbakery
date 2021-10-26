@@ -52,7 +52,7 @@ rm -rf "$INSTDIR/headers"
 
 # build CM1 kernel
 (cd linux; eval $make revpi-v6_defconfig)
-(cd linux; eval $make -j$NPROC zImage modules dtbs 2>&1 | tee /tmp/out)
+(cd linux; eval $make -j$NPROC zImage modules dtbs 2>&1)
 version=$(cat "$BUILDDIR/include/config/kernel.release")
 [ ! -d "extra" ] && mkdir "extra"
 echo "_ _ $version" > extra/uname_string
@@ -92,7 +92,7 @@ BUILDDIR+=7
 rm -rf "$BUILDDIR"
 mkdir "$BUILDDIR"
 (cd linux; eval $make revpi-v7_defconfig)
-(cd linux; eval $make -j$NPROC zImage modules dtbs 2>&1 | tee /tmp/out7)
+(cd linux; eval $make -j$NPROC zImage modules dtbs 2>&1)
 version="$(cat "$BUILDDIR/include/config/kernel.release")"
 copy_files
 
