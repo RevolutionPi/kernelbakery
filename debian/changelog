@@ -1,3 +1,9 @@
+raspberrypi-firmware (1:9.20211109-4.19.95+revpi1) stable; urgency=medium
+
+  * dts/revpi-flat: Add WLAN enable
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Tue, 09 Nov 2021 08:26:50 +0100
+
 raspberrypi-firmware (1:9.20210622-4.19.95+revpi1) stable; urgency=medium
 
   * Fix: KSZ8851 reset takes to long (PiBridge)
