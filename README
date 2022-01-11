@@ -17,9 +17,9 @@ Intended usage:
     apt-get install gcc-arm-linux-gnueabihf
     apt-get install build-essential:native debhelper quilt bc
     apt-get install bison flex libssl-dev
-    git clone -b revpi-4.19 https://github.com/RevolutionPi/linux
-    git clone https://github.com/RevolutionPi/piControl
-    git clone https://github.com/RevolutionPi/kernelbakery
+    git clone -b devel/revpi-5.10 https://github.com/RevolutionPi/linux
+    git clone -b devel/revpi-5.10 https://github.com/RevolutionPi/piControl
+    git clone -b devel/5.10 https://github.com/RevolutionPi/kernelbakery
     cd kernelbakery
     LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl debian/update.sh
     dpkg-buildpackage -a armhf -b -us -uc
