@@ -5,7 +5,7 @@ copy_files (){
 	mkdir -p "$destdir"
 	mkdir -p "headers/lib/modules/$version"
 	rsync -aHAX \
-		--files-from=<(cd linux; find -name Makefile\* -o -name Kconfig\* -o -name \*.pl | grep -E -v '^\./debian') linux/ "$destdir/"
+		--files-from=<(cd linux; find . -name Makefile\* -o -name Kconfig\* -o -name \*.pl | grep -E -v '^\./debian') linux/ "$destdir/"
 	rsync -aHAX \
 		--files-from=<(cd linux; find arch/arm/include include scripts -type f) linux/ "$destdir/"
 	rsync -aHAX \
@@ -24,7 +24,7 @@ copy_files (){
 	find "$destdir/scripts" -type f -name '*.cmd' -exec rm {} +
 	ln -sf "/usr/src/linux-headers-$version" "headers/lib/modules/$version/build"
 
-	(cd linux; eval $make -j$NPROC INSTALL_KBUILD_PATH="../$destdir" kbuild_install)
+	(cd linux; make "${make_opts[@]}" -j$NPROC INSTALL_KBUILD_PATH="../$destdir" kbuild_install)
 }
 
 NPROC=$(nproc) || NPROC=8
@@ -41,86 +41,64 @@ BUILDDIR=$INSTDIR/kbuild
 export KBUILD_BUILD_TIMESTAMP=$(date --rfc-2822)
 export KBUILD_BUILD_USER="support"
 export KBUILD_BUILD_HOST="kunbus.com"
-make="make CFLAGS_KERNEL='-fdebug-prefix-map=$LINUXDIR=.' CFLAGS_MODULE='-fdebug-prefix-map=$LINUXDIR=.' ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- O=$BUILDDIR"
+make_opts=(CFLAGS_KERNEL='-fdebug-prefix-map=$LINUXDIR=.' CFLAGS_MODULE='-fdebug-prefix-map=$LINUXDIR=.' ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- O="$BUILDDIR")
 
-rm -rf "$BUILDDIR"
-mkdir "$BUILDDIR"
 if [ ! -L "$INSTDIR/linux" ] ; then
     ln -sf "$LINUXDIR" "$INSTDIR/linux"
 fi
 rm -rf "$INSTDIR/headers"
 
-# build CM1 kernel
-(cd linux; eval $make revpi-v6_defconfig)
-(cd linux; eval $make -j$NPROC zImage modules dtbs 2>&1)
-version=$(cat "$BUILDDIR/include/config/kernel.release")
-[ ! -d "extra" ] && mkdir "extra"
-echo "_ _ $version" > extra/uname_string
-copy_files
-
-# build CM1 piKernelMod
-if [ -d "$PIKERNELMODDIR" ] ; then
-	cd "$PIKERNELMODDIR"
-	make compiletime.h
-	cd -
-	(cd linux; eval $make M="$PIKERNELMODDIR" modules)
-fi
-# install CM1 kernel
-cp "$BUILDDIR/arch/arm/boot/zImage" "$INSTDIR/boot/kernel.img"
-
-# install CM1 modules
-rm -rf modules/*
-if [ -d "$PIKERNELMODDIR" ] ; then
-	(cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules" M="$PIKERNELMODDIR")
-fi
-(cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules")
-mv "$INSTDIR/modules/lib/modules"/* "$INSTDIR/modules"
-rm -r "$INSTDIR/modules/lib"
-rm "$INSTDIR/modules"/*/{build,source}
-
-# install CM1 dtbs
 [ -d "$INSTDIR/boot/overlays" ] || mkdir "$INSTDIR/boot/overlays"
 rm -f "$INSTDIR/boot"/*.dtb "$INSTDIR/boot/overlays"/*.dtbo
-(cd linux; eval $make -j$NPROC dtbs_install INSTALL_DTBS_PATH=/tmp/dtb.$$)
+
+rm -rf modules/*
+
+# CM1=6 CM3=7 CM4=7l
+kernel_versions="6 7 7l"
+
+for kernel_version in $kernel_versions; do
+    builddir=${BUILDDIR}${kernel_version/6/}
+    make_opts[-1]="O=${builddir}"
+
+    rm -rf "$builddir"
+    mkdir "$builddir"
+
+    # build kernel
+    (cd linux; make "${make_opts[@]}" "revpi-v${kernel_version}_defconfig")
+    (cd linux; make "${make_opts[@]}" -j$NPROC zImage modules 2>&1)
+    version="$(cat "$builddir/include/config/kernel.release")"
+    copy_files
+
+    # build piKernelMod
+    if [ -d "$PIKERNELMODDIR" ] ; then
+      cd "$PIKERNELMODDIR"
+      make compiletime.h
+      cd -
+      (cd linux; make "${make_opts[@]}" M="$PIKERNELMODDIR" modules)
+    fi
+
+    # install kernel
+    cp "$builddir/arch/arm/boot/zImage" "$INSTDIR/boot/kernel${kernel_version/6/}.img"
+
+    # install modules
+    if [ -d "$PIKERNELMODDIR" ] ; then
+      (cd linux; make "${make_opts[@]}" -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules" M="$PIKERNELMODDIR")
+    fi
+    (cd linux; make "${make_opts[@]}" -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules")
+    mv "$INSTDIR/modules/lib/modules"/* "$INSTDIR/modules"
+    rm -r "$INSTDIR/modules/lib"
+    rm "$INSTDIR/modules"/*/{build,source}
+done
+
+# install dtbs (based on last builddir)
+(cd linux; make "${make_opts[@]}" -j$NPROC dtbs 2>&1)
+(cd linux; make "${make_opts[@]}" -j$NPROC dtbs_install INSTALL_DTBS_PATH=/tmp/dtb.$$)
 mv /tmp/dtb.$$/*.dtb "$INSTDIR/boot"
 mv /tmp/dtb.$$/overlays/* "$INSTDIR/boot/overlays"
 rmdir /tmp/dtb.$$/overlays /tmp/dtb.$$
 
-# build CM3 kernel
-make+=7
-BUILDDIR+=7
-rm -rf "$BUILDDIR"
-mkdir "$BUILDDIR"
-(cd linux; eval $make revpi-v7_defconfig)
-(cd linux; eval $make -j$NPROC zImage modules dtbs 2>&1)
-version="$(cat "$BUILDDIR/include/config/kernel.release")"
-copy_files
-
-# build CM3 piKernelMod
-if [ -d "$PIKERNELMODDIR" ] ; then
-	cd "$PIKERNELMODDIR"
-	make compiletime.h
-	cd -
-	(cd linux; eval $make M="$PIKERNELMODDIR" modules)
-fi
-
-# install CM3 kernel
-cp "$BUILDDIR/arch/arm/boot/zImage" "$INSTDIR/boot/kernel7.img"
-
-# install CM3 modules
-if [ -d "$PIKERNELMODDIR" ] ; then
-	(cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules" M="$PIKERNELMODDIR")
-fi
-(cd linux; eval $make -j$NPROC modules_install INSTALL_MOD_PATH="$INSTDIR/modules")
-mv "$INSTDIR/modules/lib/modules"/* "$INSTDIR/modules"
-rm -r "$INSTDIR/modules/lib"
-rm "$INSTDIR/modules"/*/{build,source}
-
-# install CM3 dtbs
-(cd linux; eval $make -j$NPROC dtbs_install INSTALL_DTBS_PATH=/tmp/dtb.$$)
-mv /tmp/dtb.$$/*.dtb "$INSTDIR/boot"
-mv /tmp/dtb.$$/overlays/* "$INSTDIR/boot/overlays"
-rmdir /tmp/dtb.$$/overlays /tmp/dtb.$$
+[ ! -d "extra" ] && mkdir "extra"
+echo "_ _ $version" > extra/uname_string
 
 find headers -name .gitignore -delete
 (cd debian; ./gen_bootloader_postinst_preinst.sh)
