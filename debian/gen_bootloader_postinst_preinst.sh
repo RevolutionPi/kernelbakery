@@ -5,7 +5,7 @@ if ! [ -d ../boot ]; then
   exit 1
 fi
 
-version=`cat ../extra/uname_string | cut -f 3 -d ' ' | tr -d +`
+version=`cat ../extra/uname_string | cut -f 3 -d ' '| sed -Ee 's/(-v[78]l?)?\+$//'`
 
 printf "#!/bin/sh\n" > raspberrypi-kernel.postinst
 printf "#!/bin/sh\n" > raspberrypi-kernel.preinst
@@ -29,12 +29,16 @@ export INITRD=No
 if [ -d "/etc/kernel/preinst.d" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/preinst.d
   run-parts -v --report --exit-on-error --arg=${version}-v7+ --arg=/boot/kernel7.img /etc/kernel/preinst.d
+  run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/preinst.d
 fi
 if [ -d "/etc/kernel/preinst.d/${version}+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/preinst.d/${version}+
 fi
 if [ -d "/etc/kernel/preinst.d/${version}-v7+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}-v7+ --arg=/boot/kernel7.img /etc/kernel/preinst.d/${version}-v7+
+fi
+if [ -d "/etc/kernel/preinst.d/${version}-v7l+" ]; then
+  run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/preinst.d/${version}-v7l+
 fi
 EOF
 
@@ -43,12 +47,16 @@ export INITRD=No
 if [ -d "/etc/kernel/postinst.d" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/postinst.d
   run-parts -v --report --exit-on-error --arg=${version}-v7+ --arg=/boot/kernel7.img /etc/kernel/postinst.d
+  run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/postinst.d
 fi
 if [ -d "/etc/kernel/postinst.d/${version}+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/postinst.d/${version}+
 fi
 if [ -d "/etc/kernel/postinst.d/${version}-v7+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}-v7+ --arg=/boot/kernel7.img /etc/kernel/postinst.d/${version}-v7+
+fi
+if [ -d "/etc/kernel/postinst.d/${version}-v7l+" ]; then
+  run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/postinst.d/${version}-v7l+
 fi
 
 # wheezy and jessie images shipped with a "kunbus" overlay
@@ -85,12 +93,16 @@ export INITRD=No
 if [ -d "/etc/kernel/prerm.d" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/prerm.d
   run-parts -v --report --exit-on-error --arg=${version}-v7+ --arg=/boot/kernel7.img /etc/kernel/prerm.d
+  run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/prerm.d
 fi
 if [ -d "/etc/kernel/prerm.d/${version}+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/prerm.d/${version}+
 fi
 if [ -d "/etc/kernel/prerm.d/${version}-v7+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}-v7+ --arg=/boot/kernel7.img /etc/kernel/prerm.d/${version}-v7+
+fi
+if [ -d "/etc/kernel/prerm.d/${version}-v7l+" ]; then
+  run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/prerm.d/${version}-v7l+
 fi
 EOF
 
@@ -99,12 +111,16 @@ export INITRD=No
 if [ -d "/etc/kernel/postrm.d" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/postrm.d
   run-parts -v --report --exit-on-error --arg=${version}-v7+ --arg=/boot/kernel7.img /etc/kernel/postrm.d
+  run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/postrm.d
 fi
 if [ -d "/etc/kernel/postrm.d/${version}+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/postrm.d/${version}+
 fi
 if [ -d "/etc/kernel/postrm.d/${version}-v7+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}-v7+ --arg=/boot/kernel7.img /etc/kernel/postrm.d/${version}-v7+
+fi
+if [ -d "/etc/kernel/postrm.d/${version}-v7l+" ]; then
+  run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/postrm.d/${version}-v7l+
 fi
 EOF
 
@@ -113,6 +129,7 @@ export INITRD=No
 if [ -d "/etc/kernel/header_postinst.d" ]; then
   run-parts -v --verbose --exit-on-error --arg=${version}+ /etc/kernel/header_postinst.d
   run-parts -v --verbose --exit-on-error --arg=${version}-v7+ /etc/kernel/header_postinst.d
+  run-parts -v --verbose --exit-on-error --arg=${version}-v7l+ /etc/kernel/header_postinst.d
 fi
 
 if [ -d "/etc/kernel/header_postinst.d/${version}+" ]; then
@@ -121,6 +138,10 @@ fi
 
 if [ -d "/etc/kernel/header_postinst.d/${version}-v7+" ]; then
   run-parts -v --verbose --exit-on-error --arg=${version}-v7+ /etc/kernel/header_postinst.d/${version}-v7+
+fi
+
+if [ -d "/etc/kernel/header_postinst.d/${version}-v7l+" ]; then
+  run-parts -v --verbose --exit-on-error --arg=${version}-v7l+ /etc/kernel/header_postinst.d/${version}-v7l+
 fi
 EOF
 
