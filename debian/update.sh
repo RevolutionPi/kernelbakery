@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 copy_files (){
+	builddir=$1
 	destdir="headers/usr/src/linux-headers-$version"
 	mkdir -p "$destdir"
 	mkdir -p "headers/lib/modules/$version"
@@ -19,7 +20,7 @@ copy_files (){
 			linux/ \
 			"$destdir/"
 	rsync -aHAX \
-		--files-from=<(cd "$BUILDDIR"; find arch/arm/include Module.symvers .config include scripts -type f) "$BUILDDIR" "$destdir/"
+		--files-from=<(cd "$builddir"; find arch/arm/include Module.symvers .config include scripts -type f) "$builddir" "$destdir/"
 	find "$destdir/scripts" -type f -exec file {} + | grep -E 'ELF .* x86-64' | cut -d: -f1 | xargs rm
 	find "$destdir/scripts" -type f -name '*.cmd' -exec rm {} +
 	ln -sf "/usr/src/linux-headers-$version" "headers/lib/modules/$version/build"
@@ -37,11 +38,11 @@ fi
 INSTDIR=$(dirname "$0")
 if [ "${INSTDIR#/}" == "$INSTDIR" ] ; then INSTDIR="$PWD/$INSTDIR" ; fi
 INSTDIR=${INSTDIR%%/debian}
-BUILDDIR=$INSTDIR/kbuild
+BUILDDIR_TEMPLATE=$INSTDIR/kbuild
 export KBUILD_BUILD_TIMESTAMP=$(date --rfc-2822)
 export KBUILD_BUILD_USER="support"
 export KBUILD_BUILD_HOST="kunbus.com"
-make_opts=(CFLAGS_KERNEL='-fdebug-prefix-map=$LINUXDIR=.' CFLAGS_MODULE='-fdebug-prefix-map=$LINUXDIR=.' ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- O="$BUILDDIR")
+make_opts=(CFLAGS_KERNEL='-fdebug-prefix-map=$LINUXDIR=.' CFLAGS_MODULE='-fdebug-prefix-map=$LINUXDIR=.' ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- O="$BUILDDIR_TEMPLATE")
 
 if [ ! -L "$INSTDIR/linux" ] ; then
     ln -sf "$LINUXDIR" "$INSTDIR/linux"
@@ -57,7 +58,7 @@ rm -rf modules/*
 kernel_versions="6 7 7l"
 
 for kernel_version in $kernel_versions; do
-    builddir=${BUILDDIR}${kernel_version/6/}
+    builddir=${BUILDDIR_TEMPLATE}${kernel_version/6/}
     make_opts[-1]="O=${builddir}"
 
     rm -rf "$builddir"
@@ -67,7 +68,7 @@ for kernel_version in $kernel_versions; do
     (cd linux; make "${make_opts[@]}" "revpi-v${kernel_version}_defconfig")
     (cd linux; make "${make_opts[@]}" -j$NPROC zImage modules 2>&1)
     version="$(cat "$builddir/include/config/kernel.release")"
-    copy_files
+    copy_files "$builddir"
 
     # build piKernelMod
     if [ -d "$PIKERNELMODDIR" ] ; then
