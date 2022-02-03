@@ -79,6 +79,13 @@ if ! /bin/grep -Eq "^blacklist 8192cu" /etc/modprobe.d/blacklist-rtl8192cu.conf 
   echo "blacklist 8192cu" >> /etc/modprobe.d/blacklist-rtl8192cu.conf
 fi
 /bin/sed -i -e '/^blacklist rtl8192cu/s/^/#/' /etc/modprobe.d/blacklist-rtl8192cu.conf
+
+# Remove deprecated "elevator=deadline" from the cmdline.txt
+# We will only do anything if we are certain that the user has not modfified the
+# relevant part of the cmdline.
+if ! /bin/grep -Fq "rootfstype=ext4 elevator=deadline fsck.repair=yes" /boot/cmdline.txt ; then
+  sed -n -e 's/rootfstype=ext4 elevator=deadline fsck.repair=yes/rootfstype=ext4 fsck.repair=yes/' /boot/cmdline.txt
+fi
 EOF
 
 printf "#DEBHELPER#\n" >> raspberrypi-kernel.postinst
