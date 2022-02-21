@@ -39,8 +39,8 @@ if [ "${INSTDIR#/}" == "$INSTDIR" ] ; then INSTDIR="$PWD/$INSTDIR" ; fi
 INSTDIR=${INSTDIR%%/debian}
 BUILDDIR=$INSTDIR/kbuild
 export KBUILD_BUILD_TIMESTAMP=$(date --rfc-2822)
-export KBUILD_BUILD_USER="admin"
-export KBUILD_BUILD_HOST="kunbus.de"
+export KBUILD_BUILD_USER="support"
+export KBUILD_BUILD_HOST="kunbus.com"
 make="make CFLAGS_KERNEL='-fdebug-prefix-map=$LINUXDIR=.' CFLAGS_MODULE='-fdebug-prefix-map=$LINUXDIR=.' ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- O=$BUILDDIR"
 
 rm -rf "$BUILDDIR"
