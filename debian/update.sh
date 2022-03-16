@@ -59,13 +59,16 @@ kernel_versions="6 7 7l"
 
 for kernel_version in $kernel_versions; do
     builddir=${BUILDDIR_TEMPLATE}${kernel_version/6/}
+    defconfig="revpi-v${kernel_version}_defconfig"
     make_opts[-1]="O=${builddir}"
+
+    test -f "linux/arch/arm/config/$defconfig" || continue
 
     rm -rf "$builddir"
     mkdir "$builddir"
 
     # build kernel
-    (cd linux; make "${make_opts[@]}" "revpi-v${kernel_version}_defconfig")
+    (cd linux; make "${make_opts[@]}" $defconfig)
     (cd linux; make "${make_opts[@]}" -j$NPROC zImage modules 2>&1)
     version="$(cat "$builddir/include/config/kernel.release")"
     copy_files "$builddir"
