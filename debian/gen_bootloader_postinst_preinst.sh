@@ -83,8 +83,8 @@ fi
 # Remove deprecated "elevator=deadline" from the cmdline.txt
 # We will only do anything if we are certain that the user has not modfified the
 # relevant part of the cmdline.
-if ! /bin/grep -Fq "rootfstype=ext4 elevator=deadline fsck.repair=yes" /boot/cmdline.txt ; then
-  sed -n -e 's/rootfstype=ext4 elevator=deadline fsck.repair=yes/rootfstype=ext4 fsck.repair=yes/' /boot/cmdline.txt
+if /bin/grep -Fq "rootfstype=ext4 elevator=deadline fsck.repair=yes" /boot/cmdline.txt ; then
+  sed -i -e 's/rootfstype=ext4 elevator=deadline fsck.repair=yes/rootfstype=ext4 fsck.repair=yes/' /boot/cmdline.txt
 fi
 EOF
 
