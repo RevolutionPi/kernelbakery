@@ -20,7 +20,7 @@ for FN in ../boot/*.dtb ../boot/kernel*.img ../boot/COPYING.linux ../boot/overla
     printf "dpkg-divert --package rpikernelhack --remove --rename /boot/$FN\n" >> raspberrypi-kernel.postinst
     printf "sync\n" >> raspberrypi-kernel.postinst
 
-    printf "dpkg-divert --package rpikernelhack --divert /usr/share/rpikernelhack/$FN /boot/$FN\n" >> raspberrypi-kernel.preinst
+    printf "dpkg-divert --package rpikernelhack --rename --divert /usr/share/rpikernelhack/$FN /boot/$FN\n" >> raspberrypi-kernel.preinst
   fi
 done
 
