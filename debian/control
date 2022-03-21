@@ -1,12 +1,12 @@
 Source: raspberrypi-firmware
 Priority: extra
-Maintainer: Serge Schneider <serge@raspberrypi.org>
+Maintainer: KUNBUS GmbH <support@kunbus.com>
 Build-Depends: debhelper (>= 10.0.0)
 Standards-Version: 3.9.6
 Section: libs
-Homepage: https://github.com/raspberrypi/firmware
-Vcs-Git: git@github.com:RPi-Distro/firmware.git
-Vcs-Browser: https://github.com/RPi-Distro/firmware
+Homepage: https://revolutionpi.de/
+Vcs-Git: https://github.com/RevolutionPi/kernelbakery.git
+Vcs-Browser: https://github.com/RevolutionPi/kernelbakery
 
 Package: raspberrypi-kernel
 Section: kernel
@@ -15,16 +15,16 @@ Depends: ${misc:Depends}, raspberrypi-bootloader (>= 1.20160506-1)
 Breaks: raspberrypi-bootloader (<<1.20160324-1)
 Replaces: raspberrypi-bootloader (<<1.20160324-1)
 Provides: linux-image
-Description: Raspberry Pi Linux kernel
- This package contains the Raspberry Pi Linux kernel.
+Description: Revolution Pi Linux kernel
+ This package contains the Revolution Pi Linux kernel.
 
 Package: raspberrypi-kernel-headers
 Section: kernel
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Provides: linux-headers
-Description: Header files for the Raspberry Pi Linux kernel
+Description: Header files for the Revolution Pi Linux kernel
  This package provides the architecture-specific kernel header files for
- the Raspberry Pi Linux kernel, generally used for building out-of-tree
+ the Revolution Pi Linux kernel, generally used for building out-of-tree
  kernel modules.
 
