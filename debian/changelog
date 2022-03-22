@@ -1,3 +1,27 @@
+raspberrypi-firmware (1:9.20220323-5.10.103+revpi1) stable; urgency=medium
+
+  * Linux 5.10.103-rt62
+  * Upgrade to Linux 5.10.103
+  * Update RT patch to 5.10.103-rt62
+  * Support CM4/CM4S (BCM2711) Modules (armv7l)
+  * Disable /dev/gpiomem support [security]
+  * SMSC95xx: Use interrupt for link status, avoid polling
+  * Cleanup pinmux for revpi devices in dt overlays
+  * TPM SLB 9670: Implement proper reset procedure
+  * piControl: flat: Shrink critical region in the ain thread
+  * piControl: compact: Shrink critical section (cpu temp/freq) [Fix missing cycles]
+  * piControl: compact: Use hardware interrupt timer instead in soft interrupt
+  * piControl: compact: Replace smp_read_barrier_depends() with smp_rmb()
+  * piControl: revpi: connect: adjust code to pibridge device tree entry
+  * piControl: revpi: core: register platform driver for revpi core device
+  * piControl: Stop gateway communication on module unload
+  * piControl: Process gateway packets in task context
+  * piControl: revpi_core: make sure UART thread does not block at module unload
+  * piControl: use correct function to exchange data with userspace
+  * piControl: add module depency for DIN on compact
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Wed, 23 Mar 2022 09:25:25 +0100
+
 raspberrypi-firmware (1:9.20220322-4.19.95+revpi1) stable; urgency=medium
 
   * dts: revpi-core: pull down sniff pin
