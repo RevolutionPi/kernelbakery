@@ -1,3 +1,18 @@
+raspberrypi-firmware (1:9.20220322-4.19.95+revpi1) stable; urgency=medium
+
+  * dts: revpi-core: pull down sniff pin
+  * piControl: add module depency for DIN on compact
+  * piControl: use correct function to exchange data with userspace
+  * Use hardware interrupt timer instead in soft interrupt
+  * compact: Shrink critical section (cpu temp/freq)
+  * flat: Shrink critical region in the ain thread
+  * fix: The removal of elevator= from the cmdline.txt is not working
+  * Fix a warning about divert behavior change
+  * debian/control: Claim maintainership of this package
+  * debian/control: Update the controlfile from upstream
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Tue, 22 Mar 2022 10:23:56 +0100
+
 raspberrypi-firmware (1:9.20211203-4.19.95+revpi1) stable; urgency=medium
 
   * Revert "brcmfmac: Add support for reading mac address from device tree"
