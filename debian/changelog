@@ -1,3 +1,24 @@
+raspberrypi-firmware (1:9.20220419-5.10.103+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * dts/revpi-core: Add pinmux for the led gpios
+  * dts/revpi-core: Add missing pinmux for the all sniff pins
+  * dts/revpi-core: Add rs485 (uart0) node
+  * dts/revpi-core: Assign missing unused pinmux
+  * dts/connect: Assign sniff and connect pins to the pibridge
+  * dts/connect: Assign missing unused pinmux
+  * dts/connect: Fix pibridge rs485 pulls
+  * serial: amba-pl011: do not time out prematurely when draining tx fifo for rs485
+  * arm: dts: revpi-con-can: Move pincontrol references for can0
+
+  [picontrol changelog]
+  * piControl: Linux 5.16 compat: Drop userspace includes
+  * piControl: Linux 5.12 compat: Use MAX_RT_PRIO
+  * Remove prio settings for ktimersoftd
+  * connect: Fix gpio assingment of x2do
+
+ -- Frank Erdrich <f.erdrich@kunbus.com>  Tue, 19 Apr 2022 09:58:53 +0100
+
 raspberrypi-firmware (1:9.20220323-5.10.103+revpi1) stable; urgency=medium
 
   * Linux 5.10.103-rt62
