@@ -33,6 +33,16 @@ NPROC=$(nproc) || NPROC=8
 if [ -z "$LINUXDIR" ] ; then
     echo 1>&2 "Usage: LINUXDIR=<path> [PIKERNELMODDIR=<path>] $(basename "$0")"
     exit 1
+elif [ ! -d "$LINUXDIR" ] ; then
+    echo 1>&2 "LINUXDIR defined as $LINUXDIR, but folder not found on disk."
+    exit 1
+fi
+
+if [ -n "$PIKERNELMODDIR" ] ; then
+    if [ ! -d "$PIKERNELMODDIR" ] ; then
+        echo 1>&2 "PIKERNELMODDIR defined as $PIKERNELMODDIR, but folder not found on disk."
+        exit 1
+    fi
 fi
 
 INSTDIR=$(dirname "$0")
