@@ -1,3 +1,13 @@
+raspberrypi-firmware (1:9.20220427-5.10.103+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * dts/connect-se: Use own fragments to modify existing pinmuxes
+  * dts/connect-se: Amend compatible string for CM4S
+  * dts/connect: Use own fragments to modify existing pinmuxes
+  * Add the device tree overlay for Connect SE
+
+ -- Frank Erdrich <f.erdrich@kunbus.com>  Wed, 27 Apr 2022 16:41:05 +0100
+
 raspberrypi-firmware (1:9.20220419-5.10.103+revpi1) stable; urgency=medium
 
   [Linux kernel changelog]
