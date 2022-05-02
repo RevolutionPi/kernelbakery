@@ -1,3 +1,10 @@
+raspberrypi-firmware (1:9.20220502-5.10.103+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * dts/core: Fix typo in the spi0 fragment
+
+ -- Frank Erdrich <f.erdrich@kunbus.com>  Mon, 02 May 2022 09:43:42 +0200
+
 raspberrypi-firmware (1:9.20220428-5.10.103+revpi1) stable; urgency=medium
 
   [Linux kernel changelog]
