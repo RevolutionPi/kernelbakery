@@ -1,3 +1,10 @@
+raspberrypi-firmware (1:9.20220524-5.10.103+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * dts/revpi-*: Switch to dwc2 USB driver
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Tue, 24 May 2022 13:32:16 +0200
+
 raspberrypi-firmware (1:9.20220502-5.10.103+revpi1) stable; urgency=medium
 
   [Linux kernel changelog]
