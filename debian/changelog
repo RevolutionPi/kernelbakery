@@ -1,3 +1,30 @@
+raspberrypi-firmware (1:9.20220727-5.10.120+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * Merge remote-tracking branch 'rpi/rpi-5.10.y' into revpi-5.10
+  * Revert "tpm: fix reference counting for struct tpm_chip"
+  * dts: Add RevPi Core SE (2022) overlay
+  * dts: Add RevPi Core S (2022) overlay
+  * dts/core-2022: Add revpi-core compatible
+  * dts/revpi-flat: Add WLAN enable
+  * dts: Add RevPi Core 3/3+ (2022) overlay
+  * dts/core: Add comment for the spi-max-frequency
+  * net: phy: smsc: Disable Energy Detect Power-Down in interrupt mode
+  * Linux 5.10.120-rt70
+  * Upgrade to Linux 5.10.120
+
+  [picontrol changelog]
+  * piControl: protect UPDATE_DEVICE_FIRMWARE against concurrent RESET ioctl
+  * piControl: protect INTERN_SET_SERIAL_NUM against concurrent RESET ioctl
+  * piControl: protect internal states agains RESET
+  * piControl: Introduce mutex to protect against resets
+  * Delete stale comment
+  * piControl: Add Support for Core SE
+  * piControl: Add support for Connect SE
+  * piControl: support connect se compatible
+
+ -- Zhi Han <z.han@kunbus.com>  Wed, 27 Jul 2022 08:59:53 +0200
+
 raspberrypi-firmware (1:9.20220524-5.10.103+revpi1) stable; urgency=medium
 
   [Linux kernel changelog]
