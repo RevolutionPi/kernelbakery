@@ -1,3 +1,10 @@
+raspberrypi-firmware (1:9.20220728-5.10.120+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * random: do not use jump labels before they are initialized
+
+ -- Zhi Han <z.han@kunbus.com>  Thu, 28 Jul 2022 10:27:11 +0200
+
 raspberrypi-firmware (1:9.20220727-5.10.120+revpi1) stable; urgency=medium
 
   [Linux kernel changelog]
