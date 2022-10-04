@@ -12,7 +12,7 @@ all their kernels and modules in binary form dating back to 2012.  That's why
 this repo was stripped of the git history as well as files which can be rebuilt
 from the kernel source tree.
 
-Intended usage:
+Intended usage (32-bit kernel):
     apt-get install device-tree-compiler
     apt-get install gcc-arm-linux-gnueabihf
     apt-get install build-essential:native debhelper quilt bc
@@ -23,6 +23,18 @@ Intended usage:
     cd kernelbakery
     LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl debian/update.sh
     dpkg-buildpackage -a armhf -b -us -uc
+
+Intended usage (64-bit kernel):
+    apt-get install device-tree-compiler
+    apt-get install gcc-aarch64-linux-gnu
+    apt-get install build-essential:native debhelper quilt bc
+    apt-get install bison flex libssl-dev rsync git
+    git clone -b revpi-5.10 https://github.com/RevolutionPi/linux
+    git clone -b master https://github.com/RevolutionPi/piControl
+    git clone -b master https://github.com/RevolutionPi/kernelbakery
+    cd kernelbakery
+    ARCH=arm64 LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl debian/update.sh
+    dpkg-buildpackage -a arm64 -b -us -uc
 
 This procedure was tested successfully on Debian buster amd64, but YMMV.
 Building the kernel with update.sh is idempotent.  If it fails, e.g. due to
