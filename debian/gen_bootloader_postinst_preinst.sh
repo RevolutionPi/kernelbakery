@@ -30,6 +30,7 @@ if [ -d "/etc/kernel/preinst.d" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/preinst.d
   run-parts -v --report --exit-on-error --arg=${version}-v7+ --arg=/boot/kernel7.img /etc/kernel/preinst.d
   run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/preinst.d
+  run-parts -v --report --exit-on-error --arg=${version}-v8+ --arg=/boot/kernel8.img /etc/kernel/preinst.d
 fi
 if [ -d "/etc/kernel/preinst.d/${version}+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/preinst.d/${version}+
@@ -40,6 +41,9 @@ fi
 if [ -d "/etc/kernel/preinst.d/${version}-v7l+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/preinst.d/${version}-v7l+
 fi
+if [ -d "/etc/kernel/preinst.d/${version}-v8+" ]; then
+  run-parts -v --report --exit-on-error --arg=${version}-v8+ --arg=/boot/kernel8.img /etc/kernel/preinst.d/${version}-v8+
+fi
 EOF
 
 cat <<EOF >> raspberrypi-kernel.postinst
@@ -48,6 +52,7 @@ if [ -d "/etc/kernel/postinst.d" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/postinst.d
   run-parts -v --report --exit-on-error --arg=${version}-v7+ --arg=/boot/kernel7.img /etc/kernel/postinst.d
   run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/postinst.d
+  run-parts -v --report --exit-on-error --arg=${version}-v8+ --arg=/boot/kernel8.img /etc/kernel/postinst.d
 fi
 if [ -d "/etc/kernel/postinst.d/${version}+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/postinst.d/${version}+
@@ -57,6 +62,9 @@ if [ -d "/etc/kernel/postinst.d/${version}-v7+" ]; then
 fi
 if [ -d "/etc/kernel/postinst.d/${version}-v7l+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/postinst.d/${version}-v7l+
+fi
+if [ -d "/etc/kernel/postinst.d/${version}-v8+" ]; then
+  run-parts -v --report --exit-on-error --arg=${version}-v8+ --arg=/boot/kernel8.img /etc/kernel/postinst.d/${version}-v8+
 fi
 
 # wheezy and jessie images shipped with a "kunbus" overlay
@@ -101,6 +109,7 @@ if [ -d "/etc/kernel/prerm.d" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/prerm.d
   run-parts -v --report --exit-on-error --arg=${version}-v7+ --arg=/boot/kernel7.img /etc/kernel/prerm.d
   run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/prerm.d
+  run-parts -v --report --exit-on-error --arg=${version}-v8+ --arg=/boot/kernel8.img /etc/kernel/prerm.d
 fi
 if [ -d "/etc/kernel/prerm.d/${version}+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/prerm.d/${version}+
@@ -111,6 +120,9 @@ fi
 if [ -d "/etc/kernel/prerm.d/${version}-v7l+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/prerm.d/${version}-v7l+
 fi
+if [ -d "/etc/kernel/prerm.d/${version}-v8+" ]; then
+  run-parts -v --report --exit-on-error --arg=${version}-v8+ --arg=/boot/kernel8.img /etc/kernel/prerm.d/${version}-v8+
+fi
 EOF
 
 cat <<EOF >> raspberrypi-kernel.postrm
@@ -119,6 +131,7 @@ if [ -d "/etc/kernel/postrm.d" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/postrm.d
   run-parts -v --report --exit-on-error --arg=${version}-v7+ --arg=/boot/kernel7.img /etc/kernel/postrm.d
   run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/postrm.d
+  run-parts -v --report --exit-on-error --arg=${version}-v8+ --arg=/boot/kernel8.img /etc/kernel/postrm.d
 fi
 if [ -d "/etc/kernel/postrm.d/${version}+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}+ --arg=/boot/kernel.img /etc/kernel/postrm.d/${version}+
@@ -129,6 +142,9 @@ fi
 if [ -d "/etc/kernel/postrm.d/${version}-v7l+" ]; then
   run-parts -v --report --exit-on-error --arg=${version}-v7l+ --arg=/boot/kernel7l.img /etc/kernel/postrm.d/${version}-v7l+
 fi
+if [ -d "/etc/kernel/postrm.d/${version}-v8+" ]; then
+  run-parts -v --report --exit-on-error --arg=${version}-v8+ --arg=/boot/kernel8.img /etc/kernel/postrm.d/${version}-v8+
+fi
 EOF
 
 cat <<EOF >> raspberrypi-kernel-headers.postinst
@@ -137,6 +153,7 @@ if [ -d "/etc/kernel/header_postinst.d" ]; then
   run-parts -v --verbose --exit-on-error --arg=${version}+ /etc/kernel/header_postinst.d
   run-parts -v --verbose --exit-on-error --arg=${version}-v7+ /etc/kernel/header_postinst.d
   run-parts -v --verbose --exit-on-error --arg=${version}-v7l+ /etc/kernel/header_postinst.d
+  run-parts -v --verbose --exit-on-error --arg=${version}-v8+ /etc/kernel/header_postinst.d
 fi
 
 if [ -d "/etc/kernel/header_postinst.d/${version}+" ]; then
@@ -149,6 +166,10 @@ fi
 
 if [ -d "/etc/kernel/header_postinst.d/${version}-v7l+" ]; then
   run-parts -v --verbose --exit-on-error --arg=${version}-v7l+ /etc/kernel/header_postinst.d/${version}-v7l+
+fi
+
+if [ -d "/etc/kernel/header_postinst.d/${version}-v8+" ]; then
+  run-parts -v --verbose --exit-on-error --arg=${version}-v8+ /etc/kernel/header_postinst.d/${version}-v8+
 fi
 EOF
 
