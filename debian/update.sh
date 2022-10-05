@@ -117,7 +117,7 @@ for kernel_version in $kernel_versions; do
     if [ "$ARCH" == "arm64" ]; then
 	    # arm64 kernel is uncompressed by default, let's gzip it
 	    cp "$builddir/arch/${ARCH}/boot/Image" "$INSTDIR/boot/kernel8.img"
-	    gzip "$INSTDIR/boot/kernel8.img"
+	    gzip -9 "$INSTDIR/boot/kernel8.img"
 	    mv "$INSTDIR/boot/kernel8.img"{.gz,}
     else
 	    cp "$builddir/arch/${ARCH}/boot/zImage" "$INSTDIR/boot/kernel${kernel_version/6/}.img"
