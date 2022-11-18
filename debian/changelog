@@ -1,3 +1,35 @@
+raspberrypi-firmware (1:9.20221118-5.10.152+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * Merge Linux 5.10.152-rt75
+  * Upgrade to Linux 5.10.152
+  * dts: Add dtoverlay for Connect 4
+  * arm/dts: Add overlay for RevPi HAT EEPROMs
+  * arm: dts: Add overlay for revpi flat 2022
+  * arm: dts: flat: correct relais pin
+  * ARM: dts: Enable USB by default on CM4S
+  * dts: Add dt overlay for Core (cm1)
+  * dts/dt-blob: Configure drive strength for pins on Core/connect
+  * dts/dt-blob: Add configs of pin 0,1 for HATs on CM4S
+  * dts/dt-blob: Add configs of pin 0,1 for HATs on CM3
+  * dts: Add overlay to amend dt-blob from RPi
+  * dts: Import from RPI as the base of revpi's dt-blob
+  * arm64/configs/revpi-v8: Remove CONFIG_ANDROID
+  * arm64/configs/revpi-v8: Remove CONFIG_MAX30102
+  * arm64/configs/revpi-v8: Disable CONFIG_KVM
+  * arm64/configs/revpi-v8: Add RevPi specific configuration
+  * arm64/configs: Create revpi-v8_defconfig from bcm2711_defconfig
+  * ARM64: dts: Add Zero 2 W and CM4S
+
+  [picontrol changelog]
+  * piControl: ensure setting I/O processing state is threadsafe
+  * Fix format chars and casts for arm64 build
+  * Print filename instead of address
+  * Print serial device name instead of address
+  * Allow optional arm64 build
+
+ -- Zhi Han <z.han@kunbus.com>  Fri, 18 Nov 2022 10:59:48 +0100
+
 raspberrypi-firmware (1:9.20220728-5.10.120+revpi1) stable; urgency=medium
 
   [Linux kernel changelog]
