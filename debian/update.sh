@@ -60,15 +60,20 @@ if [ -n "$PIKERNELMODDIR" ]; then
     fi
 fi
 
+HOST_ARCH="$(uname -m)"
 ARCH=${ARCH:-arm}
 case "$ARCH" in
 arm)
-    CROSS_COMPILE=${CROSS_COMPILE:-arm-linux-gnueabihf-}
+    if ! grep -q -E "armv(6l|7|7l)" <<<"$HOST_ARCH"; then
+        CROSS_COMPILE=arm-linux-gnueabihf-
+    fi
     # CM1=6 CM3=7 CM4=7l (32 bit kernel)
     kernel_versions="6 7 7l"
     ;;
 arm64)
-    CROSS_COMPILE=${CROSS_COMPILE:-aarch64-linux-gnu-}
+    if [ "$HOST_ARCH" != "aarch64" ]; then
+        CROSS_COMPILE=aarch64-linux-gnu-
+    fi
     # CM3/CM4S/CM4=8 (64 bit kernel)
     kernel_versions="8"
     ;;
