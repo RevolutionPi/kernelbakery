@@ -88,6 +88,7 @@ export KBUILD_BUILD_USER="support"
 export KBUILD_BUILD_HOST="kunbus.com"
 export ARCH
 export CROSS_COMPILE
+# shellcheck disable=SC2016
 make_opts=(CFLAGS_KERNEL='-fdebug-prefix-map=$LINUXDIR=.' CFLAGS_MODULE='-fdebug-prefix-map=$LINUXDIR=.' O="$BUILDDIR_TEMPLATE")
 
 if [ ! -L "$INSTDIR/linux" ]; then
