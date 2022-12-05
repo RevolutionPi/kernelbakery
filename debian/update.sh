@@ -13,17 +13,17 @@ copy_files() {
     rsync -aHAX \
         --files-from=<(
             cd linux
-            find arch/${ARCH}/include include scripts -type f
+            find "arch/${ARCH}/include" include scripts -type f
         ) linux/ "$destdir/"
     rsync -aHAX \
         --files-from=<(
             cd linux
-            find arch/${ARCH} -name module.lds -o -name Kbuild.platforms -o -name Platform
+            find "arch/${ARCH}" -name module.lds -o -name Kbuild.platforms -o -name Platform
         ) linux/ "$destdir/"
     rsync -aHAX \
         --files-from=<(
             cd linux
-            find arch/${ARCH} -name include -type d -print0 -o -name scripts -type d -print0 |
+            find "arch/${ARCH}" -name include -type d -print0 -o -name scripts -type d -print0 |
                 xargs -0 -I '{}' find '{}' -type f
         ) \
         linux/ \
@@ -31,7 +31,7 @@ copy_files() {
     rsync -aHAX \
         --files-from=<(
             cd "$builddir"
-            find arch/${ARCH}/include Module.symvers .config include scripts -type f
+            find "arch/${ARCH}/include" Module.symvers .config include scripts -type f
         ) "$builddir" "$destdir/"
     find "$destdir/scripts" -type f -exec file {} + | grep -E 'ELF .* x86-64' | cut -d: -f1 | xargs rm
     find "$destdir/scripts" -type f -name '*.cmd' -exec rm {} +
@@ -39,7 +39,7 @@ copy_files() {
 
     (
         cd linux
-        make "${make_opts[@]}" -j$NPROC INSTALL_KBUILD_PATH="../$destdir" kbuild_install
+        make "${make_opts[@]}" -j"$NPROC" INSTALL_KBUILD_PATH="../$destdir" kbuild_install
     )
 }
 
