@@ -33,8 +33,12 @@ copy_files() {
             cd "$builddir"
             find "arch/${ARCH}/include" Module.symvers .config include scripts -type f
         ) "$builddir" "$destdir/"
-    find "$destdir/scripts" -type f -exec file {} + | grep -E 'ELF .* x86-64' | cut -d: -f1 | xargs rm
+
+    # search for artifacts which have been built for host architecture and remove them
+    HOST_ELF=$(file /bin/true | grep -oP 'ELF [\w- ]+, \K[\w- ]+')
+    find "$destdir/scripts" -type f -exec file {} + | grep -E "ELF .* $HOST_ELF," | cut -d: -f1 | xargs --no-run-if-empty rm
     find "$destdir/scripts" -type f -name '*.cmd' -exec rm {} +
+
     ln -sf "/usr/src/linux-headers-$version" "headers/lib/modules/$version/build"
 
     (
