@@ -106,6 +106,11 @@ export CROSS_COMPILE
 # shellcheck disable=SC2016
 make_opts=(CFLAGS_KERNEL='-fdebug-prefix-map=$LINUXDIR=.' CFLAGS_MODULE='-fdebug-prefix-map=$LINUXDIR=.' O="$BUILDDIR_TEMPLATE")
 
+# use ccache if available and kernelbakery was invoked with USE_CCACHE=1
+if [ -e /usr/bin/ccache ] && [ ${USE_CCACHE:-0} == 1 ]; then
+    CROSS_COMPILE="ccache $CROSS_COMPILE"
+fi
+
 if [ ! -L "$INSTDIR/linux" ]; then
     ln -sf "$LINUXDIR" "$INSTDIR/linux"
 fi
