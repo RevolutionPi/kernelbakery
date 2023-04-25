@@ -1,4 +1,4 @@
-raspberrypi-firmware (1:9.20230425+1-5.10.152-1) UNRELEASED; urgency=medium
+raspberrypi-firmware (1:9.20230425+1-5.10.152-1+revpi10+1) buster; urgency=medium
 
   [Linux kernel changelog]
   * net: phy: broadcom: Make LEDs 3+4 shadow LEDs 1+2
@@ -23,7 +23,7 @@ raspberrypi-firmware (1:9.20230425+1-5.10.152-1) UNRELEASED; urgency=medium
   * Replace strncpy by snprintf
   * Fix gcc -Wformat= complaints
 
- -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Tue, 25 Apr 2023 14:11:24 +0200
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Wed, 26 Apr 2023 16:51:10 +0200
 
 raspberrypi-firmware (1:9.20221118-5.10.152+revpi1) stable; urgency=medium
 
