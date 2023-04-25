@@ -53,12 +53,7 @@ from the git commands.
 ```
 git clone --depth 1 -b revpi-5.10 https://github.com/RevolutionPi/linux
 git clone --depth 1 -b master https://github.com/RevolutionPi/piControl
-
-# kernelbakery for Bullseye
-git clone --depth 1 -b raspios/bullseye https://github.com/RevolutionPi/kernelbakery
-
-# ... or kernelbakery for Buster
-git clone --depth 1 -b raspios/buster https://github.com/RevolutionPi/kernelbakery
+git clone --depth 1 -b master https://github.com/RevolutionPi/kernelbakery
 ```
 
 ## Build kernel and packages
@@ -74,7 +69,7 @@ runs on all Revolution Pi devices with the exception of the first Core devices
 
 ```
 cd kernelbakery
-LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl ./update.sh
+LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl debian/update.sh
 dpkg-buildpackage -a armhf -b -us -uc
 ```
 
@@ -82,6 +77,6 @@ dpkg-buildpackage -a armhf -b -us -uc
 
 ```
 cd kernelbakery
-ARCH=arm64 LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl ./update.sh
+ARCH=arm64 LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl debian/update.sh
 dpkg-buildpackage -a arm64 -b -us -uc
 ```

@@ -64,13 +64,6 @@ if [ -n "$PIKERNELMODDIR" ]; then
     fi
 fi
 
-if ! [ -d ./debian ]; then
-    echo 1>&2 "You have to checkout a raspios branch in order to use the kernelbakery."
-    echo 1>&2
-    echo 1>&2 "eg. `git checkout -b raspios/bullseye` for the Bullseye kernelbakery"
-    exit 1
-fi
-
 HOST_ARCH="$(uname -m)"
 ARCH=${ARCH:-arm}
 case "$ARCH" in
@@ -96,6 +89,7 @@ esac
 
 INSTDIR=$(dirname "$0")
 if [ "${INSTDIR#/}" == "$INSTDIR" ]; then INSTDIR="$PWD/$INSTDIR"; fi
+INSTDIR=${INSTDIR%%/debian}
 BUILDDIR_TEMPLATE=$INSTDIR/kbuild
 KBUILD_BUILD_TIMESTAMP="$(dpkg-parsechangelog -STimestamp)"
 export KBUILD_BUILD_TIMESTAMP
@@ -209,5 +203,7 @@ rmdir /tmp/dtb.$$/* /tmp/dtb.$$
 echo "_ _ $version" >extra/uname_string
 
 find headers -name .gitignore -delete
-
-./gen_bootloader_postinst_preinst.sh
+(
+    cd debian
+    ./gen_bootloader_postinst_preinst.sh
+)
