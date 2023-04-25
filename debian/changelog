@@ -1,3 +1,30 @@
+raspberrypi-firmware (1:9.20230425+1-5.10.152-1+revpi10+1) buster; urgency=medium
+
+  [Linux kernel changelog]
+  * net: phy: broadcom: Make LEDs 3+4 shadow LEDs 1+2
+  * dts: connect4: Unify gpio mux settings for rs485 entry
+  * dts: connect4: Add rs485 RTS active low property
+  * dts: connect4: Use correct sniff pin order
+  * ARM: dts: revpi-flat-s-2022: Use mainline driver for WiFi
+  * arm*/configs/revpi-*: Enable PWRSEQ_SD8787 for Flat S 2022 WiFi
+  * wifi: mwifiex: Support firmware hotfix version in GET_HW_SPEC responses
+  * wifi: mwifiex: Support SD8978 chipset
+  * wifi: mwifiex: Add missing compatible string for SD8787
+  * mwifiex: Select firmware based on strapping
+  * bcm2835-mmc: Honor return value of mmc_of_parse()
+  * mmc: pwrseq_sd8787: Allow being built-in irrespective of dependencies
+  * mmc: pwrseq: add wilc1000_sdio dependency for pwrseq_sd8787
+  * arm64/configs/revpi-v8: Enable tasks stats
+
+  [picontrol changelog]
+  * Connect SE: Make led A3 usable via process image
+  * Cleanup debianization
+  * Add SPDX headers
+  * Replace strncpy by snprintf
+  * Fix gcc -Wformat= complaints
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Tue, 25 Apr 2023 14:11:24 +0200
+
 raspberrypi-firmware (1:9.20221118-5.10.152+revpi1) stable; urgency=medium
 
   [Linux kernel changelog]
