@@ -1,0 +1,827 @@
+raspberrypi-firmware (1:9.20221118-5.10.152+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * Merge Linux 5.10.152-rt75
+  * Upgrade to Linux 5.10.152
+  * dts: Add dtoverlay for Connect 4
+  * arm/dts: Add overlay for RevPi HAT EEPROMs
+  * arm: dts: Add overlay for revpi flat 2022
+  * arm: dts: flat: correct relais pin
+  * ARM: dts: Enable USB by default on CM4S
+  * dts: Add dt overlay for Core (cm1)
+  * dts/dt-blob: Configure drive strength for pins on Core/connect
+  * dts/dt-blob: Add configs of pin 0,1 for HATs on CM4S
+  * dts/dt-blob: Add configs of pin 0,1 for HATs on CM3
+  * dts: Add overlay to amend dt-blob from RPi
+  * dts: Import from RPI as the base of revpi's dt-blob
+  * arm64/configs/revpi-v8: Remove CONFIG_ANDROID
+  * arm64/configs/revpi-v8: Remove CONFIG_MAX30102
+  * arm64/configs/revpi-v8: Disable CONFIG_KVM
+  * arm64/configs/revpi-v8: Add RevPi specific configuration
+  * arm64/configs: Create revpi-v8_defconfig from bcm2711_defconfig
+  * ARM64: dts: Add Zero 2 W and CM4S
+
+  [picontrol changelog]
+  * piControl: ensure setting I/O processing state is threadsafe
+  * Fix format chars and casts for arm64 build
+  * Print filename instead of address
+  * Print serial device name instead of address
+  * Allow optional arm64 build
+
+ -- Zhi Han <z.han@kunbus.com>  Fri, 18 Nov 2022 10:59:48 +0100
+
+raspberrypi-firmware (1:9.20220728-5.10.120+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * random: do not use jump labels before they are initialized
+
+ -- Zhi Han <z.han@kunbus.com>  Thu, 28 Jul 2022 10:27:11 +0200
+
+raspberrypi-firmware (1:9.20220727-5.10.120+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * Merge remote-tracking branch 'rpi/rpi-5.10.y' into revpi-5.10
+  * Revert "tpm: fix reference counting for struct tpm_chip"
+  * dts: Add RevPi Core SE (2022) overlay
+  * dts: Add RevPi Core S (2022) overlay
+  * dts/core-2022: Add revpi-core compatible
+  * dts/revpi-flat: Add WLAN enable
+  * dts: Add RevPi Core 3/3+ (2022) overlay
+  * dts/core: Add comment for the spi-max-frequency
+  * net: phy: smsc: Disable Energy Detect Power-Down in interrupt mode
+  * Linux 5.10.120-rt70
+  * Upgrade to Linux 5.10.120
+
+  [picontrol changelog]
+  * piControl: protect UPDATE_DEVICE_FIRMWARE against concurrent RESET ioctl
+  * piControl: protect INTERN_SET_SERIAL_NUM against concurrent RESET ioctl
+  * piControl: protect internal states agains RESET
+  * piControl: Introduce mutex to protect against resets
+  * Delete stale comment
+  * piControl: Add Support for Core SE
+  * piControl: Add support for Connect SE
+  * piControl: support connect se compatible
+
+ -- Zhi Han <z.han@kunbus.com>  Wed, 27 Jul 2022 08:59:53 +0200
+
+raspberrypi-firmware (1:9.20220524-5.10.103+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * dts/revpi-*: Switch to dwc2 USB driver
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Tue, 24 May 2022 13:32:16 +0200
+
+raspberrypi-firmware (1:9.20220502-5.10.103+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * dts/core: Fix typo in the spi0 fragment
+
+ -- Frank Erdrich <f.erdrich@kunbus.com>  Mon, 02 May 2022 09:43:42 +0200
+
+raspberrypi-firmware (1:9.20220428-5.10.103+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * dts/core: Use own fragments to modify existing pinmuxes
+
+ -- Frank Erdrich <f.erdrich@kunbus.com>  Thu, 28 Apr 2022 15:55:55 +0100
+
+raspberrypi-firmware (1:9.20220427-5.10.103+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * dts/connect-se: Use own fragments to modify existing pinmuxes
+  * dts/connect-se: Amend compatible string for CM4S
+  * dts/connect: Use own fragments to modify existing pinmuxes
+  * Add the device tree overlay for Connect SE
+
+ -- Frank Erdrich <f.erdrich@kunbus.com>  Wed, 27 Apr 2022 16:41:05 +0100
+
+raspberrypi-firmware (1:9.20220419-5.10.103+revpi1) stable; urgency=medium
+
+  [Linux kernel changelog]
+  * dts/revpi-core: Add pinmux for the led gpios
+  * dts/revpi-core: Add missing pinmux for the all sniff pins
+  * dts/revpi-core: Add rs485 (uart0) node
+  * dts/revpi-core: Assign missing unused pinmux
+  * dts/connect: Assign sniff and connect pins to the pibridge
+  * dts/connect: Assign missing unused pinmux
+  * dts/connect: Fix pibridge rs485 pulls
+  * serial: amba-pl011: do not time out prematurely when draining tx fifo for rs485
+  * arm: dts: revpi-con-can: Move pincontrol references for can0
+
+  [picontrol changelog]
+  * piControl: Linux 5.16 compat: Drop userspace includes
+  * piControl: Linux 5.12 compat: Use MAX_RT_PRIO
+  * Remove prio settings for ktimersoftd
+  * connect: Fix gpio assingment of x2do
+
+ -- Frank Erdrich <f.erdrich@kunbus.com>  Tue, 19 Apr 2022 09:58:53 +0100
+
+raspberrypi-firmware (1:9.20220323-5.10.103+revpi1) stable; urgency=medium
+
+  * Linux 5.10.103-rt62
+  * Upgrade to Linux 5.10.103
+  * Update RT patch to 5.10.103-rt62
+  * Support CM4/CM4S (BCM2711) Modules (armv7l)
+  * Disable /dev/gpiomem support [security]
+  * SMSC95xx: Use interrupt for link status, avoid polling
+  * Cleanup pinmux for revpi devices in dt overlays
+  * TPM SLB 9670: Implement proper reset procedure
+  * piControl: flat: Shrink critical region in the ain thread
+  * piControl: compact: Shrink critical section (cpu temp/freq) [Fix missing cycles]
+  * piControl: compact: Use hardware interrupt timer instead in soft interrupt
+  * piControl: compact: Replace smp_read_barrier_depends() with smp_rmb()
+  * piControl: revpi: connect: adjust code to pibridge device tree entry
+  * piControl: revpi: core: register platform driver for revpi core device
+  * piControl: Stop gateway communication on module unload
+  * piControl: Process gateway packets in task context
+  * piControl: revpi_core: make sure UART thread does not block at module unload
+  * piControl: use correct function to exchange data with userspace
+  * piControl: add module depency for DIN on compact
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Wed, 23 Mar 2022 09:25:25 +0100
+
+raspberrypi-firmware (1:9.20220322-4.19.95+revpi1) stable; urgency=medium
+
+  * dts: revpi-core: pull down sniff pin
+  * piControl: add module depency for DIN on compact
+  * piControl: use correct function to exchange data with userspace
+  * Use hardware interrupt timer instead in soft interrupt
+  * compact: Shrink critical section (cpu temp/freq)
+  * flat: Shrink critical region in the ain thread
+  * fix: The removal of elevator= from the cmdline.txt is not working
+  * Fix a warning about divert behavior change
+  * debian/control: Claim maintainership of this package
+  * debian/control: Update the controlfile from upstream
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Tue, 22 Mar 2022 10:23:56 +0100
+
+raspberrypi-firmware (1:9.20211203-4.19.95+revpi1) stable; urgency=medium
+
+  * Revert "brcmfmac: Add support for reading mac address from device tree"
+  * Revert "ARM: dts: revpi-flat: Add support for wifi mac address"
+  * piControl:compact: handle missing config settings
+  * piControl:flat: handle missing config settings
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Fri, 03 Dec 2021 13:57:20 +0100
+
+raspberrypi-firmware (1:9.20211109-4.19.95+revpi1) stable; urgency=medium
+
+  * dts/revpi-flat: Add WLAN enable
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Tue, 09 Nov 2021 08:26:50 +0100
+
+raspberrypi-firmware (1:9.20210622-4.19.95+revpi1) stable; urgency=medium
+
+  * Fix: KSZ8851 reset takes to long (PiBridge)
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Tue, 22 Jun 2021 15:20:40 +0200
+
+raspberrypi-firmware (1:9.20210415-4.19.95+revpi2) stable; urgency=medium
+
+  * Increase epoch to superseed raspios kernel-package again
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Wed, 19 May 2021 09:44:58 +0200
+
+raspberrypi-firmware (9.20210415-4.19.95+revpi1) stable; urgency=medium
+
+  * flat,compact: set default values of virtual devices
+  * pcf2127: various fixes
+
+ -- Lino Sanfilippo <l.sanfilippo@kunbus.com>  Thu, 15 Apr 2021 11:07:51 +0200
+
+raspberrypi-firmware (9.20210326-4.19.95+revpi1) stable; urgency=medium
+
+  * Enable can drivers in kernel
+
+ -- Lino Sanfilippo <l.sanfilippo@kunbus.com>  Fri, 26 Mar 2021 13:26:19 +0100
+
+raspberrypi-firmware (9.20210316-4.19.95+revpi1) stable; urgency=medium
+
+  * New piControl release 1.3.1-1
+
+ -- Lino Sanfilippo <l.sanfilippo@kunbus.com>  Wed, 17 Mar 2021 10:47:19 +0100
+
+raspberrypi-firmware (9.20210310-4.19.95+revpi1) stable; urgency=medium
+
+  * Add support for RevPi MIO
+  * Use nproc to determin the number of build processes
+  * Upgrade to debhelper 10
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Wed, 10 Mar 2021 13:58:49 +0100
+
+raspberrypi-firmware (9.20201102-4.19.95+revpi1~0flat1) stable; urgency=medium
+
+  * Add the support for Revolution Pi Flat.
+
+ -- Zhi Han <z.han@kunbus.com>  Mon, 2 Nov 2020 13:15:00 +0200
+
+raspberrypi-firmware (9.20200616-4.19.95+revpi1) stable; urgency=medium
+
+  * Public 4.19 release for the upcoming 6/2020 image.
+
+ -- Kunbus <admin@kunbus.de>  Tue, 16 Jun 2020 13:15:00 +0200
+
+raspberrypi-firmware (9.20200120-4.19.95+revpi1) stable; urgency=medium
+
+  * Fixups for RevPi Connect Flat:
+    
+    Compile pca953x driver into kernel proper and not as a module
+    to speed up probing of UART drivers which require access to
+    rs485 termination GPIOs.
+    
+    Avoid failure of assigning 1 as number of runtime 8250 UARTs
+    caused by comment.
+    
+    UART1 is controlled by the core clock.   Downclocking changes
+    the baudrate and garbles I/O.  Avoid by defaulting to "performance"
+    cpufreq governor.  This ensures that UART1 is usable as console.
+
+ -- Kunbus <admin@kunbus.de>  Mon, 20 Jan 2020 15:00:00 +0100
+
+raspberrypi-firmware (9.20190927-4.19.29+revpi1) stable; urgency=medium
+
+  * New upstream release based on v4.19
+  * Add support for RevPi Connect Flat
+
+ -- Kunbus <admin@kunbus.de>  Fri, 27 Sep 2019 15:30:00 +0200
+
+raspberrypi-firmware (9.20200228-4.9.76+revpi1) stable; urgency=medium
+
+  * Quiesce IRQs left enabled by bootloader to fix lockups
+  * Drive mux GPIO low on RevPi Connect via dt-blob.bin
+    to work around missing pulldown on hardware rev 06
+  * Update dt-blob.bin on package installation
+  * piControl: Support RevPi Connect Flat
+  * piControl: Support I/O module status
+  * piControl: Support seek ioctl
+
+ -- Kunbus <admin@kunbus.de>  Fri, 28 Feb 2020 15:15:00 +0100
+
+raspberrypi-firmware (9.20190904-4.9.76+revpi1) stable; urgency=medium
+
+  * netfilter: Introduce egress hook
+  * piControl: Filter non-gateway packets on egress to work around
+    gateway firmware which fails to handle those packets properly
+
+ -- Kunbus <admin@kunbus.de>  Wed,  4 Sep 2019 16:00:00 +0200
+
+raspberrypi-firmware (9.20190312-4.9.76+revpi1) stable; urgency=medium
+
+  * piControl: Use native network stack for RevPi Gate communication
+  * spi / dmaengine / ks8851: numerous reliability fixes
+
+ -- Kunbus <admin@kunbus.de>  Tue, 12 Mar 2019 14:45:00 +0100
+
+raspberrypi-firmware (9.20180717-4.9.76+revpi1) stable; urgency=medium
+
+  * piControl: changed error handling of gateway communication again
+
+ -- Kunbus <admin@kunbus.de>  Tue, 17 Jul 2018 14:15:00 +0200
+
+raspberrypi-firmware (9.20180716-4.9.76+revpi1) stable; urgency=medium
+
+  * piControl: changed error handling of gateway communication of piBridge
+
+ -- Kunbus <admin@kunbus.de>  Mon, 16 Jul 2018 15:00:00 +0200
+
+raspberrypi-firmware (9.20180529-4.9.76+revpi1) stable; urgency=medium
+
+  * piControl: add support for new Connect modules
+
+ -- Kunbus <admin@kunbus.de>  Tue, 29 May 2018 10:00:00 +0200
+
+raspberrypi-firmware (9.20180528-4.9.76+revpi1) stable; urgency=medium
+
+  * can: hi311x: bug fixes
+
+ -- Kunbus <admin@kunbus.de>  Mon, 28 May 2018 10:00:00 +0200
+
+raspberrypi-firmware (9.20180503-4.9.76+revpi1) stable; urgency=medium
+
+  * can: hi311x: bug fixes
+
+ -- Kunbus <admin@kunbus.de>  Thu, 03 May 2018 10:30:00 +0200
+
+raspberrypi-firmware (9.20180427-4.9.76+revpi1) stable; urgency=medium
+
+  * can: hi311x: add driver for Holt HI-3110
+
+ -- Kunbus <admin@kunbus.de>  Fri, 27 Apr 2018 14:30:00 +0200
+
+raspberrypi-firmware (9.20180409-4.9.76+revpi1) stable; urgency=medium
+
+  * usb: dwc_otg: fix memory corruption in dwc_otg driver
+    https://github.com/raspberrypi/linux/pull/2477
+
+ -- Kunbus <admin@kunbus.de>  Mon, 09 Apr 2018 12:30:00 +0200
+
+raspberrypi-firmware (9.20180323-4.9.76+revpi1) stable; urgency=medium
+
+  * Improved firmware update of DIO and AIO modules
+
+ -- Kunbus <admin@kunbus.de>  Fri, 23 Mar 2018 15:30:00 +0100
+
+raspberrypi-firmware (9.20180222-4.9.76+revpi1) stable; urgency=medium
+
+  * Add support for RevPi Connect Watchdog
+
+ -- Kunbus <admin@kunbus.de>  Thu, 22 Feb 2018 15:30:00 +0100
+
+raspberrypi-firmware (9.20180110-1+revpi1) stable; urgency=medium
+
+  * New piControl release
+
+ -- Kunbus <admin@kunbus.de>  Wed, 10 Jan 2018 08:15:00 +0100
+
+raspberrypi-firmware (9.20171206-1+revpi1) stable; urgency=medium
+
+  * New upstream release 1.20171029-1 based on v4.9
+  * New piControl release
+  * Hardware support for RevPi Compact
+  * Device trees for RevPi Core/Compact/Connect replace kunbus.dts
+
+ -- Kunbus <admin@kunbus.de>  Wed, 06 Dec 2017 14:15:00 +0100
+
+raspberrypi-firmware (9.20170920-1+revpi1) stable; urgency=medium
+
+  * New piControl release
+  * Some bug fixes for RevPi AIO
+
+ -- Kunbus <admin@kunbus.de>  Wed, 20 Sep 2017 09:30:00 +0100
+
+raspberrypi-firmware (9.20170731-1+revpi1) stable; urgency=medium
+
+  * New piControl release raspberrypi-kernel_9.20170731-1+revpi
+
+ -- Kunbus <admin@kunbus.de>  Mon, 31 Jul 2017 08:10:00 +0100
+
+raspberrypi-firmware (9.20170622-1+revpi1) stable; urgency=medium
+
+  * New piControl release 9.20170622-1+revpi1
+
+ -- Kunbus <admin@kunbus.de>  Thu, 22 Jun 2017 11:45:00 +0100
+
+raspberrypi-firmware (9.20170515-1+revpi1) stable; urgency=medium
+
+  * New upstream release 4.4.53-rt66
+
+ -- Kunbus <admin@kunbus.de>  Mon, 15 May 2017 11:00:00 +0100
+
+raspberrypi-firmware (9.20170309-1+revpi1) stable; urgency=medium
+
+  * New upstream release 4.4.50-rt62
+  * Include Oussama Ghorbel's patch to support threaded IRQs with dwc_otg
+
+ -- Kunbus <admin@kunbus.de>  Thu,  9 Mar 2017 09:00:00 +0100
+
+raspberrypi-firmware (9.20170124-1+revpi1) stable; urgency=medium
+
+  * New upstream release 4.4.44-rt19
+
+ -- Kunbus <admin@kunbus.de>  Thu, 24 Jan 2017 09:00:00 +0100
+
+raspberrypi-firmware (1.20161215-1) jessie; urgency=medium
+
+  * firmware as of 2190ebaaab17d690fb4a6aa767ff7755eaf51b12
+
+ -- Serge Schneider <serge@raspberrypi.org>  Mon, 19 Dec 2016 20:03:40 +0000
+
+raspberrypi-firmware (1.20161125-1) jessie; urgency=medium
+
+  * firmware as of 5d80cd839dd4fe283d573df2ec3f3829b09b33f0
+
+ -- Serge Schneider <serge@raspberrypi.org>  Fri, 25 Nov 2016 16:37:08 +0000
+
+raspberrypi-firmware (1.20161020-1) jessie; urgency=medium
+
+  * firmware as of ec5a517ed6051974a5a09f7b7811d21c443a7c74
+  * raspberrypi-bootloader: Move raspberrypi-kernel to Recommends
+
+ -- Serge Schneider <serge@raspberrypi.org>  Mon, 24 Oct 2016 12:43:51 +0100
+
+raspberrypi-firmware (1.20160921-1) jessie; urgency=medium
+
+  * firmware as of ad8608c08b122b2c228dba0ff5070d6e9519faf5
+
+ -- Serge Schneider <serge@raspberrypi.org>  Thu, 22 Sep 2016 09:09:53 +0100
+
+raspberrypi-firmware (1.20160620-1) jessie; urgency=medium
+
+  * firmware as of 390f53ed0fd79df274bdcc81d99e09fa262f03ab
+
+ -- Serge Schneider <serge@raspberrypi.org>  Wed, 22 Jun 2016 08:10:35 +0100
+
+raspberrypi-firmware (1.20160523-1) jessie; urgency=medium
+
+  * firmware as of 3b98f7433649e13cf08f54f509d11491c99c4c0b
+
+ -- Serge Schneider <serge@raspberrypi.org>  Fri, 27 May 2016 10:22:10 +0100
+
+raspberrypi-firmware (1.20160512-1) jessie; urgency=medium
+
+  * firmware as of 3816e1ce1e6ebc6d2bf0596dbd52849e16aa7e94
+
+ -- Serge Schneider <serge@raspberrypi.org>  Thu, 12 May 2016 13:05:45 +0100
+
+raspberrypi-firmware (1.20160506-1) jessie; urgency=medium
+
+  * firmware as of cc6d7bf8b4c03a2a660ff9fdf4083fc165620866
+
+ -- Serge Schneider <serge@raspberrypi.org>  Fri, 06 May 2016 17:59:32 +0100
+
+raspberrypi-firmware (1.20160503-1) jessie; urgency=medium
+
+  * firmware as of 6832d9a431a98b640accb2b76eac38a420d7c680
+  * update symlinks
+  * add device-tree-compiler dependency
+
+ -- Serge Schneider <serge@raspberrypi.org>  Wed, 04 May 2016 15:33:17 +0100
+
+raspberrypi-firmware (1.20160424-1) jessie; urgency=medium
+
+  * firmware as of c1485f5cad98689d1c655c768a12565415f5ef13
+  * add dtoverlay, dtparam and dtmerge symlinks
+
+ -- Serge Schneider <serge@raspberrypi.org>  Tue, 26 Apr 2016 11:19:23 +0100
+
+raspberrypi-firmware (1.20160405-1) jessie; urgency=medium
+
+  * firmware as of c06550099b9593192d6e2cc7e6446a6b4380d3f4
+
+ -- Serge Schneider <serge@raspberrypi.org>  Wed, 06 Apr 2016 15:24:22 +0100
+
+raspberrypi-firmware (1.20160315-1) jessie; urgency=medium
+
+  * firmware as of 951799bbcd795ddf27769d14acf4813fdcbe53dc
+
+ -- Serge Schneider <serge@raspberrypi.org>  Wed, 16 Mar 2016 09:52:39 +0000
+
+raspberrypi-firmware (1.20160309-1) jessie; urgency=medium
+
+  * firmware as of 8b4e5482b52e6fb438dddc0d88ba0ba8d44af54b
+
+ -- Serge Schneider <serge@raspberrypi.org>  Mon, 14 Mar 2016 15:41:10 +0000
+
+raspberrypi-firmware (1.20160209-1) jessie; urgency=medium
+
+  * firmware as of 3442862c10fab68c2e88d660d2e69c143bb1f00c
+
+ -- Serge Schneider <serge@raspberrypi.org>  Tue, 09 Feb 2016 13:33:33 +0000
+
+raspberrypi-firmware (1.20160202-1) jessie; urgency=medium
+
+  * firmware as of cb2ffaa5503ac53039d40715965480dd66f0aa20
+
+ -- Serge Schneider <serge@raspberrypi.org>  Tue, 02 Feb 2016 09:52:07 +0000
+
+raspberrypi-firmware (1.20150923-1) jessie; urgency=medium
+
+  * firmware as of 960832a6c2590635216c296b6ee0bebf67b21d50
+
+ -- Serge Schneider <serge@raspberrypi.org>  Wed, 23 Sep 2015 16:10:43 +0100
+
+raspberrypi-firmware (1.20150820-1) wheezy; urgency=medium
+
+  * firmware as of bbf5495c0424fe38d795111007e93f8763b88bcc
+
+ -- Serge Schneider <serge@raspberrypi.org>  Fri, 21 Aug 2015 17:16:06 +0100
+
+raspberrypi-firmware (1.20150421-1) unstable; urgency=low
+
+  * firmware as of 6cc27e02dde4f1e02cfddb3d0f23d54be87680cb
+  * Make vc-sm and vcio subsystems writable by video group
+
+ -- Serge Schneider <serge@raspberrypi.org>  Mon, 27 Apr 2015 09:56:44 +0100
+
+raspberrypi-firmware (1.20150214-2) unstable; urgency=medium
+
+  * Fix for incorrect NOOBS images
+
+ -- Serge Schneider <serge@raspberrypi.org>  Fri, 27 Mar 2015 19:11:24 +0000
+
+raspberrypi-firmware (1.20150214-1) unstable; urgency=low
+
+  * firmware as of 8aca5762
+
+ --  <asb@asbradbury.org>  Sun, 15 Feb 2015 11:19:20 +0000
+
+raspberrypi-firmware (1.20150212-1) unstable; urgency=low
+
+  * firmware as of 47bd0f0f46b
+
+ --  <asb@asbradbury.org>  Thu, 12 Feb 2015 21:00:49 +0000
+
+raspberrypi-firmware (1.20150208-1) unstable; urgency=low
+
+  * firmware as of a43480416153e8
+
+ --  <asb@asbradbury.org>  Thu, 12 Feb 2015 16:30:12 +0000
+
+raspberrypi-firmware (1.20150130-1) unstable; urgency=low
+
+  * firmware as of 1f56136651963e
+
+ --  <asb@asbradbury.org>  Sat, 31 Jan 2015 19:50:59 +0000
+
+raspberrypi-firmware (1.20150128-1) unstable; urgency=low
+
+  * firmware as of 9b068fe44503f5
+
+ --  <asb@asbradbury.org>  Thu, 29 Jan 2015 16:59:02 +0000
+
+raspberrypi-firmware (1.20141219-1) unstable; urgency=low
+
+  * firmware as of 2f9828c4577a85
+
+ --  <asb@asbradbury.org>  Sun, 21 Dec 2014 10:53:44 +0000
+
+raspberrypi-firmware (1.20141207-1) unstable; urgency=low
+
+  * firmware as of 9d58d7bcc9d144
+
+ --  <asb@asbradbury.org>  Sun, 07 Dec 2014 17:49:01 +0000
+
+raspberrypi-firmware (1.20140908-1) unstable; urgency=low
+
+  * firmware as of 53d1ae311226b5c
+
+ --  <asb@asbradbury.org>  Mon, 08 Sep 2014 19:23:42 +0000
+
+raspberrypi-firmware (1.20140830-1) unstable; urgency=low
+
+  * firmware as of 1bb122bcd82bcd3
+
+ --  <asb@asbradbury.org>  Tue, 02 Sep 2014 07:08:05 +0000
+
+raspberrypi-firmware (1.20140618-1) unstable; urgency=low
+
+  * firmware as of 462f3e3f476f7b6
+
+ --  <asb@asbradbury.org>  Thu, 19 Jun 2014 18:57:45 +0000
+
+raspberrypi-firmware (1.20140530-1) unstable; urgency=low
+
+  * firmware as of 02eed2f817b42590180
+
+ --  <asb@asbradbury.org>  Sun, 01 Jun 2014 10:50:48 +0000
+
+raspberrypi-firmware (1.20140107-1) unstable; urgency=low
+
+  * firmware as of 030082b403b
+
+ --  <asb@asbradbury.org>  Tue, 07 Jan 2014 19:39:01 +0000
+
+raspberrypi-firmware (1.20131219-1) unstable; urgency=low
+
+  * firmware as of c32bc633039cd9
+
+ --  <asb@asbradbury.org>  Fri, 20 Dec 2013 11:03:43 +0000
+
+raspberrypi-firmware (1.20131209-1) unstable; urgency=low
+
+  * firmware as of 9d34d0475f9
+
+ --  <asb@asbradbury.org>  Wed, 10 Dec 2013 13:47:42 +0000
+
+raspberrypi-firmware (1.20130902-1) unstable; urgency=low
+
+  * firmware as of d4f5315cfac4e
+
+ --  <asb@asbradbury.org>  Wed, 04 Sep 2013 20:09:43 +0000
+
+raspberrypi-firmware (1.20130815-1) unstable; urgency=low
+
+  * firmware as of e0590d6dda8413
+
+ --  <asb@asbradbury.org>  Sat, 17 Aug 2013 15:43:58 +0000
+
+raspberrypi-firmware (1.20130617-1) unstable; urgency=low
+
+  * firmware as of a0c98fa6bc0f
+
+ --  <asb@asbradbury.org>  Wed, 19 Jun 2013 10:06:03 +0000
+
+raspberrypi-firmware (1.20130524-1) unstable; urgency=low
+
+  * firmware as of 6f4a90c8cb8817f
+
+ --  <asb@asbradbury.org>  Sat, 25 May 2013 15:56:50 +0000
+
+raspberrypi-firmware (1.20130520-1) unstable; urgency=low
+
+  * firmware as of a0f8a0331419a4
+
+ --  <asb@asbradbury.org>  Wed, 22 May 2013 20:13:43 +0000
+
+raspberrypi-firmware (1.20130517-1) unstable; urgency=low
+
+  * firmware as of 4f2a7b9b2a3d6c1
+
+ --  <asb@asbradbury.org>  Sat, 18 May 2013 12:34:55 +0000
+
+raspberrypi-firmware (1.20130514-1) unstable; urgency=low
+
+  * firmware as of 1c339b164613b
+
+ --  <asb@asbradbury.org>  Thu, 16 May 2013 17:29:01 +0000
+
+raspberrypi-firmware (1.20130512-1) unstable; urgency=low
+
+  * firmware as of f53948f6fbcb
+
+ --  <asb@asbradbury.org>  Mon, 13 May 2013 19:44:37 +0000
+
+raspberrypi-firmware (1.20130505-3) unstable; urgency=low
+
+  * disable /etc/asound.conf if it uses mmap_emul as it is no longer necessary
+
+ --  <asb@asbradbury.org>  Fri, 10 May 2013 11:23:53 +0000
+
+raspberrypi-firmware (1.20130505-1) unstable; urgency=low
+
+  * firmware as of de687862fa8365ad7
+
+ --  <asb@asbradbury.org>  Wed, 08 May 2013 08:15:11 +0000
+
+raspberrypi-firmware (1.20130207-1) unstable; urgency=low
+
+  * firmware as of 5dd9b4962e
+
+ --  <asb@asbradbury.org>  Sat, 09 Feb 2013 00:20:15 +0000
+
+raspberrypi-firmware (1.20130203-1) unstable; urgency=low
+
+   *firmware as of efc9c98fa
+
+ --  <asb@asbradbury.org>  Mon, 04 Feb 2013 01:57:04 +0000
+
+raspberrypi-firmware (1.20130130-1) unstable; urgency=low
+
+  * firmware as of 73d99edf0
+
+ --  <asb@asbradbury.org>  Sun, 03 Feb 2013 02:10:45 +0000
+
+raspberrypi-firmware (1.20121025-1) unstable; urgency=low
+
+  * firmware as of 17c8799375
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 28 Oct 2012 17:39:32 +0000
+
+raspberrypi-firmware (1.20121006-1) unstable; urgency=low
+
+  * firmware as of db62088e82
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 07 Oct 2012 21:35:05 +0100
+
+raspberrypi-firmware (1.20120918-1) unstable; urgency=low
+
+  * firmware as of f569ff5254
+
+ -- Alex Bradbury <asb@asbradbury.org>  Tue, 18 Sep 2012 10:11:53 +0100
+
+raspberrypi-firmware (1.20120916-1) unstable; urgency=low
+
+  * firmware as of f20e9d70a2
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 16 Sep 2012 20:47:11 +0100
+
+raspberrypi-firmware (1.20120915-1) unstable; urgency=low
+
+  * firmware as of 9c8c1bd57e
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sat, 15 Sep 2012 20:51:34 +0100
+
+raspberrypi-firmware (1.20120910-1) unstable; urgency=low
+
+  * firmware as of 05bb1ecbf5
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 12 Sep 2012 17:18:25 +0100
+
+raspberrypi-firmware (1.20120903-1) unstable; urgency=low
+
+  * firmware as of 7847986e3d
+
+ -- Alex Bradbury <asb@asbradbury.org>  Mon, 03 Sep 2012 17:53:29 +0100
+
+raspberrypi-firmware (1.20120831-1) unstable; urgency=low
+
+  * firmware as of fe629bcc9a
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 02 Sep 2012 19:15:15 +0100
+
+raspberrypi-firmware (1.20120830-1) unstable; urgency=low
+
+  * firmware as of d5e9e96a66
+  * NOTE: yesterday's firmware and today's are both misversioned, as I should
+    have versioned according to the date of the firmware update.
+
+ -- Alex Bradbury <asb@asbradbury.org>  Thu, 30 Aug 2012 20:36:26 +0100
+
+raspberrypi-firmware (1.20120829-1) unstable; urgency=low
+
+  * firmware as of 59059dea7a
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 29 Aug 2012 22:44:59 +0100
+
+raspberrypi-firmware (1.20120822-1) unstable; urgency=low
+
+  * firmware as of c42f21261f
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 22 Aug 2012 16:18:59 +0100
+
+raspberrypi-firmware (1.20120810-1) unstable; urgency=low
+
+  * firmware as of cb9513f48b
+
+ -- Alex Bradbury <asb@asbradbury.org>  Mon, 13 Aug 2012 21:35:59 +0100
+
+raspberrypi-firmware (1.20120808-1) unstable; urgency=low
+
+  * firmware as of 7680bb38ee
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 08 Aug 2012 17:04:11 +0100
+
+raspberrypi-firmware (1.20120801-2) unstable; urgency=low
+
+  * fix silly packaging mistake
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 01 Aug 2012 22:37:24 +0100
+
+raspberrypi-firmware (1.20120801-1) unstable; urgency=low
+
+  * firmware as of 0a2e8d4095
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 01 Aug 2012 22:04:23 +0100
+
+raspberrypi-firmware (1.20120725-1) unstable; urgency=low
+
+  * firmware as of e73e84c7
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 25 Jul 2012 23:35:33 +0100
+
+raspberrypi-firmware (1.20120722-1) unstable; urgency=low
+
+  * firmware as of be61355f9e
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 22 Jul 2012 21:11:56 +0100
+
+raspberrypi-firmware (1.20120714-1) unstable; urgency=low
+
+  * firmware as of 1309b3d512
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 15 Jul 2012 18:09:10 +0100
+
+raspberrypi-firmware (1.20120712-1) unstable; urgency=low
+
+  * firmware as of 01c78fe345
+
+ -- Alex Bradbury <asb@asbradbury.org>  Fri, 13 Jul 2012 10:48:31 +0100
+
+raspberrypi-firmware (1.20120706-2) unstable; urgency=low
+
+  * fix /opt/vc/src/hello_pi dest dir on armhf
+  * rename /etc/ld.so.conf.d/vmcs.conf to /etc/ld.so.conf.d/00-vmcs.conf so vc
+    libs takes precedence over others
+  * fix to raspberrypi-bootloader.postinst so it works in fresh install
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sat, 07 Jul 2012 20:22:20 +0100
+
+raspberrypi-firmware (1.20120706-1) unstable; urgency=low
+
+  * firmware as of 467b0b45e1
+  * Fix broken setting of ld-linux-armhf.so.3 symlink
+  * Add fallback mechanism for detecting current memory split
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sat, 07 Jul 2012 13:51:37 +0100
+
+raspberrypi-firmware (1.20120701-1) unstable; urgency=low
+
+  * firmware as of 0671d601
+  * add /lib/ld-linux-armhf.so.3 symlink for armhf
+
+ -- Alex Bradbury <asb@asbradbury.org>  Wed, 04 Jul 2012 14:57:27 +0100
+
+raspberrypi-firmware (1.20120628-1) unstable; urgency=low
+
+  * firmware as of c59283a672
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 01 Jul 2012 20:58:14 +0100
+
+raspberrypi-firmware (1.20120617-1) unstable; urgency=low
+
+  * firmware as of 2c095047f
+
+ -- Alex Bradbury <asb@asbradbury.org>  Sun, 17 Jun 2012 19:31:13 +0100
+
+raspberrypi-firmware (1.20120614-1) unstable; urgency=low
+
+  * firmware as of 1178c4db5
+
+ -- Alex Bradbury <asb@asbradbury.org>  Thu, 14 Jun 2012 14:37:56 +0100
+
+raspberrypi-firmware (1.0-1) unstable; urgency=low
+
+  * Initial release of Debian packaging for the Raspberry Pi "firmware".
+  * Based on upstream commit caf963d.
+
+ -- Will Thompson <will.thompson@collabora.co.uk>  Thu, 24 May 2012 12:20:30 +0100

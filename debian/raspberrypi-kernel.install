@@ -1,0 +1,5 @@
+boot/overlays
+boot/*.dtb
+boot/kernel*.img
+boot/COPYING.linux
+modules /lib/
