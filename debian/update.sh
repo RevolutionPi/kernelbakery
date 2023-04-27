@@ -91,7 +91,7 @@ INSTDIR=$(dirname "$0")
 if [ "${INSTDIR#/}" == "$INSTDIR" ]; then INSTDIR="$PWD/$INSTDIR"; fi
 INSTDIR=${INSTDIR%%/debian}
 BUILDDIR_TEMPLATE=$INSTDIR/kbuild
-KBUILD_BUILD_TIMESTAMP="$(dpkg-parsechangelog -STimestamp)"
+KBUILD_BUILD_TIMESTAMP="$(dpkg-parsechangelog -SDate)"
 export KBUILD_BUILD_TIMESTAMP
 export KBUILD_BUILD_USER="support"
 export KBUILD_BUILD_HOST="kunbus.com"
