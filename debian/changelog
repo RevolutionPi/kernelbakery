@@ -1,8 +1,8 @@
-raspberrypi-firmware (1:9.20230425+1-5.10.152-2) UNRELEASED; urgency=medium
+raspberrypi-firmware (1:9.20230425+1-5.10.152-2+revpi10+1) buster; urgency=medium
 
   * Rebuild with correct KBUILD_BUILD_TIMESTAMP
 
- -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Thu, 27 Apr 2023 15:31:23 +0200
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Thu, 27 Apr 2023 15:40:47 +0200
 
 raspberrypi-firmware (1:9.20230425+1-5.10.152-1+revpi10+1) buster; urgency=medium
 
