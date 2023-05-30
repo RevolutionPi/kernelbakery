@@ -35,7 +35,7 @@ copy_files() {
         ) "$builddir" "$destdir/"
 
     # search for artifacts which have been built for host architecture and remove them
-    HOST_ELF=$(file /bin/true | grep -oP 'ELF [\w- ]+, \K[\w- ]+')
+    HOST_ELF=$(file /bin/true | grep -oP 'ELF [\w\- ]+, \K[\w\- ]+')
     find "$destdir/scripts" -type f -exec file {} + | grep -E "ELF .* $HOST_ELF," | cut -d: -f1 | xargs --no-run-if-empty rm
     find "$destdir/scripts" -type f -name '*.cmd' -exec rm {} +
 
