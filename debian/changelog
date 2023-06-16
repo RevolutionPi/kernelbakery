@@ -1,3 +1,9 @@
+raspberrypi-firmware (1:9.20230425+1-5.10.152-2+revpi11+2) bullseye; urgency=medium
+
+  * build: Don't build armv6 by default
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Fri, 16 Jun 2023 09:56:57 +0200
+
 raspberrypi-firmware (1:9.20230425+1-5.10.152-2+revpi11+1) bullseye; urgency=medium
 
   * Rebuild with correct KBUILD_BUILD_TIMESTAMP
