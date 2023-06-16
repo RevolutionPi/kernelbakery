@@ -1,4 +1,4 @@
-raspberrypi-firmware (1:9.20230616+1-5.10.152-1) UNRELEASED; urgency=medium
+raspberrypi-firmware (1:9.20230616+1-5.10.152-1+revpi10+1) buster; urgency=medium
 
   [Linux kernel changelog]
   * dts: connect4: Correct fragment numbering
@@ -21,7 +21,7 @@ raspberrypi-firmware (1:9.20230616+1-5.10.152-1) UNRELEASED; urgency=medium
   * piTest: Add Connect 4 as known device
   * Connect 4: Add FW type description id
 
- -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Fri, 16 Jun 2023 08:48:18 +0200
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Fri, 16 Jun 2023 09:21:51 +0200
 
 raspberrypi-firmware (1:9.20230425+1-5.10.152-2+revpi10+1) buster; urgency=medium
 
