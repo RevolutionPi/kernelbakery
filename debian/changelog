@@ -1,3 +1,28 @@
+raspberrypi-firmware (1:9.20230616+1-5.10.152-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * dts: connect4: Correct fragment numbering
+  * dts: connect4: Define HAT eeprom write protect pin
+  * dts: connect4: Add debug UART 1 (TX only)
+  * ARM: dts: revpi-connect4: Swap LED mode of SoC Ethernet
+
+  [picontrol changelog]
+  * Connect 4: Add digital output
+  * Connect 4: Add support for digital input
+  * Connect 4: Add RGB LED support
+  * Rename SRevPiCoreImage to SRevPiProcessImage
+  * Use gpiod_set_value_cansleep for sniff pins
+  * Connect 4/Core SE/Connect SE: Don't set SPI prio
+  * Connect 4: Use ttyAMA1 instead of ttyAMA0
+  * Connect 4: Add new base device
+  * Global flags for device features
+  * piControl: increase priority of io-thread
+  * Move piTest to separate repository
+  * piTest: Add Connect 4 as known device
+  * Connect 4: Add FW type description id
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Fri, 16 Jun 2023 08:48:18 +0200
+
 raspberrypi-firmware (1:9.20230425+1-5.10.152-2+revpi11+2) bullseye; urgency=medium
 
   * build: Don't build armv6 by default
