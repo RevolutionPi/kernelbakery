@@ -50,17 +50,11 @@ copy_files() {
 NPROC=$(nproc) || NPROC=8
 
 if [ -z "$LINUXDIR" ]; then
-    echo "Usage: LINUXDIR=<path> [PIKERNELMODDIR=<path>] $(basename "$0")" \
-        "[-a armv6]" 1>&2
+    echo 1>&2 "Usage: LINUXDIR=<path> [PIKERNELMODDIR=<path>] $(basename "$0")"
     exit 1
 elif [ ! -d "$LINUXDIR" ]; then
     echo 1>&2 "LINUXDIR defined as $LINUXDIR, but folder not found on disk."
     exit 1
-fi
-
-if [ "$1" = "-a" ] && [ "$2" = "armv6" ]; then
-    echo "armv6 build enabled" 1>&2
-    ENABLE_ARMV6=1
 fi
 
 if [ -n "$PIKERNELMODDIR" ]; then
@@ -78,11 +72,7 @@ arm)
         CROSS_COMPILE=arm-linux-gnueabihf-
     fi
     # CM1=6 CM3=7 CM4=7l (32 bit kernel)
-    # CM1=6 is no longer enabled by default
-    if [ "$ENABLE_ARMV6" ]; then
-        kernel_versions="6 "
-    fi
-    kernel_versions+="7 7l"
+    kernel_versions="6 7 7l"
     ;;
 arm64)
     if [ "$HOST_ARCH" != "aarch64" ]; then

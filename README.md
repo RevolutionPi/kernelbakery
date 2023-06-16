@@ -21,9 +21,6 @@ Building the kernel with update.sh is idempotent. If it fails, e.g. due to
 compiler errors in piControl, just start it afresh. You are also welcome to
 ask your questions in our community forum: https://revolutionpi.de/forum/
 
-Note that since bullseye armv6 is no longer officially supported and is thus
-disabled by default.
-
 ## Install build tools
 
 ```
@@ -75,8 +72,6 @@ cd kernelbakery
 LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl debian/update.sh
 dpkg-buildpackage -a armhf -b -us -uc
 ```
-
-To build the kernel for armv6, add `-a armv6`.
 
 ### Build 64-bit kernel (v8)
 
