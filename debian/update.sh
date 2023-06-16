@@ -35,7 +35,7 @@ copy_files() {
         ) "$builddir" "$destdir/"
 
     # search for artifacts which have been built for host architecture and remove them
-    HOST_ELF=$(file /bin/true | grep -oP 'ELF [\w- ]+, \K[\w- ]+')
+    HOST_ELF=$(file -L /bin/true | grep -oP 'ELF [\w\- ]+, \K[\w\- ]+')
     find "$destdir/scripts" -type f -exec file {} + | grep -E "ELF .* $HOST_ELF," | cut -d: -f1 | xargs --no-run-if-empty rm
     find "$destdir/scripts" -type f -name '*.cmd' -exec rm {} +
 
@@ -50,11 +50,17 @@ copy_files() {
 NPROC=$(nproc) || NPROC=8
 
 if [ -z "$LINUXDIR" ]; then
-    echo 1>&2 "Usage: LINUXDIR=<path> [PIKERNELMODDIR=<path>] $(basename "$0")"
+    echo "Usage: LINUXDIR=<path> [PIKERNELMODDIR=<path>] $(basename "$0")" \
+        "[-a armv6]" 1>&2
     exit 1
 elif [ ! -d "$LINUXDIR" ]; then
     echo 1>&2 "LINUXDIR defined as $LINUXDIR, but folder not found on disk."
     exit 1
+fi
+
+if [ "$1" = "-a" ] && [ "$2" = "armv6" ]; then
+    echo "armv6 build enabled" 1>&2
+    ENABLE_ARMV6=1
 fi
 
 if [ -n "$PIKERNELMODDIR" ]; then
@@ -72,7 +78,11 @@ arm)
         CROSS_COMPILE=arm-linux-gnueabihf-
     fi
     # CM1=6 CM3=7 CM4=7l (32 bit kernel)
-    kernel_versions="6 7 7l"
+    # CM1=6 is no longer enabled by default
+    if [ "$ENABLE_ARMV6" ]; then
+        kernel_versions="6 "
+    fi
+    kernel_versions+="7 7l"
     ;;
 arm64)
     if [ "$HOST_ARCH" != "aarch64" ]; then
