@@ -1,3 +1,10 @@
+raspberrypi-firmware (1:9.20230627+1-5.10.152-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * dts: connect4: Switch left sniff pins
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Tue, 27 Jun 2023 13:42:57 +0200
+
 raspberrypi-firmware (1:9.20230616+1-5.10.152-1+revpi10+1) buster; urgency=medium
 
   [Linux kernel changelog]
