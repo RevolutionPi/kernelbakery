@@ -1,4 +1,4 @@
-raspberrypi-firmware (1:9.20230720+1-5.10.152-1) UNRELEASED; urgency=medium
+raspberrypi-firmware (1:9.20230720+1-5.10.152-1+revpi10+1) buster; urgency=medium
 
   [Linux kernel changelog]
   * cfg80211: ship debian certificates as hex files
