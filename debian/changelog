@@ -1,3 +1,12 @@
+raspberrypi-firmware (1:9.20230901+1-5.10.152-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * xhci: Set DESI bits in ERDP register correctly
+  * xhci: Clear EHB bit only at end of interrupt handler
+  * CI: Use legacy piControl branch for snapshots
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Fri, 01 Sep 2023 09:28:40 +0200
+
 raspberrypi-firmware (1:9.20230720+1-5.10.152-1+revpi10+1) buster; urgency=medium
 
   [Linux kernel changelog]
