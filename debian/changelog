@@ -1,3 +1,12 @@
+raspberrypi-firmware (1:9.20230926+1-5.10.152-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * rtc: pcf2127: Disable time stamping support
+  [picontrol changelog]
+  * fix: Too long high pulse on the left ACK pin on Connect 4
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Tue, 26 Sep 2023 09:43:32 +0200
+
 raspberrypi-firmware (1:9.20230901+1-5.10.152-1+revpi11+2) bullseye; urgency=medium
 
   * Package rebuild for Bullseye arm64 only
