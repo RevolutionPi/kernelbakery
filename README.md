@@ -66,8 +66,6 @@ official images. As an alternative a 64-bit kernel can be built, which also
 runs on all Revolution Pi devices with the exception of the first Core devices
 (based on first generation of Raspberry Pi Compute Module).
 
-**Please note that a 64-bit kernel is not yet officially supported by KUNBUS.**
-
 ### Build 32-bit kernel (v6 / v7 / v7l)
 
 ```
