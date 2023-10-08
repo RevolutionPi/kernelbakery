@@ -1,3 +1,19 @@
+raspberrypi-firmware (1:9.20231006+1-6.1.46-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * Linux 6.1.46-rt13
+  * Upgrade to Linux 6.1.46
+  * Update RT patch to 6.1.46-rt13
+  * New pibridge driver for piControl RS-485 communication
+  * Refactor TPM reset on older RevPi Flat
+  * Support TPM interrupt instead of polling
+  [picontrol changelog]
+  * Use kernel's pibridge driver for RS-485 communication
+  * Recognize RO module
+  * Fix piControl.h permissions
+
+ -- Lukas Wunner <lukas@wunner.de>  Fri,  6 Oct 2023 14:29:11 +0200
+
 raspberrypi-firmware (1:9.20230926+1-5.10.152-1) UNRELEASED; urgency=medium
 
   [Linux kernel changelog]
