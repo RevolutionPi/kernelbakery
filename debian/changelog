@@ -1,4 +1,4 @@
-raspberrypi-firmware (1:9.20231006+1-6.1.46-1) UNRELEASED; urgency=medium
+raspberrypi-firmware (1:9.20231006+1-6.1.46-1) bullseye; urgency=medium
 
   [Linux kernel changelog]
   * Linux 6.1.46-rt13
