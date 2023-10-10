@@ -54,7 +54,7 @@ make fetching faster. If you need the full history, remove `--depth 1`
 from the git commands.
 
 ```
-git clone --depth 1 -b revpi-5.10 https://github.com/RevolutionPi/linux
+git clone --depth 1 -b revpi-6.1 https://github.com/RevolutionPi/linux
 git clone --depth 1 -b master https://github.com/RevolutionPi/piControl
 git clone --depth 1 -b master https://github.com/RevolutionPi/kernelbakery
 ```
