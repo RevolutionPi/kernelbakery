@@ -1,3 +1,38 @@
+raspberrypi-firmware (1:9.20231128+1-6.1.46-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * pibridge-serdev: change datatype for data length in pibridge_send()
+  * chore: Add move to GitLab to README
+
+  [picontrol changelog]
+  * Add ID of new MQTT client virtual device
+  * Add ID of new OPC UA server virtual device
+  * fix structure size for 64 bit machines
+  * Remove unused header fwuFlashMain.h
+  * Remove unused common_debug.h
+  * Remove unused piIoComm_response_valid()
+  * Fix IOPROTOCOL_MAXDATA_LENGTH off-by-one errors
+  * Avoid leaking response of previous telegram to user space
+  * mio: Return void in reset function
+  * cleanup header includes
+  * use packet attribute instead of header inclusion
+  * use quotes instead of angle brackets for inclusion of local headers
+  * implement KB_RO_GET_COUNTER telegram communication
+  * piControl: Add support for RO module
+  * fix inconsistent messages
+  * fix macro misnomer
+  * README: Replace github with gitlab
+  * Drop cl->ent pointer check upon KB_SET_EXPORTED_OUTPUTS ioctl
+  * Drop file pointer check upon KB_SET_EXPORTED_OUTPUTS ioctl
+  * Return error code to user space
+  * Remove orphaned code (KB_UPDATE_DEVICE_FIRMWARE)
+  * Move check for virtual device into FWU_update
+  * Don't update the base module
+  * Don't report failure, when firmware is up to date
+  * Add move to GitLab to README
+
+ -- Lino Sanfilippo <l.sanfilippo@kunbus.com>  Tue, 28 Nov 2023 11:37:39 +0100
+
 raspberrypi-firmware (1:9.20231006+1-6.1.46-1) bullseye; urgency=medium
 
   [Linux kernel changelog]
