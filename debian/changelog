@@ -1,3 +1,21 @@
+raspberrypi-firmware (1:9.20240205+1-6.1.46-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * arm: dts: revpi-flat-s-2022: Introduce device tree parameter to activate DSA
+  * arm*/configs/revpi-*: Enable DSA support in kernel
+  * arm: dts: revpi-flat-s-2022: Add DSA switch ports
+  * arm: dts: revpi-flat-s-2022: Correct switch settings
+  * dts/core-2022: ks8851 reset gpio is active low
+
+  [picontrol changelog]
+  * Adjust log level for various messages
+  * piControl: flat: Do not request wrong GPIO for top button on flat S
+  * Remove showPADS() debug function
+  * MIO: Enable counter reset
+  * Add documentation for the KB_RO_GET_COUNTER ioctl
+
+ -- Lino Sanfilippo <l.sanfilippo@kunbus.com>  Mon, 5 Feb 2024 15:02:39 +0100
+
 raspberrypi-firmware (1:9.20231128+1-6.1.46-1+revpi11+1) bullseye; urgency=medium
 
   [Linux kernel changelog]
