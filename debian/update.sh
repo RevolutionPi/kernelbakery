@@ -157,7 +157,6 @@ for kernel_version in $kernel_versions; do
     # build piKernelMod
     if [ -d "$PIKERNELMODDIR" ]; then
         cd "$PIKERNELMODDIR"
-        make compiletime.h
         cd -
         (
             cd linux
