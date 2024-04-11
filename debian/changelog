@@ -1,3 +1,51 @@
+raspberrypi-firmware (1:9.20240411+1-6.1.46-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * arm: dts: revpi-flat-s-2022: Use dwc2 usb
+  * pibridge-serdev: return EIO instead of EBADMSG in case of incomplete data
+  * net: ks8851: Fix TX stall caused by TX buffer overrun
+  * CI: Allow checkpatch to fail without failing the whole pipeline
+  * pibridge-serdev: add error and info messages at startup
+  * arm: dts: revpi-compact: Fix boot output glitch
+  * arm: dts: revpi-flat-s-2022: Disable wireless M-Bus by default
+
+  [picontrol changelog]
+  * Release PiControl v2.1.0
+  * piControl: add new ioctl for firmware upload
+  * fix: Add missing header pinconf-generic.h to revpi_core.c
+  * README: Fix path in build instructions
+  * piControl: bump module version to 2.0.0
+  * piControl: remove compiletime.h
+  * piControl: move source files into src directory
+  * Configure a pull-down to Sniff2A pin
+  * piControl: check for supported property instead of machine type
+  * Get rid of the rpi firmware
+  * Add header for of_device_id to revpi_core.c
+  * Replace bcm2835_cpufreq_get_clock() with cpufreq_quick_get()
+  * Add compat code for class_create as its API changed with 6.4
+  * Make the dev pointer of the class.devnode() callback const
+  * Remove compat code for Linux < 6.1
+  * Remove the cpu thermal zone name from compat.h
+  * Get rid of ktime_equal()
+  * piControl: remove useless io timer handling
+  * piControl: mio: clear last output values at reset
+  * piControl: Add tracing for io-cycles
+  * piControl: mio: Drop useless debug messages
+  * Set rt prio for spi only on RevPi Core/Connect
+  * Discover gateways by interface name
+  * piControl: Drop RS-485 struct and macro definitions
+  * piControl: Drop piIoComm_{recv,recv_timeout}()
+  * piControl: Convert firmware update to kernel coding style
+  * piControl: Drop RS-485 functions for firmware update
+  * piControl: Migrate firmware update to pibridge library
+  * piControl: Drop wrapper functions for firmware update
+  * piControl: Fix fwuWrite() length check
+  * piControl: fix userspace pointer access for KB_CONFIG_SEND ioctl
+  * piControl: Fix kernel memory corruption by KB_CONFIG_SEND ioctl()
+  * piControl: Fix MAX_TELEGRAM_DATA_SIZE off-by-one error
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Thu, 11 Apr 2024 09:27:51 +0200
+
 raspberrypi-firmware (1:9.20240205+1-6.1.46-1) UNRELEASED; urgency=medium
 
   [Linux kernel changelog]
