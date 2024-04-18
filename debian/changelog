@@ -1,3 +1,15 @@
+raspberrypi-firmware (1:9.20240418+1-6.1.46-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * wifi: mwifiex: fix uninitialized firmware_stat
+  * wifi: mwifiex: add extra delay for firmware ready
+
+  [picontrol changelog]
+  * Release PiControl v2.1.1
+  * piControl: flat: add delay between analog input data requests
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Thu, 18 Apr 2024 09:58:06 +0200
+
 raspberrypi-firmware (1:9.20240411+1-6.1.46-1) UNRELEASED; urgency=medium
 
   [Linux kernel changelog]
