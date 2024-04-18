@@ -1,4 +1,4 @@
-raspberrypi-firmware (1:9.20240418+1-6.1.46-1) UNRELEASED; urgency=medium
+raspberrypi-firmware (1:9.20240418+1-6.1.46-1+revpi11+1) bullseye; urgency=medium
 
   [Linux kernel changelog]
   * wifi: mwifiex: fix uninitialized firmware_stat
