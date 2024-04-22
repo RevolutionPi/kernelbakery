@@ -1,3 +1,11 @@
+raspberrypi-firmware (1:9.20240422+1-6.1.46-1) UNRELEASED; urgency=medium
+
+  [picontrol changelog]
+  * Release PiControl v2.1.2
+  * Revert "piControl: remove useless io timer handling"
+
+ -- Philipp Rosenberger <p.rosenberger@kunbus.com>  Mon, 22 Apr 2024 08:37:46 +0200
+
 raspberrypi-firmware (1:9.20240418+1-6.1.46-1+revpi11+1) bullseye; urgency=medium
 
   [Linux kernel changelog]
