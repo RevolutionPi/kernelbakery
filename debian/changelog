@@ -1,3 +1,47 @@
+raspberrypi-firmware (1:9.20241109+1-6.1.112-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * iio: adc: mcp320x: Use workaround at AIN failure
+  * pibridge-serdev: clear uninitialized fields in gateway datagram
+  * arm: dts: revpi-flat-s-2022: Add overlay for dsa
+  * serial: pl011: in RS485 tx path use usleep instead of delay
+  * serial: pl011: temporarily release the ports lock for delays
+  * serial: pl011: handle RS485 tx path in worker thread
+  * pibridge-serdev: send datagrams in one
+
+  [picontrol changelog]
+  * piControl: Remove obsolete gateways
+  * build: use ccflags-y instead of EXTRA_CFLAGS
+  * build: remove spurious whitespace in Makefile
+  * build: adhere to Kbuild doc for external module
+  * build: Move Makefile from src/ to root
+  * Release v2.2.1
+  * piControl: Config tool is named PiCtory
+  * Set base device serial from HAT eeprom
+  * Use tabs for indention
+  * ci: add REUSE lint job
+  * reuse: make piControl REUSE compliant
+  * Release v2.2.0
+  * piControl: compact: create sysfs entry for lost cycles statistics
+  * piControl: compact: use threshold for missed cycles warning
+  * piControl: compact: reimplement sleep of cycle timer
+  * piControl: compact: get rid of useless hrtimer_sleeper struct
+  * piControl: fix device address handling in upload_firmware()
+  * piControl: Add tracing for sniffpins
+  * Use correct offset for gpiochip0 on flat
+  * RevPi Generic PiBridge: Add new base device
+  * Generic PiBridge Device: Add FW type id
+  * Release piControl v2.1.3
+  * Use picontrol_write_device_info to avoid duplicated code
+  * Return info for address 0 with KB_GET_DEVICE_INFO
+  * piControl: for firmware upload perform sanity checks as early as possible
+  * piControl: rename element in picontrol_firmware_upload struct
+  * piControl: set return value to 1 if firmware is already up to update
+  * Fix typo in manpage
+  * piControl: add padding bytes to picontrol_firmware_upload struct
+
+ -- Ramiro Gsponer <r.gsponer@kunbus.com>  Sat, 09 Nov 2024 17:29:00 +0100
+
 raspberrypi-firmware (1:9.20240422+1-6.1.46-1) UNRELEASED; urgency=medium
 
   [picontrol changelog]
