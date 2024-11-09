@@ -84,7 +84,7 @@ runs on all Revolution Pi devices with the exception of the first Core devices
 
 ```
 cd kernelbakery
-LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl/src debian/update.sh
+LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl debian/update.sh
 dpkg-buildpackage -a armhf -b -us -uc
 ```
 
@@ -99,7 +99,7 @@ To build the kernel for armv6, add `-a armv6`.
 
 ```
 cd kernelbakery
-ARCH=arm64 LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl/src debian/update.sh
+ARCH=arm64 LINUXDIR=$PWD/../linux PIKERNELMODDIR=$PWD/../piControl debian/update.sh
 dpkg-buildpackage -a arm64 -b -us -uc
 ```
 
