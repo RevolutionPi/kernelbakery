@@ -1,4 +1,4 @@
-raspberrypi-firmware (1:9.20241109+1-6.1.112-1) UNRELEASED; urgency=medium
+raspberrypi-firmware (1:9.20241109+1-6.1.112-1+revpi11+1) bullseye; urgency=medium
 
   [Linux kernel changelog]
   * iio: adc: mcp320x: Use workaround at AIN failure
