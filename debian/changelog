@@ -1,3 +1,48 @@
+raspberrypi-firmware (1:9.20250224+1-6.1.112-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * arm*/configs/revpi-*: Enable Dynamic Debugging support in kernel
+  * pibridge-serdev: increase statistics counters
+  * pibridge-serdev: Use dynamic debug messages instead of warnings
+  * pibridge-serdev: provide sysfs entries for statistics
+  * pibridge-serdev: Add structure for statistics counters
+
+  [picontrol changelog]
+  * Release v2.3.2
+  * At piControl reset do not forget to store parsing results
+  * Ignore failure of piConfigParse()
+  * Do not stop RevPi module initialization in case of invalid module config
+  * Do not return positive value in piControlInit()
+  * piControl: use metric to print warnings in case of communication errors
+  * piControl: make counter of cycle numbers globally available
+  * piControl: Use dynamic debug messages instead of warnings
+  * Evaluate return value of piConfigParse()
+  * Do not ignore the return value of config functions
+  * piControl: avoid buffer overflow
+  * Remove header and CRC from SDioConfig struct
+  * piControl: add sanity check for DIO counters
+  * piControl: remove unneeded variable
+  * piControl: Fix driver remove for kernel 6.11+
+  * piControl: Move pibridge rt prio to revpi_core.c
+  * piControl: Fix -Wmissing-prototypes errors
+  * piControl: remove custom MIN and MAX macros and use kernel-provided macros
+  * doc(README): update kernel header package
+  * style(README): wrap on 80 characters
+  * piControl: make padding explicit in structures
+  * piControl: move code used only by kernel into extra header file
+  * Release v2.3.1
+  * piControl: Make gate log messages more useful
+  * piControl: Drop gate packages if carrier is down
+  * Release v2.3.0
+  * piControl: Fix gigabit detection on PiBridge
+  * piControl: Fix input length for Connect 5
+  * piControl: remove unnecessary substates from state machine
+  * piControl: add support for gigabit ethernet switch on PiBridge
+  * piControl: Init PiBridge ethernet mode GPIOs on connect 5
+  * piControl: add support for RevPi Connect 5
+
+ -- Ramiro Gsponer <r.gsponer@kunbus.com>  Mon, 24 Feb 2025 10:16:00 +0100
+
 raspberrypi-firmware (1:9.20241109+1-6.1.112-1) UNRELEASED; urgency=medium
 
   [Linux kernel changelog]
