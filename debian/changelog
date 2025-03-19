@@ -1,4 +1,4 @@
-raspberrypi-firmware (1:9.20250319+1-6.1.112-1) UNRELEASED; urgency=medium
+raspberrypi-firmware (1:9.20250319+1-6.1.112-1+revpi11+1) bullseye; urgency=medium
 
   [picontrol changelog]
   * Release v2.3.3
