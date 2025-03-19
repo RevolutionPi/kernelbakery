@@ -1,3 +1,20 @@
+raspberrypi-firmware (1:9.20250319+1-6.1.112-1) UNRELEASED; urgency=medium
+
+  [picontrol changelog]
+  * Release v2.3.3
+  * Retry flash write also for legacy firmware update
+  * Add missing include in piFirmwareUpdate.h
+  * piConfig: return JSON_ERROR_NO_MEMORY on OOM
+  * piControlMain: add missing va_end() call
+  * compact: avoid leak in revpi_compact_adjust_config
+  * Retry flash write at firmware update
+  * Adjust return value in fwuWrite()
+  * Do not try to stop kernel thread that does not exist
+  * Rename COMM_ERROR_MAX to COMM_ERROR_LOG_LIMIT
+  * Correct logic for error counter
+
+ -- Lino Sanfilippo <l.sanfilippo@kunbus.com>  Wed, 19 Mar 2025 10:55:12 +0100
+
 raspberrypi-firmware (1:9.20250224+1-6.1.112-1+revpi11+1) bullseye; urgency=medium
 
   [Linux kernel changelog]
