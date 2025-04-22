@@ -1,4 +1,4 @@
-raspberrypi-firmware (1:9.20250422+1-6.1.134-1) UNRELEASED; urgency=medium
+raspberrypi-firmware (1:9.20250422+1-6.1.134-1+revpi11+1) bullseye; urgency=medium
 
   [Linux kernel changelog]
   * Upgrade to Linux 6.1.134-rt51
