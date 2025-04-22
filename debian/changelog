@@ -1,3 +1,30 @@
+raspberrypi-firmware (1:9.20250422+1-6.1.134-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * Upgrade to Linux 6.1.134-rt51
+  * pibridge-serdev: add missing bracket
+  * pibridge-serdev: swap crc in debug message
+  * pibridge-serdev: add sysfs entry to reset stats counters
+  * pibridge-serdev: Fix driver attribute naming scheme
+  * pibridge-serdev: introduce error counter for remotely detected errors
+  * pibridge-serdev: change evaluation order for io frames
+  * pibridge-serdev: change evaluation order for gate frames
+  * pibridge-serdev: Make error counters more consistent
+
+  [picontrol changelog]
+  * Release v2.3.5
+  * piControl: Fix RevPi MQTT Client device type value
+  * Release v2.3.4
+  * compact: in cycle timer use completion instead of work queue
+  * Retry if flash erase during firmware update failed
+  * Return correct error code if memory allocation failed in piControlOpen
+  * In piControlOpen() do not reset piControl
+  * Make function waitRunning() static
+  * Remove unused counter for open instances
+  * Use lock to check pibridge state
+
+ -- Lino Sanfilippo <l.sanfilippo@kunbus.com>  Tue, 22 Apr 2025 19:01:46 +0200
+
 raspberrypi-firmware (1:9.20250319+1-6.1.112-1) UNRELEASED; urgency=medium
 
   [picontrol changelog]
