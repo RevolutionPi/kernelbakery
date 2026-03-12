@@ -1,3 +1,110 @@
+raspberrypi-firmware (1:9.20260312+1-6.1.134-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * dts: connect,core: Add RS485 termination for PiBridge
+  * pibridge-serdev: add missing MODULE_DESCRIPTION()
+  * pibridge-serdev: extend API by pibridge instance
+  * arm: dts: compact,flat,flat-s: Add pibridge node
+  * Fix timeout for gate datagrams
+  * pibridge-serdev: for gate datagrams apply timeout also for data and CRC
+  * pibridge-serdev: increase internal fifo size to 512 byte
+  * pibridge-serdev: introduce function to send and receive complete datagrams
+  * Provide a macro for the CRC len
+  * pibridge-serdev: remove unused tracing events
+  * pibridge-serdev: Make io timeout configurable
+
+  [picontrol changelog]
+  * Bump to version 2.6.0
+  * piControlMain: reword firmware update messages
+  * piControlMain: Simplify send_internal_gate_msg()
+  * editorconfig: add .editorconfig
+  * Set termination on RevPi extension modules
+  * Set base device RS485 termination depending on topology
+  * Introduce macro for first IO device on the left side
+  * In init_gpios() setup RS485 termination GPIO
+  * Print a note for not found IO-devices
+  * switch to use hrtimer_setup{,_on_stack}
+  * Add modules_install target to Makefile
+  * ci: fix regex for linux headers version
+  * Release v2.5.0
+  * Defer probe if grabbing pibridge instance failed
+  * Release v2.4.0
+  * Map internal message errors to -EIO
+  * Remove useless checks in piControlRead
+  * Revise the error values returned to userspace
+  * Fix gateway datagram reception
+  * Implement firmware rescue feature
+  * avoid piControl_init_sysfs clean up before use
+  * Use flag to check the PiBridge running state
+  * Register platform device driver also for Flat and Compact
+  * compact: do not forget sentinel in lookup table
+  * fix spelling of io-cycle in module parameters
+  * ci: include global-vars.yml for coverity-submit
+  * Make missed cycles accessible via sysfs
+  * Change semantic for resetting cycle min, max and exceeded values
+  * Implement cycle timer with fixed time grid
+  * Adjust handling of gate telegrams to new api return values
+  * Make the sequence number available in internal gate datatagrams
+  * Set receive len for gate telegrams
+  * Avoid code duplication for internal telegrams
+  * Add structure definitions for io telegrams
+  * Allow to send gate/io telegrams in any state
+  * Add new ioctl to send generic gate telegrams
+  * Protect gate telegram from concurrent access
+  * Fix locking for gate telegrams
+  * Move code to send internal gate telegrams into own function
+  * Do not override result for KB_CONFIG_SEND
+  * Protect io telegram from concurrent access
+  * Fix locking for io telegrams
+  * Move code to send internal io telegrams into own function
+  * Set data len in IO telegram response
+  * Do not override result for KB_INTERN_IO_MSG
+  * specify void for functions without parameters
+  * Skip firmware update for disconnected modules
+  * Handle deviation differently for fixed cycles
+  * Make the number of exceeded cycles accessible via sysfs
+  * Make max cycle deviation accessible vias sysfs
+  * Provide module parameter for cycle duration
+  * Fix function parameter alignment
+  * As default make cycle time as fast as possible
+  * mio: fix analog cache corruption on communication failure
+  * core: eliminate code duplication in revpi_core_find_gate()
+  * piControl: allow reset ioctl while bridge is stopped
+  * Add context to log messages
+  * Use pr_debug() for debug output
+  * Cleanup unused code
+  * Make cycle attributes accessible via sysfs
+  * Do not use different calculations for cycle time
+  * Get starting time for first cycle
+  * Dont use different cycle times for init and running state
+  * Fix io cycle interval duration
+  * Fix start of cycle measurement
+  * piControl: Flush error messages in counter reset
+  * Reduce number of attempts to erase the flash
+  * compact: fix missing lock initialization
+  * On flash erase failure skip the warning concerning attempts
+  * Fix flaw in parser function
+  * Do not set flag in every cycle
+  * Move module configuration into own function
+  * Remove wrapper function revpi_pbm_cont_mio()
+  * Fix SAioInputConfig
+  * Release v2.3.7
+  * Remove unused enum
+  * ci: quote all variable expansions
+  * Release v2.3.6
+  * Set correct return value in do_tree()
+  * Fix compiler warning concerning missing prototypes
+  * flat: fix compiler error
+  * ci: automatically submit new releases to coverity
+  * compact: fix race condition in cycle timer
+  * piControl: remove unused variable "done"
+  * piConfig: free alloc'd resources in do_tree on err
+  * piControl: Make Flat reset less verbose
+  * piControl: fix RevPi Flat DAC output scaling
+  * piControl: use sched_setattr_nocheck for RT prio 
+
+ -- Lino Sanfilippo <l.sanfilippo@kunbus.com>  Thu, 12 Mar 2026 13:33:39 +0100
+
 raspberrypi-firmware (1:9.20250422+1-6.1.134-1) UNRELEASED; urgency=medium
 
   [Linux kernel changelog]
