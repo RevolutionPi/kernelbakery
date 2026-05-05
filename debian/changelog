@@ -1,3 +1,25 @@
+raspberrypi-firmware (1:9.20260505+1-6.1.170-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * Upgrade to Linux 6.1.170
+
+  [picontrol changelog]
+  * Release v2.6.1
+  * piControl: replace KUNBUS types with standard kernel types
+  * piControlMain: use bit numbers for flag definitions
+  * piControlMain: fix copy_to_user destination in send_config()
+  * revpi_gate: use GFP_KERNEL instead of GFP_ATOMIC for allocations
+  * piConfig: fix wrong index in type 4 (Config) offset correction
+  * piConfig: add NULL checks after allocation and use kzalloc
+  * piControlMain: add NULL check after kmalloc in piControlReset()
+  * piControlMain: fix memory leaks of connl and cl on reset and removal
+  * RevPiDevice: remove unused RevPiDevice_stopDataexchange()
+  * RevPiDevice: remove redundant DEBUG_DEVICE ifdef guards
+  * piIOComm: remove dead DEBUG_GPIO debug blocks
+  * piControl: remove dead debug infrastructure
+
+ -- Lino Sanfilippo <l.sanfilippo@kunbus.com>  Tue, 05 May 2026 12:21:59 +0200
+
 raspberrypi-firmware (1:9.20260312+1-6.1.134-1+revpi11+1) bullseye; urgency=medium
 
   [Linux kernel changelog]
