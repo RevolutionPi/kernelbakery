@@ -1,3 +1,33 @@
+raspberrypi-firmware (1:9.20260518+1-6.1.173-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * Upgrade to Linux 6.1.173
+
+  [picontrol changelog]
+  * Release v2.6.2
+  * piControl: replace kbUT_Timer with jiffies + time_after_eq
+  * piControl: replace stdint types with kernel types
+  * piControl: remove unused declarations from fwuFlashFileMain
+  * piControl: remove unused declarations from ModGateComMain
+  * revpi_core: replace MODGATECOM_MAX_MODULES with REVPI_MGATE_MAX
+  * piControl: remove unused AL_Timeout from ModGateComMain
+  * piControl: remove unused functions from kbUtilities
+  * piControl: remove BSP systick abstraction layer
+  * piControl: replace kbUT_getCurrentMs() with jiffies_to_msecs()
+  * piControl: remove dead BSP setjmp abstraction
+  * use scope-based resource management for KB_GET_DEVICE_INFO_LIST
+  * use scope-based resource management in PiBridgeMaster_Adjust
+  * use scope-based resource management in send_config
+  * remove unnecessary my_rt_mutex_lock macro
+  * tools: add pibridge-cycles.py for cycle time collection and plotting
+  * piDIOComm: skip input update when KB_STOP_IO is set
+  * revpi_mio: honor KB_STOP_IO flag
+  * revpi_ro: honor KB_STOP_IO flag
+  * Remove assignment with no effect
+  * Check gate message datalen from user
+
+ -- Lino Sanfilippo <l.sanfilippo@kunbus.com>  Mon, 18 May 2026 21:39:37 +0200
+
 raspberrypi-firmware (1:9.20260505+1-6.1.170-1) UNRELEASED; urgency=medium
 
   [Linux kernel changelog]
