@@ -1,5 +1,5 @@
 
-raspberrypi-firmware (1:9.20260611+1-6.1.174-1) UNRELEASED; urgency=medium
+raspberrypi-firmware (1:9.20260611+1-6.1.174-1+revpi11+1) bullseye; urgency=medium
 
   [Linux kernel changelog]
   * net: bcmgenet: raise default RX frame coalescing
