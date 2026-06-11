@@ -1,3 +1,36 @@
+raspberrypi-firmware (1:9.20260611+1-6.1.174-1) UNRELEASED; urgency=medium
+
+  [Linux kernel changelog]
+  * net: bcmgenet: raise default RX frame coalescing
+  * pibridge-serdev: add runtime baudrate API stubs
+  * tty: add inline flip buffer push for serdev on PREEMPT_RT
+  * dts: revpi-*: set pibridge UART RX FIFO trigger to 1/8
+  * serial: pl011: add per-port RX FIFO trigger level override
+  * pibridge: single-phase receive for IO responses
+  * pibridge: combine payload and CRC into single receive call
+  * pibridge: use pre-allocated buffer for IO TX datagrams
+  * pibridge-serdev: serialize API access with global mutex
+
+  [picontrol changelog]
+  * Release v2.7.0
+  * Return consistent error values in piConfigParse()
+  * Check ranges for input, output and config space
+  * Modify data only after parsing the config file was successful
+  * Fix memory leak in piConfigParse()
+  * Remove all code related to unused piConnection entries
+  * Fix races with piControlReset()
+  * Fix return value for KB_FIND_VARIABLE ioctl
+  * revpi_mio: skip digital exchange when all DIO channels disabled
+  * revpi_mio: add MIO digital IO mode enum
+  * pibridge: implement baudrate negotiation in master
+  * ModGateRS485: add missing eCmdPiIoSetErrorLog define
+  * pibridge: add baudrate negotiation protocol definitions
+  * pibridge: extract pibridge_reinit() from PiBridgeMaster_Reset()
+  * pibridge: skip fwuEnterFwuMode in firmware rescue mode
+  * Add feature information to device info
+
+ -- Lino Sanfilippo <l.sanfilippo@kunbus.com>  Thu, 11 Jun 2026 11:38:52 +0200
+
 raspberrypi-firmware (1:9.20260526+1-6.1.174-1) UNRELEASED; urgency=medium
 
   [Linux kernel changelog]
